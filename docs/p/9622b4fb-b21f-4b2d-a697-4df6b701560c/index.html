@@ -1,0 +1,484 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-ML Projects/Ames Housing - LGBM" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.8.1">
+<title data-rh="true">Ames Housing - LGBM | My Site</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://emmableu.github.io/notes/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://emmableu.github.io/notes/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://emmableu.github.io/notes/docs/p/9622b4fb-b21f-4b2d-a697-4df6b701560c"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Ames Housing - LGBM | My Site"><meta data-rh="true" name="description" content="Dataset"><meta data-rh="true" property="og:description" content="Dataset"><link data-rh="true" rel="icon" href="/notes/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://emmableu.github.io/notes/docs/p/9622b4fb-b21f-4b2d-a697-4df6b701560c"><link data-rh="true" rel="alternate" href="https://emmableu.github.io/notes/docs/p/9622b4fb-b21f-4b2d-a697-4df6b701560c" hreflang="en"><link data-rh="true" rel="alternate" href="https://emmableu.github.io/notes/docs/p/9622b4fb-b21f-4b2d-a697-4df6b701560c" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Ames Housing - LGBM","item":"https://emmableu.github.io/notes/docs/p/9622b4fb-b21f-4b2d-a697-4df6b701560c"}]}</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" crossorigin="anonymous"><link rel="stylesheet" href="/notes/assets/css/styles.b95701cd.css">
+<script src="/notes/assets/js/runtime~main.e7b1228a.js" defer="defer"></script>
+<script src="/notes/assets/js/main.c2f99da1.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t="light";var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",e||t),document.documentElement.setAttribute("data-theme-choice",e||t)}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><link rel="preload" as="image" href="/notes/img/logo.svg"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/notes/"><div class="navbar__logo"><img src="/notes/img/logo.svg" alt="My Site Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/notes/img/logo.svg" alt="My Site Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">My Site</b></a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/notes/docs/p/5d064c33-ad70-46b8-9b87-42a78d4541d7">Tutorial</a><a class="navbar__item navbar__link" href="/notes/blog">Blog</a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><a href="https://github.com/emmableu/notes" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-hidden="true" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/notes/docs/p/5d064c33-ad70-46b8-9b87-42a78d4541d7">Deep Learning</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/notes/docs/p/b2ff1609-858a-4da5-824e-5943851497da">Distributions</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/notes/docs/p/b57684e4-a4ff-4d45-90f9-6ac2299f43e1">Leetcode</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role="button" aria-expanded="true" href="/notes/docs/p/9622b4fb-b21f-4b2d-a697-4df6b701560c">ML Projects</a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/notes/docs/p/9622b4fb-b21f-4b2d-a697-4df6b701560c">Ames Housing - LGBM</a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/notes/docs/p/69deee06-2c14-4812-9c86-e38f44c3582a">Reinforcement Learning</a></div></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/notes/docs/docs/intro">Welcome / Placeholder</a></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/notes/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><span class="breadcrumbs__link">ML Projects</span></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">Ames Housing - LGBM</span></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>Ames Housing - LGBM</h1></header><h2 class="anchor anchorWithStickyNavbar_LWe7" id="dataset">Dataset<a href="#dataset" class="hash-link" aria-label="Direct link to Dataset" title="Direct link to Dataset">​</a></h2>
+<p>文件说明</p>
+<ul>
+<li>train.csv：训练集</li>
+<li>test.csv：测试集</li>
+<li>data_description.txt：每一列的完整描述，最初由 Dean De Cock 编写，这里做了轻微修改以匹配使用的列名</li>
+<li>sample_submission.csv：基于线性回归模型（使用销售的年份和月份、地块面积、卧室数量）生成的基准提交文件</li>
+</ul>
+<hr>
+<p>数据字段</p>
+<p>以下是 data_description.txt 文件内容的简要版本：</p>
+<ul>
+<li>SalePrice：房产的销售价格（美元）。这是预测目标变量。</li>
+<li>MSSubClass：建筑类别</li>
+<li>MSZoning：区域分区类型</li>
+<li>LotFrontage：房产连接街道的线性长度（英尺）</li>
+<li>LotArea：地块面积（平方英尺）</li>
+<li>Street：道路接入类型</li>
+<li>Alley：小巷接入类型</li>
+<li>LotShape：地块形状</li>
+<li>LandContour：地势平整度</li>
+<li>Utilities：可用的公共设施类型</li>
+<li>LotConfig：地块配置</li>
+<li>LandSlope：地势坡度</li>
+<li>Neighborhood：Ames 城市范围内的具体地理位置</li>
+<li>Condition1：邻近主干道或铁路</li>
+<li>Condition2：邻近主干道或铁路（第二个条件，如果存在）</li>
+<li>BldgType：住宅建筑类型</li>
+<li>HouseStyle：住宅风格</li>
+<li>OverallQual：整体材料和装修质量</li>
+<li>OverallCond：整体状况评分</li>
+<li>YearBuilt：建造年份</li>
+<li>YearRemodAdd：翻修年份</li>
+<li>RoofStyle：屋顶样式</li>
+<li>RoofMatl：屋顶材料</li>
+<li>Exterior1st：房屋外部覆盖材料（第一层）</li>
+<li>Exterior2nd：房屋外部覆盖材料（第二层，如果有多种材料）</li>
+<li>MasVnrType：砖石贴面类型</li>
+<li>MasVnrArea：砖石贴面面积（平方英尺）</li>
+<li>ExterQual：外部材料质量</li>
+<li>ExterCond：外部材料当前状况</li>
+<li>Foundation：地基类型</li>
+<li>BsmtQual：地下室高度</li>
+<li>BsmtCond：地下室整体状况</li>
+<li>BsmtExposure：地下室采光或是否有花园层出口</li>
+<li>BsmtFinType1：地下室第一类装修区域的质量</li>
+<li>BsmtFinSF1：地下室第一类装修区域的面积（平方英尺）</li>
+<li>BsmtFinType2：地下室第二类装修区域的质量</li>
+<li>BsmtFinSF2：地下室第二类装修区域的面积（平方英尺）</li>
+<li>BsmtUnfSF：未装修的地下室面积（平方英尺）</li>
+<li>TotalBsmtSF：地下室总面积（平方英尺）</li>
+<li>Heating：供暖类型</li>
+<li>HeatingQC：供暖质量和状况</li>
+<li>CentralAir：中央空调</li>
+<li>Electrical：电气系统</li>
+<li>1stFlrSF：一楼面积（平方英尺）</li>
+<li>2ndFlrSF：二楼面积（平方英尺）</li>
+<li>LowQualFinSF：低质量装修面积（所有楼层）</li>
+<li>GrLivArea：地面以上的居住面积（平方英尺）</li>
+<li>BsmtFullBath：地下室全浴室数量</li>
+<li>BsmtHalfBath：地下室半浴室数量</li>
+<li>FullBath：地面以上全浴室数量</li>
+<li>HalfBath：地面以上半浴室数量</li>
+<li>Bedroom：地面以上卧室数量</li>
+<li>Kitchen：厨房数量</li>
+<li>KitchenQual：厨房质量</li>
+<li>TotRmsAbvGrd：地面以上的房间总数（不包括浴室）</li>
+<li>Functional：住宅功能性评分</li>
+<li>Fireplaces：壁炉数量</li>
+<li>FireplaceQu：壁炉质量</li>
+<li>GarageType：车库位置</li>
+<li>GarageYrBlt：车库建造年份</li>
+<li>GarageFinish：车库内部装修情况</li>
+<li>GarageCars：车库容量（可停放汽车数量）</li>
+<li>GarageArea：车库面积（平方英尺）</li>
+<li>GarageQual：车库质量</li>
+<li>GarageCond：车库状况</li>
+<li>PavedDrive：是否有铺设车道</li>
+<li>WoodDeckSF：木质露台面积（平方英尺）</li>
+<li>OpenPorchSF：开放式门廊面积（平方英尺）</li>
+<li>EnclosedPorch：封闭式门廊面积（平方英尺）</li>
+<li>3SsnPorch：三季门廊面积（平方英尺）</li>
+<li>ScreenPorch：纱窗门廊面积（平方英尺）</li>
+<li>PoolArea：游泳池面积（平方英尺）</li>
+<li>PoolQC：游泳池质量</li>
+<li>Fence：围栏质量</li>
+<li>MiscFeature：其他未被包含的特征</li>
+<li>MiscVal：其他特征的价值（美元）</li>
+<li>MoSold：出售月份</li>
+<li>YrSold：出售年份</li>
+<li>SaleType：销售类型</li>
+<li>SaleCondition：销售条件</li>
+</ul>
+<hr>
+<ol>
+<li>载入数据（Load data）</li>
+</ol>
+<p>Q1.1：如何读取 train.csv 与 test.csv，并把 Id 设为索引？
+思路提示：用常见的 CSV 读取方式；确保索引正确（避免后续拼接产生多余列）。
+你要输出/检查什么：两张表的维度（行、列），Id 是否为索引，前 5 行预览。</p>
+<div class="language-python codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-python codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">train </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> pd</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">read_csv</span><span class="token punctuation" style="color:#393A34">(</span><span class="token string" style="color:#e3116c">&quot;data/train.csv&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> index_col</span><span class="token operator" style="color:#393A34">=</span><span class="token string" style="color:#e3116c">&#x27;Id&#x27;</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">test </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> pd</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">read_csv</span><span class="token punctuation" style="color:#393A34">(</span><span class="token string" style="color:#e3116c">&quot;data/test.csv&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> index_col</span><span class="token operator" style="color:#393A34">=</span><span class="token string" style="color:#e3116c">&#x27;Id&#x27;</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">print</span><span class="token punctuation" style="color:#393A34">(</span><span class="token string-interpolation string" style="color:#e3116c">f&#x27;</span><span class="token string-interpolation interpolation punctuation" style="color:#393A34">{</span><span class="token string-interpolation interpolation">train</span><span class="token string-interpolation interpolation punctuation" style="color:#393A34">.</span><span class="token string-interpolation interpolation">shape</span><span class="token string-interpolation interpolation operator" style="color:#393A34">=</span><span class="token string-interpolation interpolation punctuation" style="color:#393A34">}</span><span class="token string-interpolation string" style="color:#e3116c">&#x27;</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">print</span><span class="token punctuation" style="color:#393A34">(</span><span class="token string-interpolation string" style="color:#e3116c">f&#x27;</span><span class="token string-interpolation interpolation punctuation" style="color:#393A34">{</span><span class="token string-interpolation interpolation">test</span><span class="token string-interpolation interpolation punctuation" style="color:#393A34">.</span><span class="token string-interpolation interpolation">shape</span><span class="token string-interpolation interpolation operator" style="color:#393A34">=</span><span class="token string-interpolation interpolation punctuation" style="color:#393A34">}</span><span class="token string-interpolation string" style="color:#e3116c">&#x27;</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">print</span><span class="token punctuation" style="color:#393A34">(</span><span class="token string-interpolation string" style="color:#e3116c">f&#x27;</span><span class="token string-interpolation interpolation punctuation" style="color:#393A34">{</span><span class="token string-interpolation interpolation">train</span><span class="token string-interpolation interpolation punctuation" style="color:#393A34">.</span><span class="token string-interpolation interpolation">index</span><span class="token string-interpolation interpolation operator" style="color:#393A34">=</span><span class="token string-interpolation interpolation punctuation" style="color:#393A34">}</span><span class="token string-interpolation string" style="color:#e3116c">&#x27;</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">print</span><span class="token punctuation" style="color:#393A34">(</span><span class="token string-interpolation string" style="color:#e3116c">f&#x27;</span><span class="token string-interpolation interpolation punctuation" style="color:#393A34">{</span><span class="token string-interpolation interpolation">test</span><span class="token string-interpolation interpolation punctuation" style="color:#393A34">.</span><span class="token string-interpolation interpolation">index</span><span class="token string-interpolation interpolation operator" style="color:#393A34">=</span><span class="token string-interpolation interpolation punctuation" style="color:#393A34">}</span><span class="token string-interpolation string" style="color:#e3116c">&#x27;</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">print</span><span class="token punctuation" style="color:#393A34">(</span><span class="token string-interpolation string" style="color:#e3116c">f&#x27;</span><span class="token string-interpolation interpolation punctuation" style="color:#393A34">{</span><span class="token string-interpolation interpolation">train</span><span class="token string-interpolation interpolation punctuation" style="color:#393A34">.</span><span class="token string-interpolation interpolation">head</span><span class="token string-interpolation interpolation punctuation" style="color:#393A34">(</span><span class="token string-interpolation interpolation number" style="color:#36acaa">5</span><span class="token string-interpolation interpolation punctuation" style="color:#393A34">)</span><span class="token string-interpolation interpolation punctuation" style="color:#393A34">}</span><span class="token string-interpolation string" style="color:#e3116c">&#x27;</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">print</span><span class="token punctuation" style="color:#393A34">(</span><span class="token string-interpolation string" style="color:#e3116c">f&#x27;</span><span class="token string-interpolation interpolation punctuation" style="color:#393A34">{</span><span class="token string-interpolation interpolation">test</span><span class="token string-interpolation interpolation punctuation" style="color:#393A34">.</span><span class="token string-interpolation interpolation">head</span><span class="token string-interpolation interpolation punctuation" style="color:#393A34">(</span><span class="token string-interpolation interpolation number" style="color:#36acaa">5</span><span class="token string-interpolation interpolation punctuation" style="color:#393A34">)</span><span class="token string-interpolation interpolation punctuation" style="color:#393A34">}</span><span class="token string-interpolation string" style="color:#e3116c">&#x27;</span><span class="token punctuation" style="color:#393A34">)</span><br></span></code></pre></div></div>
+<p>Q1.2：如何从训练集中分离特征矩阵 X_train 与目标变量 y（SalePrice）？
+思路提示：丢弃目标列得到特征；目标列单独保存。
+你要输出/检查什么：X_train 的列数是否比 train 少 1；y 的基本统计（计数/均值/缺失情况）。</p>
+<div class="language-python codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-python codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">y </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> train</span><span class="token punctuation" style="color:#393A34">[</span><span class="token string" style="color:#e3116c">&#x27;SalePrice&#x27;</span><span class="token punctuation" style="color:#393A34">]</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">X_train </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> train</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">drop</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">columns</span><span class="token operator" style="color:#393A34">=</span><span class="token punctuation" style="color:#393A34">[</span><span class="token string" style="color:#e3116c">&#x27;SalePrice&#x27;</span><span class="token punctuation" style="color:#393A34">]</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">print</span><span class="token punctuation" style="color:#393A34">(</span><span class="token string-interpolation string" style="color:#e3116c">f&#x27;</span><span class="token string-interpolation interpolation punctuation" style="color:#393A34">{</span><span class="token string-interpolation interpolation">train</span><span class="token string-interpolation interpolation punctuation" style="color:#393A34">.</span><span class="token string-interpolation interpolation">shape</span><span class="token string-interpolation interpolation operator" style="color:#393A34">=</span><span class="token string-interpolation interpolation punctuation" style="color:#393A34">}</span><span class="token string-interpolation string" style="color:#e3116c">&#x27;</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">print</span><span class="token punctuation" style="color:#393A34">(</span><span class="token string-interpolation string" style="color:#e3116c">f&#x27;</span><span class="token string-interpolation interpolation punctuation" style="color:#393A34">{</span><span class="token string-interpolation interpolation">X_train</span><span class="token string-interpolation interpolation punctuation" style="color:#393A34">.</span><span class="token string-interpolation interpolation">shape</span><span class="token string-interpolation interpolation operator" style="color:#393A34">=</span><span class="token string-interpolation interpolation punctuation" style="color:#393A34">}</span><span class="token string-interpolation string" style="color:#e3116c">&#x27;</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">print</span><span class="token punctuation" style="color:#393A34">(</span><span class="token string-interpolation string" style="color:#e3116c">f&#x27;</span><span class="token string-interpolation interpolation punctuation" style="color:#393A34">{</span><span class="token string-interpolation interpolation">y</span><span class="token string-interpolation interpolation punctuation" style="color:#393A34">.</span><span class="token string-interpolation interpolation">shape</span><span class="token string-interpolation interpolation operator" style="color:#393A34">=</span><span class="token string-interpolation interpolation punctuation" style="color:#393A34">}</span><span class="token string-interpolation string" style="color:#e3116c">&#x27;</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">print</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">y</span><span class="token punctuation" style="color:#393A34">[</span><span class="token punctuation" style="color:#393A34">:</span><span class="token number" style="color:#36acaa">100</span><span class="token punctuation" style="color:#393A34">]</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">y </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> np</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">array</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">y</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">tolist</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">print</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">y</span><span class="token punctuation" style="color:#393A34">.</span><span class="token builtin">min</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> y</span><span class="token punctuation" style="color:#393A34">.</span><span class="token builtin">max</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> y</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">mean</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> np</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">isnan</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">y</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">.</span><span class="token builtin">sum</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token comment" style="color:#999988;font-style:italic"># 34900 755000 180921.19589041095 0</span><br></span></code></pre></div></div>
+<p>Q1.3：为什么要把 X_train 与 test_data 纵向拼接成一个总特征表 X？
+思路提示：统一后续的编码与变换（防止训练/测试独热编码列不一致）。
+你要输出/检查什么：拼接后的维度、训练/测试的分界索引位置。</p>
+<div class="language-python codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-python codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">X </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> pd</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">concat</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">[</span><span class="token plain">X_train</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> test</span><span class="token punctuation" style="color:#393A34">]</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> axis</span><span class="token operator" style="color:#393A34">=</span><span class="token number" style="color:#36acaa">0</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">print</span><span class="token punctuation" style="color:#393A34">(</span><span class="token string-interpolation string" style="color:#e3116c">f&quot;</span><span class="token string-interpolation interpolation punctuation" style="color:#393A34">{</span><span class="token string-interpolation interpolation">X</span><span class="token string-interpolation interpolation punctuation" style="color:#393A34">.</span><span class="token string-interpolation interpolation">shape</span><span class="token string-interpolation interpolation operator" style="color:#393A34">=</span><span class="token string-interpolation interpolation punctuation" style="color:#393A34">}</span><span class="token string-interpolation string" style="color:#e3116c">&quot;</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token comment" style="color:#999988;font-style:italic"># X.shape=(2919, 79)</span><br></span></code></pre></div></div>
+<hr>
+<ol start="2">
+<li>数据概览（Describe data）</li>
+</ol>
+<p>Q2.1：有哪些数值型特征与分类型特征？各自有多少？
+思路提示：按 dtype 列出，注意日期类、纯整数编码类是否被误判。
+你要输出/检查什么：数值特征名列表（约 36 个）、分类特征名列表（约 43 个）；核对是否与预期一致。</p>
+<div class="language-python codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-python codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">numerical_cols </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> X_train</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">select_dtypes</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">include</span><span class="token operator" style="color:#393A34">=</span><span class="token string" style="color:#e3116c">&quot;number&quot;</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">columns</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">tolist</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">string_cols </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> X_train</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">select_dtypes</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">include</span><span class="token operator" style="color:#393A34">=</span><span class="token string" style="color:#e3116c">&quot;object&quot;</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">columns</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">tolist</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">print</span><span class="token punctuation" style="color:#393A34">(</span><span class="token string-interpolation string" style="color:#e3116c">f&#x27;</span><span class="token string-interpolation interpolation punctuation" style="color:#393A34">{</span><span class="token string-interpolation interpolation builtin">len</span><span class="token string-interpolation interpolation punctuation" style="color:#393A34">(</span><span class="token string-interpolation interpolation">numerical_cols</span><span class="token string-interpolation interpolation punctuation" style="color:#393A34">)</span><span class="token string-interpolation interpolation operator" style="color:#393A34">=</span><span class="token string-interpolation interpolation punctuation" style="color:#393A34">}</span><span class="token string-interpolation string" style="color:#e3116c">&#x27;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token string-interpolation string" style="color:#e3116c">f&#x27;</span><span class="token string-interpolation interpolation punctuation" style="color:#393A34">{</span><span class="token string-interpolation interpolation builtin">len</span><span class="token string-interpolation interpolation punctuation" style="color:#393A34">(</span><span class="token string-interpolation interpolation">string_cols</span><span class="token string-interpolation interpolation punctuation" style="color:#393A34">)</span><span class="token string-interpolation interpolation operator" style="color:#393A34">=</span><span class="token string-interpolation interpolation punctuation" style="color:#393A34">}</span><span class="token string-interpolation string" style="color:#e3116c">&#x27;</span><span class="token punctuation" style="color:#393A34">)</span><br></span></code></pre></div></div>
+<hr>
+<ol start="3">
+<li>初步探索性分析（EDA）</li>
+</ol>
+<p>3.1 目标变量：SalePrice</p>
+<p>Q3.1：SalePrice 的分布形态如何？是否右偏？
+思路提示：画直方图/核密度图；观察长尾。
+你要输出/检查什么：图形+一句话解读（“明显右偏，存在长尾”）。</p>
+<div class="language-python codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-python codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">import</span><span class="token plain"> matplotlib</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">pyplot </span><span class="token keyword" style="color:#00009f">as</span><span class="token plain"> plt</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">plt</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">hist</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">y</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> bins </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">100</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token comment" style="color:#999988;font-style:italic"># a gamma shape, long tail, so we use log</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">plt</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">hist</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">np</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">log10</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">y</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> bins </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">100</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token comment" style="color:#999988;font-style:italic"># a pretty symmetrical shape.</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">plt</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">show</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><br></span></code></pre></div></div>
+<p>Q3.2：SalePrice 的偏度（Skewness）与峰度（Kurtosis）是多少？
+思路提示：直接计算并打印。
+你要输出/检查什么：偏度约 ~1.88、峰度约 ~6.54（不同版本/处理略有差异）；解释其意义（右偏、重尾）。</p>
+<div class="language-python codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-python codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">y </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> train</span><span class="token punctuation" style="color:#393A34">[</span><span class="token string" style="color:#e3116c">&#x27;SalePrice&#x27;</span><span class="token punctuation" style="color:#393A34">]</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">print</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">y</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">skew</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token comment" style="color:#999988;font-style:italic"># 1.8828757597682129</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">print</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">y</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">kurt</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token comment" style="color:#999988;font-style:italic"># 6.536281860064529</span><br></span></code></pre></div></div>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="偏度skewness">偏度（Skewness）<a href="#偏度skewness" class="hash-link" aria-label="Direct link to 偏度（Skewness）" title="Direct link to 偏度（Skewness）">​</a></h2>
+<ul>
+<li><strong>定义</strong>：衡量分布的对称性。</li>
+<li><strong>公式</strong>：<!-- -->
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>Skewness</mtext><mo>=</mo><mfrac><mrow><mi>E</mi><mo stretchy="false">[</mo><mo stretchy="false">(</mo><mi>X</mi><mo>−</mo><mi>μ</mi><msup><mo stretchy="false">)</mo><mn>3</mn></msup><mo stretchy="false">]</mo></mrow><msup><mi>σ</mi><mn>3</mn></msup></mfrac></mrow><annotation encoding="application/x-tex">\text{Skewness} = \frac{E[(X - \mu)^3]}{\sigma^3}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em"></span><span class="mord text"><span class="mord">Skewness</span></span><span class="mspace" style="margin-right:0.2778em"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em"></span></span><span class="base"><span class="strut" style="height:2.1771em;vertical-align:-0.686em"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.4911em"><span style="top:-2.314em"><span class="pstrut" style="height:3em"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em">σ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7401em"><span style="top:-2.989em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em"><span class="pstrut" style="height:3em"></span><span class="frac-line" style="border-bottom-width:0.04em"></span></span><span style="top:-3.677em"><span class="pstrut" style="height:3em"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em">E</span><span class="mopen">[(</span><span class="mord mathnormal" style="margin-right:0.07847em">X</span><span class="mspace" style="margin-right:0.2222em"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em"></span><span class="mord mathnormal">μ</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em"><span style="top:-3.063em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mclose">]</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span>
+<!-- -->其中 (\mu) 是均值，(\sigma) 是标准差。</li>
+<li><strong>取值解释</strong>：<!-- -->
+<ul>
+<li>Skewness = 0：分布完全对称。</li>
+<li>Skewness <code>&gt;</code> 0：分布右偏（右尾更长）。</li>
+<li>Skewness <code>&lt;</code> 0：分布左偏（左尾更长）。</li>
+</ul>
+</li>
+</ul>
+<p><strong>在正态分布中</strong>：</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>Skewness</mtext><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\text{Skewness} = 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em"></span><span class="mord text"><span class="mord">Skewness</span></span><span class="mspace" style="margin-right:0.2778em"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em"></span></span><span class="base"><span class="strut" style="height:0.6444em"></span><span class="mord">0</span></span></span></span></span>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="峰度kurtosis-pandas-定义">峰度（Kurtosis, pandas 定义）<a href="#峰度kurtosis-pandas-定义" class="hash-link" aria-label="Direct link to 峰度（Kurtosis, pandas 定义）" title="Direct link to 峰度（Kurtosis, pandas 定义）">​</a></h2>
+<ul>
+<li>
+<p><strong>定义</strong>：衡量分布的尖峭程度及尾部厚度。<br>
+<!-- -->在 pandas 中，<code>Series.kurt()</code> 返回的是 <strong>超额峰度 (Excess Kurtosis)</strong>：</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>Excess Kurtosis</mtext><mo>=</mo><mfrac><mrow><mi>E</mi><mo stretchy="false">[</mo><mo stretchy="false">(</mo><mi>X</mi><mo>−</mo><mi>μ</mi><msup><mo stretchy="false">)</mo><mn>4</mn></msup><mo stretchy="false">]</mo></mrow><msup><mi>σ</mi><mn>4</mn></msup></mfrac><mo>−</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">\text{Excess Kurtosis} = \frac{E[(X - \mu)^4]}{\sigma^4} - 3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em"></span><span class="mord text"><span class="mord">Excess Kurtosis</span></span><span class="mspace" style="margin-right:0.2778em"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em"></span></span><span class="base"><span class="strut" style="height:2.1771em;vertical-align:-0.686em"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.4911em"><span style="top:-2.314em"><span class="pstrut" style="height:3em"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em">σ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7401em"><span style="top:-2.989em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em"><span class="pstrut" style="height:3em"></span><span class="frac-line" style="border-bottom-width:0.04em"></span></span><span style="top:-3.677em"><span class="pstrut" style="height:3em"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em">E</span><span class="mopen">[(</span><span class="mord mathnormal" style="margin-right:0.07847em">X</span><span class="mspace" style="margin-right:0.2222em"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em"></span><span class="mord mathnormal">μ</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em"><span style="top:-3.063em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span></span></span></span></span><span class="mclose">]</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222em"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em"></span></span><span class="base"><span class="strut" style="height:0.6444em"></span><span class="mord">3</span></span></span></span></span>
+</li>
+<li>
+<p><strong>取值解释</strong>：</p>
+<ul>
+<li>正态分布的超额峰度 = 0。</li>
+<li>超额峰度 <code>&gt;</code> 0：高峰态（Leptokurtic），比正态更尖、更厚尾。</li>
+<li>超额峰度 <code>&lt;</code> 0：低峰态（Platykurtic），比正态更平、更轻尾。</li>
+</ul>
+</li>
+</ul>
+<p><strong>在正态分布中 (pandas 定义)</strong>：</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>Kurtosis</mtext><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\text{Kurtosis} = 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em"></span><span class="mord text"><span class="mord">Kurtosis</span></span><span class="mspace" style="margin-right:0.2778em"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em"></span></span><span class="base"><span class="strut" style="height:0.6444em"></span><span class="mord">0</span></span></span></span></span>
+<hr>
+<h1>Python 代码示例</h1>
+<div class="language-python codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-python codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">import</span><span class="token plain"> numpy </span><span class="token keyword" style="color:#00009f">as</span><span class="token plain"> np</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token comment" style="color:#999988;font-style:italic"># 生成标准正态分布样本</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">np</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">random</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">seed</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">42</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">data </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> np</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">random</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">normal</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">loc</span><span class="token operator" style="color:#393A34">=</span><span class="token number" style="color:#36acaa">0</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> scale</span><span class="token operator" style="color:#393A34">=</span><span class="token number" style="color:#36acaa">1</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> size</span><span class="token operator" style="color:#393A34">=</span><span class="token number" style="color:#36acaa">100000</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token comment" style="color:#999988;font-style:italic"># 计算偏度和峰度</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">skewness </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> data</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">skew</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">kurt </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> data</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">kurt</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain">  </span><span class="token comment" style="color:#999988;font-style:italic"># fisher=False 表示计算普通峰度（正态=3）</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">print</span><span class="token punctuation" style="color:#393A34">(</span><span class="token string" style="color:#e3116c">&quot;Skewness:&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> skewness</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">print</span><span class="token punctuation" style="color:#393A34">(</span><span class="token string" style="color:#e3116c">&quot;Kurtosis:&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> kurt</span><span class="token punctuation" style="color:#393A34">)</span><br></span></code></pre></div></div>
+<hr>
+<p>3.2 与目标的线性相关（数值特征）</p>
+<p>Q3.3：数值特征与 SalePrice 的皮尔逊相关系数排序，Top 10 是哪些？
+思路提示：计算相关矩阵并对 SalePrice 这一列排序。
+你要输出/检查什么：打印前十特征（常见：OverallQual, GrLivArea, GarageCars, GarageArea, TotalBsmtSF, 1stFlrSF, FullBath, TotRmsAbvGrd, YearBuilt, YearRemodAdd 等）+简短解读。</p>
+<div class="language-python codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-python codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">train_numerical </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> train</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">select_dtypes</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">include</span><span class="token operator" style="color:#393A34">=</span><span class="token string" style="color:#e3116c">&quot;number&quot;</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">cor_mat </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> train_numerical</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">corr</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token comment" style="color:#999988;font-style:italic"># np.black_white_dots(cor_mat.tonumpy(), black = 1, red = -1, white = 0)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token comment" style="color:#999988;font-style:italic"># 转换为 numpy array</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">cor_mat </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> cor_mat</span><span class="token punctuation" style="color:#393A34">[</span><span class="token punctuation" style="color:#393A34">[</span><span class="token string" style="color:#e3116c">&#x27;SalePrice&#x27;</span><span class="token punctuation" style="color:#393A34">]</span><span class="token punctuation" style="color:#393A34">]</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">corr_array </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> cor_mat</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">to_numpy</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token comment" style="color:#999988;font-style:italic"># 用 seaborn 的 heatmap 来画相关矩阵</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token comment" style="color:#999988;font-style:italic"># plt.figure(figsize=(12, 10))</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token comment" style="color:#999988;font-style:italic"># sns.heatmap(corr_array, cmap=&quot;coolwarm&quot;, center=0, vmin=-1, vmax=1)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token comment" style="color:#999988;font-style:italic"># plt.show()</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">cor_mat </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> cor_mat</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">sort_values</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">by</span><span class="token operator" style="color:#393A34">=</span><span class="token string" style="color:#e3116c">&#x27;SalePrice&#x27;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> ascending</span><span class="token operator" style="color:#393A34">=</span><span class="token boolean" style="color:#36acaa">False</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">print</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">cor_mat</span><span class="token punctuation" style="color:#393A34">)</span><br></span></code></pre></div></div>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">               SalePrice</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">SalePrice       1.000000</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">OverallQual     0.790982</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">GrLivArea       0.708624</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">GarageCars      0.640409</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">GarageArea      0.623431</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">TotalBsmtSF     0.613581</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">1stFlrSF        0.605852</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">FullBath        0.560664</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">TotRmsAbvGrd    0.533723 </span><br></span></code></pre></div></div>
+<p>Q3.4（进阶）：数值特征的相关矩阵热力图是否显示出多重共线性风险？
+思路提示：例如 GarageCars 与 GarageArea，1stFlrSF 与 TotalBsmtSF 可能高度相关。
+你要输出/检查什么：热力图截图+指出 2~3 组相关性过高的特征对。</p>
+<hr>
+<ol start="4">
+<li>特征选择示例（RFE）</li>
+</ol>
+<p>Q4.1：递归特征消除（RFE）在本数据上选择出的前 10 个特征是什么？
+思路提示：用线性模型作为基学习器仅在数值特征上演示；缺失先做简单填补以跑通流程。
+你要输出/检查什么：RFE 选出的 10 个特征名列表（与你示例接近即可）+1~2 句解释为什么这些特征重要。</p>
+<div class="language-python codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-python codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">from</span><span class="token plain"> sklearn</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">feature_selection </span><span class="token keyword" style="color:#00009f">import</span><span class="token plain"> RFE</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">from</span><span class="token plain"> sklearn</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">linear_model </span><span class="token keyword" style="color:#00009f">import</span><span class="token plain"> LinearRegression</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">estimator </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> LinearRegression</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">rfe </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> RFE</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">estimator</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> n_features_to_select</span><span class="token operator" style="color:#393A34">=</span><span class="token number" style="color:#36acaa">10</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> step</span><span class="token operator" style="color:#393A34">=</span><span class="token number" style="color:#36acaa">1</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">selector </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> rfe</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">fit</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">X_train</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">fillna</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">0</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">select_dtypes</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">exclude</span><span class="token operator" style="color:#393A34">=</span><span class="token string" style="color:#e3116c">&#x27;object&#x27;</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> y</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">selectedFeatures </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token builtin">list</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    X</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">select_dtypes</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">exclude</span><span class="token operator" style="color:#393A34">=</span><span class="token string" style="color:#e3116c">&#x27;object&#x27;</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">columns</span><span class="token punctuation" style="color:#393A34">[</span><span class="token plain">selector</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">support_</span><span class="token punctuation" style="color:#393A34">]</span><span class="token punctuation" style="color:#393A34">)</span><br></span></code></pre></div></div>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">selectedFeatures</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">[&#x27;OverallQual&#x27;,</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"> &#x27;BsmtFullBath&#x27;,</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"> &#x27;BsmtHalfBath&#x27;,</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"> &#x27;FullBath&#x27;,</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"> &#x27;HalfBath&#x27;,</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"> &#x27;BedroomAbvGr&#x27;,</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"> &#x27;KitchenAbvGr&#x27;,</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"> &#x27;TotRmsAbvGrd&#x27;,</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"> &#x27;Fireplaces&#x27;,</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"> &#x27;GarageCars&#x27;]</span><br></span></code></pre></div></div>
+<p>According to above analyses, Overall Quality, Living Area, Number of Full Baths, Size of Garage and Year Built are some of the most important features in determining house price. Let&#x27;s take a closer look at them.</p>
+<p>Q4.2（思辨）：RFE 与基于树的重要性在选择上可能不同，为什么？
+思路提示：线性模型偏好线性可解释的单调强信号；树模型能捕捉非线性与交互。
+你要输出/检查什么：简短对比说明+在后续 LightGBM 中会如何使用/验证。</p>
+<p>⸻-----------------</p>
+<ol start="5">
+<li>重点特征深入可视化</li>
+</ol>
+<p>Q5.1：OverallQual（整体质量）与 SalePrice 的关系？
+思路提示：画分箱箱线图；观察中位数随质量上升而提高。
+你要输出/检查什么：一张箱线图+一句话结论（“质量越高，价格显著更高，离群点较少/可控”）。</p>
+<p>Q5.2：GrLivArea（地上居住面积）与 SalePrice 的关系？是否存在明显离群点？
+思路提示：画散点+拟合线；指出右下角面积<code>&gt;</code> 4000 且售价异常低的点。
+你要输出/检查什么：散点图+“存在少量异常点（大面积但低价），后续可考虑剔除或稳健建模”的备注。</p>
+<p>Q5.3：GarageCars（车位数）与 SalePrice 的关系有什么“反直觉”之处？
+思路提示：箱线图；有时 4 车位样本少且并不总是更贵。
+你要输出/检查什么：图+一句话解释（样本量、其他混杂因素影响）。</p>
+<p>Q5.4：YearBuilt 与 SalePrice 的关系？
+思路提示：散点或 LOESS 平滑；新房更贵，但也有早期房价高的个案。
+你要输出/检查什么：图+一句话趋势总结（“年代越新，均价越高；存在高价老房的异常点”）。</p>
+<hr>
+<ol start="3">
+<li>数据预处理与特征工程（Data Preprocessing and Feature Engineering）</li>
+</ol>
+<p>⸻</p>
+<p>3.1 缺失值处理</p>
+<p>Q3.1.1：我们如何统计每个特征的缺失值数量和缺失比例？
+👉 输出/检查：缺失值数量表，按缺失量降序排序，列出前 10。</p>
+<p>Q3.1.2：根据数据字典，哪些特征的缺失值代表“没有该设施”？
+👉 思路：如 PoolQC, MiscFeature, Alley, Fence, FireplaceQu, Garage*, Bsmt*, MasVnrType。
+👉 输出/检查：确认这些列用 &quot;None&quot; 填补。</p>
+<p>Q3.1.3：哪些数值型特征的缺失值代表“没有该设施”？
+👉 思路：如 GarageArea, GarageCars, BsmtFin*, TotalBsmtSF, MasVnrArea。
+👉 输出/检查：确认这些列用 0 填补。</p>
+<p>Q3.1.4：剩余的杂项变量（如 Functional, MSZoning, Electrical, LotFrontage, GarageYrBlt）应如何填补？
+👉 思路：分类变量用众数，LotFrontage 用均值，GarageYrBlt 用 YearBuilt。
+👉 输出/检查：X.isnull().sum().sum() 应为 0。</p>
+<p>⸻</p>
+<p>3.2 异常值处理</p>
+<p>Q3.2.1：为什么回归模型对异常值敏感？
+👉 思路：大残差会被平方放大，显著影响回归系数。</p>
+<p>Q3.2.2：在 GrLivArea vs SalePrice 的散点图里，哪两个点是明显异常？
+👉 输出/检查：GrLivArea <code>&gt;</code> 4000 且 SalePrice <code>&lt;</code> 200000 的样本。</p>
+<p>Q3.2.3：我们该如何处理这些异常点？
+👉 思路：删除它们。
+👉 输出/检查：确认从 X 和 y 中都删除。</p>
+<p>⸻</p>
+<p>3.3 特征工程</p>
+<p>3.3.1 新变量构造</p>
+<p>Q3.3.1：如何通过组合弱特征来得到更强的预测变量？
+👉 示例：totalSqFeet（总面积）、totalBathroom（总浴室数）、houseAge（房龄）、reModeled（是否翻新）、isNew（是否新房）。
+👉 输出/检查：确认新列添加进 X。</p>
+<p>3.3.2 标签编码（Label Encoding）</p>
+<p>Q3.3.2：哪些类别变量是有序的（Ordinal），需要进行标签编码？
+👉 示例：ExterQual, KitchenQual, GarageCond, FireplaceQu 等。
+👉 输出/检查：这些列不再是字符串，而是整数。</p>
+<p>3.3.3 数值变量转为分类变量</p>
+<p>Q3.3.3：哪些数值变量没有实际的连续含义，应该转成分类？
+👉 示例：YrSold, MoSold, MSSubClass。
+👉 输出/检查：这些列类型为字符串（object）。</p>
+<p>⸻</p>
+<p>3.4 偏度与正态化</p>
+<p>Q3.4.1：为什么要对目标变量 SalePrice 做对数变换？
+👉 思路：修正右偏，减少异方差，使误差更接近正态。
+👉 输出/检查：对比变换前后的分布图与 QQ 图。</p>
+<p>Q3.4.2：如何筛选并修正数值特征的偏度？
+👉 思路：如果 |skewness| &gt; 0.5，就考虑 log 变换。
+👉 输出/检查：变换后 GrLivArea 的分布更对称。</p>
+<p>⸻</p>
+<p>3.5 特征缩放</p>
+<p>Q3.5.1：为什么大多数模型在特征量级差异大时需要缩放？
+👉 思路：加快梯度下降收敛速度；避免某些特征因取值范围过大而主导模型。</p>
+<p>Q3.5.2：为什么在存在异常值时选择 RobustScaler 而不是 StandardScaler？
+👉 思路：RobustScaler 使用中位数和 IQR，更抗离群点。
+👉 输出/检查：所有数值列已被缩放。</p>
+<p>⸻</p>
+<p>3.6 One-hot 编码</p>
+<p>Q3.6.1：为什么要对无序分类变量做 One-hot 编码？
+👉 思路：避免人为引入大小关系；保证模型能正确使用类别信息。</p>
+<p>Q3.6.2：X.shape 变化了多少？
+👉 输出/检查：由原始 ~79 特征扩展到 ~237 个特征。</p>
+<hr>
+<ol start="4">
+<li>建模 (Modeling)</li>
+</ol>
+<p>⸻</p>
+<p>4.1 交叉验证与评估指标</p>
+<p>Q4.1.1：为什么不能只把训练数据简单分为 train/test 两份？
+👉 思路：单次划分可能过拟合特定子集，不能代表泛化性能。</p>
+<p>Q4.1.2：什么是 k-fold Cross Validation？
+👉 思路：把训练集划分为 k 份，轮流做验证集，最后取平均性能。
+👉 输出/检查：选择 k=5，并设置 shuffle=True 保证随机性。</p>
+<p>Q4.1.3：为什么我们使用 RMSLE（Root Mean Squared Logarithmic Error）作为评估指标？
+👉 思路：目标变量做了 log(1+y) 变换，MSE 在 log 空间等价于 RMSLE；同时 RMSLE 能降低对极端值的敏感度。</p>
+<p>⸻</p>
+<p>4.2 正则化回归</p>
+<p>Ridge 回归</p>
+<p>Q4.2.1：Ridge 回归的目标函数是什么？为什么能缓解过拟合？
+👉 思路：
+<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>J</mi><mo stretchy="false">(</mo><mi>θ</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mn>1</mn><mrow><mn>2</mn><mi>m</mi></mrow></mfrac><mo>∑</mo><mo stretchy="false">(</mo><msub><mi>h</mi><mi>θ</mi></msub><mo stretchy="false">(</mo><msup><mi>x</mi><mrow><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo></mrow></msup><mo stretchy="false">)</mo><mo>−</mo><msup><mi>y</mi><mrow><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo></mrow></msup><msup><mo stretchy="false">)</mo><mn>2</mn></msup><mo>+</mo><mfrac><mi>λ</mi><mrow><mn>2</mn><mi>m</mi></mrow></mfrac><mo>∑</mo><msubsup><mi>θ</mi><mi>j</mi><mn>2</mn></msubsup></mrow><annotation encoding="application/x-tex">J(\theta) = \frac{1}{2m} \sum (h_\theta(x^{(i)}) - y^{(i)})^2 + \frac{\lambda}{2m} \sum \theta_j^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em"></span><span class="mord mathnormal" style="margin-right:0.09618em">J</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.02778em">θ</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em"></span></span><span class="base"><span class="strut" style="height:1.233em;vertical-align:-0.345em"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8451em"><span style="top:-2.655em"><span class="pstrut" style="height:3em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mathnormal mtight">m</span></span></span></span><span style="top:-3.23em"><span class="pstrut" style="height:3em"></span><span class="frac-line" style="border-bottom-width:0.04em"></span></span><span style="top:-3.394em"><span class="pstrut" style="height:3em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.1667em"></span><span class="mop op-symbol small-op" style="position:relative;top:0em">∑</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">h</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.02778em">θ</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.888em"><span style="top:-3.063em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mathnormal mtight">i</span><span class="mclose mtight">)</span></span></span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em"></span></span><span class="base"><span class="strut" style="height:1.138em;vertical-align:-0.25em"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em">y</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.888em"><span style="top:-3.063em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mathnormal mtight">i</span><span class="mclose mtight">)</span></span></span></span></span></span></span></span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em"><span style="top:-3.063em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em"></span></span><span class="base"><span class="strut" style="height:1.2749em;vertical-align:-0.3948em"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8801em"><span style="top:-2.655em"><span class="pstrut" style="height:3em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mathnormal mtight">m</span></span></span></span><span style="top:-3.23em"><span class="pstrut" style="height:3em"></span><span class="frac-line" style="border-bottom-width:0.04em"></span></span><span style="top:-3.394em"><span class="pstrut" style="height:3em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">λ</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.1667em"></span><span class="mop op-symbol small-op" style="position:relative;top:0em">∑</span><span class="mspace" style="margin-right:0.1667em"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8141em"><span style="top:-2.4413em;margin-left:-0.0278em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em">j</span></span></span><span style="top:-3.063em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.3948em"><span></span></span></span></span></span></span></span></span></span>
+L2 惩罚项抑制参数过大。</p>
+<p>Q4.2.2：如何选择最佳正则化参数 λ？
+👉 思路：用交叉验证，在一组候选 λ 上跑模型，找 RMSLE 最低点。
+👉 输出/检查：绘制 λ vs RMSLE 曲线，报告最佳 λ 和对应 RMSLE。</p>
+<p>Lasso 回归</p>
+<p>Q4.2.3：Lasso 回归与 Ridge 的主要区别是什么？
+👉 思路：Lasso 惩罚项为 |\theta_j|，能把部分系数直接压到 0，从而实现特征选择。</p>
+<p>Q4.2.4：在本数据上，Lasso 的最佳 λ 大约是多少？
+👉 输出/检查：通过交叉验证，找到 RMSLE 最低点。</p>
+<p>⸻</p>
+<p>4.3 集成树模型</p>
+<p>XGBoost</p>
+<p>Q4.3.1：XGBoost 相比线性模型的优势在哪里？
+👉 思路：能捕捉非线性和高阶交互；支持正则化；速度快。</p>
+<p>Q4.3.2：XGBoost 调参时，哪些是关键参数？
+👉 示例：n_estimators, max_depth, min_child_weight, gamma, subsample, colsample_bytree, reg_alpha, reg_lambda, learning_rate。
+👉 输出/检查：在调好的参数下，记录 RMSLE。</p>
+<p>LightGBM</p>
+<p>Q4.3.3：LightGBM 与 XGBoost 的核心区别是什么？
+👉 思路：LightGBM 使用基于直方图的算法，支持 leaf-wise 生长，训练更快。</p>
+<p>Q4.3.4：LightGBM 的关键参数有哪些？
+👉 示例：num_leaves, min_data_in_leaf, max_depth, max_bin, bagging_fraction, feature_fraction。
+👉 输出/检查：对比 RMSLE，通常 LGBM 会比 XGB 稍好。</p>
+<hr>
+<p>4.4 模型融合</p>
+<p>Q4.4.1：为什么要做模型融合（Averaging/Stacking）？
+👉 思路：不同模型在不同数据子集上表现不同，融合能减少方差，提高稳定性。</p>
+<p>Q4.4.2：我们如何实现一个简单的 Averaging 模型？
+👉 思路：训练多个基模型（Ridge, Lasso, XGB, LGBM），预测时取平均。</p>
+<p>Q4.4.3：融合后的 RMSLE 相比单模型提升多少？
+👉 输出/检查：RMSLE &lt; 各单模型；说明泛化性能更好。</p>
+<hr>
+<p>4.5 最终预测与提交</p>
+<p>Q4.5.1：为什么在预测输出前要用 np.exp(predictions) - 1 还原？
+👉 思路：因为我们在建模时用了 log(1+y)，要反变换回原始价格。</p>
+<p>Q4.5.2：提交文件格式应是什么样子？
+👉 思路：两列：Id 和 SalePrice。
+👉 输出/检查：前 5 行打印，确认格式符合 Kaggle 要求。</p>
+<hr>
+<ol start="5">
+<li>结论</li>
+</ol>
+<p>Q5.1：整个流程中，你觉得提升最大的环节是什么？
+👉 思路：特征工程（构造 totalSqFeet、totalBathroom 等）和模型融合。</p>
+<p>Q5.2：如果你要进一步提升成绩，你会尝试哪些方法？
+👉 示例：Stacking 更复杂的模型；特征选择；外部数据引入（宏观经济指标）。</p>
+<hr>
+<p>LightGBM 原理问答</p>
+<p>⸻</p>
+<ol>
+<li>决策树基础</li>
+</ol>
+<p>Q1.1：决策树是怎么划分数据的？
+👉 思路：基于某个特征的阈值，把样本划分成更“纯”的子集。常用指标有 均方误差（回归） 或 信息增益/基尼指数（分类）。</p>
+<p>Q1.2：树的深度和叶子数对模型有什么影响？
+👉 思路：更深 → 拟合更精细，风险是过拟合；太浅 → 偏差大，欠拟合。</p>
+<p>⸻</p>
+<ol start="2">
+<li>Boosting 框架</li>
+</ol>
+<p>Q2.1：什么是 Boosting？
+👉 思路：逐步训练弱学习器（通常是浅树），每一步纠正前一步的误差，最后加权组合。</p>
+<p>Q2.2：Boosting 与 Bagging（如随机森林）的区别是什么？
+👉 思路：
+•	Bagging → 并行，降低方差，树之间独立。
+•	Boosting → 串行，逐步拟合残差，降低偏差。</p>
+<p>Q2.3：为什么梯度提升树（GBDT）比简单的 AdaBoost 更强？
+👉 思路：GBDT 用梯度下降的思想来拟合残差，可处理任意可微损失函数（平方误差、逻辑损失等）。</p>
+<hr>
+<ol start="3">
+<li>LightGBM 的关键机制</li>
+</ol>
+<p>Q3.1：LightGBM 与 XGBoost 最大的不同是什么？
+👉 思路：LightGBM 使用 基于直方图 (Histogram-based) 的分裂方法，内存更省，训练更快。</p>
+<p>Q3.2：LightGBM 为什么快？
+👉 关键点：</p>
+<ol>
+<li>直方图优化：连续特征先离散成桶（bin），减少计算量。</li>
+<li>Leaf-wise 分裂：不是逐层扩展，而是每次优先扩展“增益最大的叶子”。</li>
+<li>支持大规模数据：优化了并行与内存使用。</li>
+</ol>
+<p>Q3.3：什么是 Leaf-wise 分裂？
+👉 思路：
+•	传统 GBDT 是 Level-wise（逐层分裂）。
+•	LightGBM 是 Leaf-wise，每次选择增益最大的叶子继续分裂。
+👉 优势：更快降低损失。
+👉 风险：容易过拟合，需要通过 max_depth 等参数约束。</p>
+<p>Q3.4：LightGBM 中常见的正则化手段有哪些？
+👉 示例：
+•	min_data_in_leaf（叶子最小样本数）
+•	max_depth（最大树深度）
+•	feature_fraction（随机特征采样）
+•	bagging_fraction（随机样本采样）
+•	lambda_l1, lambda_l2（L1/L2 正则）</p>
+<p>⸻</p>
+<ol start="4">
+<li>LightGBM 的应用与解释</li>
+</ol>
+<p>Q4.1：LightGBM 如何处理类别型特征？
+👉 思路：它原生支持类别特征（categorical_feature 参数），可以用最优分裂而不是 One-hot，全局更高效。</p>
+<p>Q4.2：如果 LightGBM 出现过拟合，常见的解决方案有哪些？
+👉 思路：
+•	限制 num_leaves（叶子数）；
+•	增大 min_data_in_leaf；
+•	限制 max_depth；
+•	增加 bagging_fraction、feature_fraction；
+•	调小 learning_rate，增大 n_estimators。</p>
+<p>Q4.3：如何可视化 LightGBM 的决策过程？
+👉 思路：
+•	plot_importance() → 特征重要性。
+•	plot_tree() 或导出 Booster → 树结构可视化。
+•	shap.TreeExplainer → 单样本决策路径解释。</p>
+<p>⸻</p>
+<ol start="5">
+<li>面试延伸问题</li>
+</ol>
+<p>Q5.1：为什么 LightGBM 在大数据集上比 XGBoost 更快？
+👉 回答关键词：直方图近似、leaf-wise 策略、内存优化。</p>
+<p>Q5.2：Leaf-wise 虽然快，但容易过拟合，如何在面试中解释调参思路？
+👉 回答关键词：加正则约束（num_leaves, min_data_in_leaf, max_depth），结合交叉验证选择。</p>
+<hr>
+<p>模型解释 (Model Interpretability) — 问答题</p>
+<hr>
+<ol>
+<li>特征重要性 (Feature Importance)</li>
+</ol>
+<p>Q1.1：树模型（如 LightGBM、XGBoost）里，如何定义特征重要性？
+👉 思路：常见方法包括：
+•	Split importance（特征被分裂的次数）
+•	Gain importance（使用该特征带来的损失函数下降）
+•	Permutation importance（打乱该特征后性能下降程度）</p>
+<p>Q1.2：为什么要小心解释特征重要性？
+👉 思路：
+•	重要性只表示模型在训练时“用过”该特征，不代表因果关系。
+•	与其他高度相关的特征（多重共线性）会“分摊”重要性。</p>
+<p>Q1.3：如何可视化 LightGBM 的特征重要性？
+👉 思路：使用 plot_importance 或者手动绘制条形图。
+👉 输出/检查：Top 20 特征的重要性排序。</p>
+<hr>
+<ol start="2">
+<li>SHAP (SHapley Additive exPlanations)</li>
+</ol>
+<p>Q2.1：SHAP 值的核心思想是什么？
+👉 思路：基于博弈论中的 Shapley Value，计算每个特征在“预测贡献”中的边际作用。</p>
+<p>Q2.2：为什么 SHAP 比简单的特征重要性更强大？
+👉 思路：
+•	提供 全局解释（哪些特征整体最重要）；
+•	也提供 局部解释（为什么这个样本的预测是 xxx）。</p>
+<p>Q2.3：如何解释 SHAP summary plot？
+👉 思路：
+•	y 轴：特征名（按重要性排序）。
+•	x 轴：SHAP 值大小（对预测的正负贡献）。
+•	颜色：特征取值大小（红色高、蓝色低）。</p>
+<p>Q2.4：如何用 SHAP 分析单个样本？
+👉 思路：用 shap.force_plot 或 shap.waterfall_plot，能展示预测值是如何从基准值逐步被各个特征推高/推低的。</p>
+<hr>
+<ol start="3">
+<li>面试延伸问题</li>
+</ol>
+<p>Q3.1：在实际业务中，为什么“模型解释”很重要？
+👉 思路：
+•	业务可信度：告诉非技术方“模型是如何判断的”。
+•	合规需求：某些场景（金融、医疗）必须能解释决策。
+•	模型调试：帮助发现异常特征或错误信号。</p>
+<p>Q3.2：如果 OverallQual 和 GrLivArea 高度相关，SHAP 会如何分配贡献？
+👉 思路：SHAP 会在多种特征排列顺序下平均分摊贡献，因此结果比简单的特征重要性更公平。</p>
+<hr>
+<p>要不要我接下来把 “误差分析与残差检验” 也整理成一组问答题？这样就完整涵盖了从 EDA → 特征工程 → 建模 → 算法原理 → 模型解释 → 误差诊断 的全流程。</p>
+<hr>
+<ol start="6">
+<li>你可以继续扩展的「思考题」</li>
+</ol>
+<p>Q6.1：基于数据字典，哪些缺失代表“没有该设施”（应当映射为 ‘None’/0），哪些是“确实缺失”（需要插补或删除）？举出 3 个例子并说明理由。
+思路提示：PoolQC, Alley, Fence, FireplaceQu, Garage*, Bsmt* 等。</p>
+<p>Q6.2：对 SalePrice 做对数变换（log1p）有什么统计学理由？
+思路提示：缓解右偏与异方差，使误差更接近对称；便于使用 RMSE 等指标。</p>
+<p>Q6.3：若发现 GrLivArea 极端离群点影响模型，你会选用哪种稳健策略？
+思路提示：删点；Winsorize；稳健损失；建模前特征变换；分段建模等。</p>
+<p>Q6.4：如果仅在数值特征上做 RFE，会遗漏哪些关键信息？
+思路提示：重要类别特征（如 Neighborhood、HouseStyle）；需要编码后统一评估。</p>
+<p>Q6.5：为什么在拼接 X_train 与 test_data 后再做统一 One-Hot 编码能避免“列不对齐”的坑？
+思路提示：确保训练/测试产生相同的哑变量集合，避免推理时报错。</p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col"><a href="https://github.com/emmableu/notes/edit/main/docs/ML Projects/Ames Housing - LGBM.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/notes/docs/p/6f5a3899-e871-4449-85e0-e1749749be2b"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Sliding Window</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/notes/docs/p/69deee06-2c14-4812-9c86-e38f44c3582a"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">深度强化学习（Deep RL）学习路线与资源整理（中文翻译）</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#dataset" class="table-of-contents__link toc-highlight">Dataset</a></li><li><a href="#偏度skewness" class="table-of-contents__link toc-highlight">偏度（Skewness）</a></li><li><a href="#峰度kurtosis-pandas-定义" class="table-of-contents__link toc-highlight">峰度（Kurtosis, pandas 定义）</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Docs</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/notes/docs/intro">Tutorial</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Community</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://stackoverflow.com/questions/tagged/docusaurus" target="_blank" rel="noopener noreferrer" class="footer__link-item">Stack Overflow<svg width="13.5" height="13.5" aria-hidden="true" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://discordapp.com/invite/docusaurus" target="_blank" rel="noopener noreferrer" class="footer__link-item">Discord<svg width="13.5" height="13.5" aria-hidden="true" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://x.com/docusaurus" target="_blank" rel="noopener noreferrer" class="footer__link-item">X<svg width="13.5" height="13.5" aria-hidden="true" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/notes/blog">Blog</a></li><li class="footer__item"><a href="https://github.com/emmableu/notes" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-hidden="true" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2025 My Project, Inc. Built with Docusaurus.</div></div></div></footer></div>
+</body>
+</html>
