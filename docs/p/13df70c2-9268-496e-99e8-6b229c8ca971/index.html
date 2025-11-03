@@ -1,0 +1,597 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-Leetcode/Minimum Path Sum" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.8.1">
+<title data-rh="true">Minimum Path Sum | My Site</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://emmableu.github.io/notes/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://emmableu.github.io/notes/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://emmableu.github.io/notes/docs/p/13df70c2-9268-496e-99e8-6b229c8ca971"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Minimum Path Sum | My Site"><meta data-rh="true" name="description" content="64. 最小路径和"><meta data-rh="true" property="og:description" content="64. 最小路径和"><link data-rh="true" rel="icon" href="/notes/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://emmableu.github.io/notes/docs/p/13df70c2-9268-496e-99e8-6b229c8ca971"><link data-rh="true" rel="alternate" href="https://emmableu.github.io/notes/docs/p/13df70c2-9268-496e-99e8-6b229c8ca971" hreflang="en"><link data-rh="true" rel="alternate" href="https://emmableu.github.io/notes/docs/p/13df70c2-9268-496e-99e8-6b229c8ca971" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"03. Leetcode","item":"https://emmableu.github.io/notes/docs/leetcode"},{"@type":"ListItem","position":2,"name":"Minimum Path Sum","item":"https://emmableu.github.io/notes/docs/p/13df70c2-9268-496e-99e8-6b229c8ca971"}]}</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" crossorigin="anonymous"><link rel="stylesheet" href="/notes/assets/css/styles.607fdee8.css">
+<script src="/notes/assets/js/runtime~main.3e4f3958.js" defer="defer"></script>
+<script src="/notes/assets/js/main.8e5f5ba3.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t="light";var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",e||t),document.documentElement.setAttribute("data-theme-choice",e||t)}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><link rel="preload" as="image" href="/notes/img/logo.svg"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/notes/"><div class="navbar__logo"><img src="/notes/img/logo.svg" alt="My Site Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/notes/img/logo.svg" alt="My Site Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">My Site</b></a><a class="navbar__item navbar__link" href="/notes/docs/ml100">01. ML Theory 100</a><a class="navbar__item navbar__link" href="/notes/docs/dl100">02. DL Theory 100</a><a class="navbar__item navbar__link" href="/notes/docs/leetcode">03. Leetcode</a><a class="navbar__item navbar__link" href="/notes/docs/zero2hero">04. Zero To Hero</a><a class="navbar__item navbar__link" href="/notes/docs/ml-general">05. ML General</a><a class="navbar__item navbar__link" href="/notes/docs/reinforcement-learning">Reinforcement Learning</a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><div class="navbar__search searchBarContainer_NW3z" dir="ltr"><input placeholder="Search" aria-label="Search" class="navbar__search-input searchInput_YFbd" value=""><div class="loadingRing_RJI3 searchBarLoadingRing_YnHq"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" href="/notes/docs/ml100">01. ML Theory 100</a><button aria-label="Expand sidebar category &#x27;01. ML Theory 100&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" href="/notes/docs/ml-general">05. ML General</a><button aria-label="Expand sidebar category &#x27;05. ML General&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" href="/notes/docs/dl100">02. DL Theory 100</a><button aria-label="Expand sidebar category &#x27;02. DL Theory 100&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--active" href="/notes/docs/leetcode">03. Leetcode</a><button aria-label="Collapse sidebar category &#x27;03. Leetcode&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/p/61fa2b74-bc06-4da9-97cf-dd47d41ec815">Problem Categories 小分类题汇总</a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/01bfs">01.BFS</a><button aria-label="Expand sidebar category &#x27;01.BFS&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/02binary-search">02.Binary Search</a><button aria-label="Expand sidebar category &#x27;02.Binary Search&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/03bit-maniputation">03.Bit Maniputation</a><button aria-label="Expand sidebar category &#x27;03.Bit Maniputation&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/04dfs">04.DFS</a><button aria-label="Expand sidebar category &#x27;04.DFS&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/05dynamic-programming">05.Dynamic Programming</a><button aria-label="Expand sidebar category &#x27;05.Dynamic Programming&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/06fast-multiplication">06.Fast Multiplication</a><button aria-label="Expand sidebar category &#x27;06.Fast Multiplication&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/08kmp">08.KMP</a><button aria-label="Expand sidebar category &#x27;08.KMP&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/09line-sweep">09.Line Sweep</a><button aria-label="Expand sidebar category &#x27;09.Line Sweep&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/10mono-queue">10.Mono Queue</a><button aria-label="Expand sidebar category &#x27;10.Mono Queue&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/12prefix-sum">12.Prefix Sum</a><button aria-label="Expand sidebar category &#x27;12.Prefix Sum&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/13segment-tree">13.Segment Tree</a><button aria-label="Expand sidebar category &#x27;13.Segment Tree&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/14shuffle-algorithm">14.Shuffle Algorithm</a><button aria-label="Expand sidebar category &#x27;14.Shuffle Algorithm&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/15sliding-window">15.Sliding Window</a><button aria-label="Expand sidebar category &#x27;15.Sliding Window&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/16stack">16.Stack</a><button aria-label="Expand sidebar category &#x27;16.Stack&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/18union-find">18.Union Find</a><button aria-label="Expand sidebar category &#x27;18.Union Find&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" tabindex="0" href="/notes/docs/category/99other">99.Other</a><button aria-label="Expand sidebar category &#x27;99.Other&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/notes/docs/p/13df70c2-9268-496e-99e8-6b229c8ca971">Minimum Path Sum</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/p/184c30b9-4b44-431a-b27f-62cb1e76866a">APIs</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/p/7507e16b-25d5-4c3a-b654-68f2386eea19">Reverse Linked List</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/p/6a95b0dd-0832-40be-a77e-ad1768428c2f">Find All Anagrams in a String</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/p/ddd65953-1b9a-428e-9594-6126c34e1706">Knight Probability in Chessboard</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/p/6df35dc5-83cf-4e05-8540-6d53ad0aa2f0">New 21 Game</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/docs/leetcode">Leetcode</a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" href="/notes/docs/zero2hero">04. Zero to Hero</a><button aria-label="Expand sidebar category &#x27;04. Zero to Hero&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" href="/notes/docs/reinforcement-learning">Reinforcement Learning</a><button aria-label="Expand sidebar category &#x27;Reinforcement Learning&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/notes/docs/docs">Docs</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/notes/docs/docs/intro">Welcome / Placeholder</a></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/notes/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/notes/docs/leetcode"><span>03. Leetcode</span></a></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">Minimum Path Sum</span></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><ol start="64">
+<li>最小路径和
+已解答
+中等
+相关标签
+premium lock icon
+相关企业
+给定一个包含非负整数的 m x n 网格 grid ，请找出一条从左上角到右下角的路径，使得路径上的数字总和为最小。</li>
+</ol>
+<p>说明：每次只能向下或者向右移动一步。</p>
+<p>示例 1：</p>
+<p>输入：grid = [[1,3,1],[1,5,1],[4,2,1]]
+输出：7
+解释：因为路径 1→3→1→1→1 的总和最小。
+示例 2：</p>
+<p>输入：grid = [[1,2,3],[4,5,6]]
+输出：12</p>
+<p>提示：</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">m == grid.length</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">n == grid[i].length</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">1 &lt;= m, n &lt;= 200</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">0 &lt;= grid[i][j] &lt;= 200</span><br></span></code></pre></div></div>
+<header><h1>用强化学习（RL）思路理解 LeetCode 64: Minimum Path Sum</h1></header>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-1-问题建模为-mdp">🧩 1. 问题建模为 MDP<a href="#-1-问题建模为-mdp" class="hash-link" aria-label="Direct link to 🧩 1. 问题建模为 MDP" title="Direct link to 🧩 1. 问题建模为 MDP">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>元素</th><th>含义</th><th></th></tr></thead><tbody><tr><td>状态 (s)</td><td>网格坐标 ((i,j))</td><td></td></tr><tr><td>动作 (a)</td><td><code>Right</code> 或 <code>Down</code></td><td></td></tr><tr><td>转移概率 P(s&#x27;, s a)</td><td><strong>确定性：只有一个后继状态概率为 1</strong></td><td></td></tr><tr><td>即时代价 (c(s))</td><td>当前格子的数值 grid[i][j]</td><td></td></tr><tr><td>奖励 (r(s))</td><td>(-c(s))，即负代价</td><td></td></tr><tr><td>起点 / 终点</td><td>起点 (0,0)，终点 (m-1,n-1)</td><td></td></tr><tr><td>折扣因子 (\gamma)</td><td>1（有限步任务）</td><td></td></tr></tbody></table>
+<p>目标是最小化总代价</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><munder><mrow><mi>min</mi><mo>⁡</mo></mrow><mi>π</mi></munder><munder><mo>∑</mo><mi>t</mi></munder><mi>c</mi><mo stretchy="false">(</mo><msub><mi>s</mi><mi>t</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex"> \min_\pi \sum_t c(s_t)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:2.3em;vertical-align:-1.25em"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.6679em"><span style="top:-2.4em;margin-left:0em"><span class="pstrut" style="height:3em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em">π</span></span></span><span style="top:-3em"><span class="pstrut" style="height:3em"></span><span><span class="mop">min</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.7em"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.05em"><span style="top:-1.9em;margin-left:0em"><span class="pstrut" style="height:3.05em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span><span style="top:-3.05em"><span class="pstrut" style="height:3.05em"></span><span><span class="mop op-symbol large-op">∑</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.25em"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em"></span><span class="mord mathnormal">c</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span>
+<p>或等价地最大化总奖励</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><munder><mrow><mi>max</mi><mo>⁡</mo></mrow><mi>π</mi></munder><munder><mo>∑</mo><mi>t</mi></munder><mi>r</mi><mo stretchy="false">(</mo><msub><mi>s</mi><mi>t</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex"> \max_\pi \sum_t r(s_t)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:2.3em;vertical-align:-1.25em"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.4306em"><span style="top:-2.4em;margin-left:0em"><span class="pstrut" style="height:3em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em">π</span></span></span><span style="top:-3em"><span class="pstrut" style="height:3em"></span><span><span class="mop">max</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.7em"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.05em"><span style="top:-1.9em;margin-left:0em"><span class="pstrut" style="height:3.05em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span><span style="top:-3.05em"><span class="pstrut" style="height:3.05em"></span><span><span class="mop op-symbol large-op">∑</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.25em"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em"></span><span class="mord mathnormal" style="margin-right:0.02778em">r</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-2-bellman-最优性方程代价形式">🧮 2. Bellman 最优性方程（代价形式）<a href="#-2-bellman-最优性方程代价形式" class="hash-link" aria-label="Direct link to 🧮 2. Bellman 最优性方程（代价形式）" title="Direct link to 🧮 2. Bellman 最优性方程（代价形式）">​</a></h2>
+<p>令 (V(i,j)) 表示从 (i,j) 出发到终点的最小总代价（包含当前格子）：</p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">\begin{cases}</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">V(m-1, n-1) = grid[m-1][n-1] \\</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">V(i,j) = grid[i][j] + \min(V(i+1, j), V(i, j+1))</span><br></span></code></pre></div></div>
+<p>越界时取 (+\infty)。</p>
+<p>这就是经典的 <strong>值迭代（Value Iteration）</strong> 的闭式形式。</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-3-最优策略-π">🧭 3. 最优策略 π*<a href="#-3-最优策略-π" class="hash-link" aria-label="Direct link to 🧭 3. 最优策略 π*" title="Direct link to 🧭 3. 最优策略 π*">​</a></h2>
+<p>最优动作：</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msup><mi>π</mi><mo>∗</mo></msup><mo stretchy="false">(</mo><mi>i</mi><mo separator="true">,</mo><mi>j</mi><mo stretchy="false">)</mo><mo>=</mo><mi>arg</mi><mo>⁡</mo><munder><mrow><mi>min</mi><mo>⁡</mo></mrow><mrow><mi>a</mi><mo>∈</mo><mo stretchy="false">{</mo><mtext>Right,Down</mtext><mo stretchy="false">}</mo></mrow></munder><mi>V</mi><mo stretchy="false">(</mo><mtext>succ</mtext><mo stretchy="false">(</mo><mi>i</mi><mo separator="true">,</mo><mi>j</mi><mo separator="true">,</mo><mi>a</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\pi^*(i,j) = \arg\min_{a\in\{\text{Right,Down}\}} V(\text{succ}(i,j,a))</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em">π</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7387em"><span style="top:-3.113em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∗</span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">i</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em"></span><span class="mord mathnormal" style="margin-right:0.05724em">j</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em"></span></span><span class="base"><span class="strut" style="height:1.716em;vertical-align:-0.966em"></span><span class="mop">ar<span style="margin-right:0.01389em">g</span></span><span class="mspace" style="margin-right:0.1667em"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.6679em"><span style="top:-2.309em;margin-left:0em"><span class="pstrut" style="height:3em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">a</span><span class="mrel mtight">∈</span><span class="mopen mtight">{</span><span class="mord text mtight"><span class="mord mtight">Right,Down</span></span><span class="mclose mtight">}</span></span></span></span><span style="top:-3em"><span class="pstrut" style="height:3em"></span><span><span class="mop">min</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.966em"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em"></span><span class="mord mathnormal" style="margin-right:0.22222em">V</span><span class="mopen">(</span><span class="mord text"><span class="mord">succ</span></span><span class="mopen">(</span><span class="mord mathnormal">i</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em"></span><span class="mord mathnormal" style="margin-right:0.05724em">j</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em"></span><span class="mord mathnormal">a</span><span class="mclose">))</span></span></span></span></span>
+<p>即从当前位置选择“未来代价最小”的方向。</p>
+<hr>
+<h1>🧮 grid = [[1,3,1],[1,5,1],[4,2,1]]</h1>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="1️⃣-原始代价网格每个格子的-cost">1️⃣ 原始代价网格（每个格子的 cost）<a href="#1️⃣-原始代价网格每个格子的-cost" class="hash-link" aria-label="Direct link to 1️⃣ 原始代价网格（每个格子的 cost）" title="Direct link to 1️⃣ 原始代价网格（每个格子的 cost）">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>i\j</th><th>0</th><th>1</th><th>2</th></tr></thead><tbody><tr><td><strong>0</strong></td><td>1</td><td>3</td><td>1</td></tr><tr><td><strong>1</strong></td><td>1</td><td>5</td><td>1</td></tr><tr><td><strong>2</strong></td><td>4</td><td>2</td><td>1</td></tr></tbody></table>
+<p>坐标说明：</p>
+<ul>
+<li>左上角 (0,0) 是起点</li>
+<li>右下角 (2,2) 是终点</li>
+<li>只能向右 ➡️ 或向下 ⬇️</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="2️⃣-计算最小路径代价-vij">2️⃣ 计算最小路径代价 V(i,j)<a href="#2️⃣-计算最小路径代价-vij" class="hash-link" aria-label="Direct link to 2️⃣ 计算最小路径代价 V(i,j)" title="Direct link to 2️⃣ 计算最小路径代价 V(i,j)">​</a></h2>
+<p>使用 Bellman 方程：</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>V</mi><mo stretchy="false">(</mo><mi>i</mi><mo separator="true">,</mo><mi>j</mi><mo stretchy="false">)</mo><mo>=</mo><mi>g</mi><mi>r</mi><mi>i</mi><mi>d</mi><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo><mo stretchy="false">[</mo><mi>j</mi><mo stretchy="false">]</mo><mo>+</mo><mi>min</mi><mo>⁡</mo><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">(</mo><mi>i</mi><mo>+</mo><mn>1</mn><mo separator="true">,</mo><mi>j</mi><mo stretchy="false">)</mo><mo separator="true">,</mo><mi>V</mi><mo stretchy="false">(</mo><mi>i</mi><mo separator="true">,</mo><mi>j</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">V(i,j) = grid[i][j] + \min(V(i+1,j), V(i,j+1))</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em"></span><span class="mord mathnormal" style="margin-right:0.22222em">V</span><span class="mopen">(</span><span class="mord mathnormal">i</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em"></span><span class="mord mathnormal" style="margin-right:0.05724em">j</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em"></span><span class="mord mathnormal" style="margin-right:0.03588em">g</span><span class="mord mathnormal" style="margin-right:0.02778em">r</span><span class="mord mathnormal">i</span><span class="mord mathnormal">d</span><span class="mopen">[</span><span class="mord mathnormal">i</span><span class="mclose">]</span><span class="mopen">[</span><span class="mord mathnormal" style="margin-right:0.05724em">j</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222em"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em"></span><span class="mop">min</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.22222em">V</span><span class="mopen">(</span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2222em"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em"></span><span class="mord mathnormal" style="margin-right:0.05724em">j</span><span class="mclose">)</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em"></span><span class="mord mathnormal" style="margin-right:0.22222em">V</span><span class="mopen">(</span><span class="mord mathnormal">i</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em"></span><span class="mord mathnormal" style="margin-right:0.05724em">j</span><span class="mspace" style="margin-right:0.2222em"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em"></span><span class="mord">1</span><span class="mclose">))</span></span></span></span></span>
+<p>从右下往左上推。</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="step-by-step-反向更新">Step-by-step 反向更新：<a href="#step-by-step-反向更新" class="hash-link" aria-label="Direct link to Step-by-step 反向更新：" title="Direct link to Step-by-step 反向更新：">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>位置</th><th>计算公式</th><th>结果</th></tr></thead><tbody><tr><td>(2,2)</td><td>1</td><td>1</td></tr><tr><td>(2,1)</td><td>2 + 1</td><td>3</td></tr><tr><td>(2,0)</td><td>4 + 3</td><td>7</td></tr><tr><td>(1,2)</td><td>1 + 1</td><td>2</td></tr><tr><td>(1,1)</td><td>5 + min(3,1) = 5 + 1</td><td>6</td></tr><tr><td>(1,0)</td><td>1 + min(7,6) = 1 + 6</td><td>7</td></tr><tr><td>(0,2)</td><td>1 + 2</td><td>3</td></tr><tr><td>(0,1)</td><td>3 + min(6,3) = 3 + 3</td><td>6</td></tr><tr><td>(0,0)</td><td>1 + min(7,6) = 1 + 6</td><td><strong>7</strong> ✅</td></tr></tbody></table>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="3️⃣-最终-v-表值函数表">3️⃣ 最终 V 表（值函数表）<a href="#3️⃣-最终-v-表值函数表" class="hash-link" aria-label="Direct link to 3️⃣ 最终 V 表（值函数表）" title="Direct link to 3️⃣ 最终 V 表（值函数表）">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>i\j</th><th>0</th><th>1</th><th>2</th></tr></thead><tbody><tr><td><strong>0</strong></td><td><strong>7</strong></td><td>6</td><td>3</td></tr><tr><td><strong>1</strong></td><td>7</td><td>6</td><td>2</td></tr><tr><td><strong>2</strong></td><td>7</td><td>3</td><td>1</td></tr></tbody></table>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="4️⃣-最优路径沿最小值方向">4️⃣ 最优路径（沿最小值方向）<a href="#4️⃣-最优路径沿最小值方向" class="hash-link" aria-label="Direct link to 4️⃣ 最优路径（沿最小值方向）" title="Direct link to 4️⃣ 最优路径（沿最小值方向）">​</a></h2>
+<p>从 (0,0) 开始，每次选择未来 V 最小的方向：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>当前格</th><th>可选方向</th><th>下一步</th><th>说明</th></tr></thead><tbody><tr><td>(0,0)</td><td>右→6，下→7</td><td>→</td><td>走向右侧 (0,1)</td></tr><tr><td>(0,1)</td><td>右→3，下→6</td><td>→</td><td>走向右侧 (0,2)</td></tr><tr><td>(0,2)</td><td>下→2</td><td>↓</td><td>走向 (1,2)</td></tr><tr><td>(1,2)</td><td>下→1</td><td>↓</td><td>走向 (2,2) ✅</td></tr></tbody></table>
+<p>路径：</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mo stretchy="false">(</mo><mn>0</mn><mo separator="true">,</mo><mn>0</mn><mo stretchy="false">)</mo><mo>→</mo><mo stretchy="false">(</mo><mn>0</mn><mo separator="true">,</mo><mn>1</mn><mo stretchy="false">)</mo><mo>→</mo><mo stretchy="false">(</mo><mn>0</mn><mo separator="true">,</mo><mn>2</mn><mo stretchy="false">)</mo><mo>→</mo><mo stretchy="false">(</mo><mn>1</mn><mo separator="true">,</mo><mn>2</mn><mo stretchy="false">)</mo><mo>→</mo><mo stretchy="false">(</mo><mn>2</mn><mo separator="true">,</mo><mn>2</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(0,0) → (0,1) → (0,2) → (1,2) → (2,2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em"></span><span class="mopen">(</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em"></span><span class="mord">0</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2778em"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em"></span><span class="mopen">(</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em"></span><span class="mord">1</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2778em"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em"></span><span class="mopen">(</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em"></span><span class="mord">2</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2778em"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em"></span><span class="mopen">(</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em"></span><span class="mord">2</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2778em"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em"></span><span class="mopen">(</span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em"></span><span class="mord">2</span><span class="mclose">)</span></span></span></span></span>
+<p>路径代价：</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mn>1</mn><mo>+</mo><mn>3</mn><mo>+</mo><mn>1</mn><mo>+</mo><mn>1</mn><mo>+</mo><mn>1</mn><mo>=</mo><mn>7</mn></mrow><annotation encoding="application/x-tex">1 + 3 + 1 + 1 + 1 = 7</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em"></span><span class="mord">3</span><span class="mspace" style="margin-right:0.2222em"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em"></span></span><span class="base"><span class="strut" style="height:0.6444em"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2778em"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em"></span></span><span class="base"><span class="strut" style="height:0.6444em"></span><span class="mord">7</span></span></span></span></span>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-rl-解释">🧭 RL 解释<a href="#-rl-解释" class="hash-link" aria-label="Direct link to 🧭 RL 解释" title="Direct link to 🧭 RL 解释">​</a></h2>
+<ul>
+<li>状态值 (V(s))：每格到终点的最小预期代价；</li>
+<li>策略 (\pi(s))：选择未来代价最小的动作；</li>
+<li>起点 (0,0) 的值 7 就是全局最优总代价；</li>
+<li>Bellman 方程迭代计算出的 V，就是<strong>值函数学习完成后的收敛解</strong>。</li>
+</ul>
+<hr>
+<h1>🧠 Bellman 方程中的 V 不是 reward function</h1>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="1️⃣-三者的定义对比">1️⃣ 三者的定义对比<a href="#1️⃣-三者的定义对比" class="hash-link" aria-label="Direct link to 1️⃣ 三者的定义对比" title="Direct link to 1️⃣ 三者的定义对比">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>概念</th><th>数学定义</th><th>在 LeetCode 64 里的例子</th><th>含义</th></tr></thead><tbody><tr><td><strong>Reward Function</strong> (r(s,a,s&#x27;))</td><td>执行动作 a 从 s 到 s&#x27; 的<strong>即时奖励</strong></td><td><code>r(i,j) = - grid[i][j]</code> 或 <code>c(i,j) = grid[i][j]</code></td><td>环境在当前步给的“即时反馈”</td></tr><tr><td><strong>Value Function</strong> (V(s))</td><td>从状态 s 出发，在最优策略下的<strong>累计奖励期望</strong></td><td>当前格到终点的<strong>最小总代价</strong>（或最大累计奖励）</td><td>衡量“这个状态的好坏”</td></tr><tr><td><strong>Bellman 方程</strong></td><td>(V(s)=r(s)+\gamma \min_{a}V(s&#x27;))</td><td>(V(i,j)=grid[i][j]+\min(V(i+1,j),V(i,j+1)))</td><td>表示“当前值=即时奖励+未来最优期望值”</td></tr></tbody></table>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="2️⃣-关系图逻辑层次">2️⃣ 关系图（逻辑层次）<a href="#2️⃣-关系图逻辑层次" class="hash-link" aria-label="Direct link to 2️⃣ 关系图（逻辑层次）" title="Direct link to 2️⃣ 关系图（逻辑层次）">​</a></h2>
+<p>Environment
+│
+├── Reward function: r(s,a,s’) = - cost
+│
+Agent (通过 Bellman 方程学习)
+│
+├── Value function: V(s) = expected return from s
+│
+└── Policy π(s): choose action a with min future cost</p>
+<p>在 <strong>Bellman 方程</strong> 中：</p>
+<ul>
+<li><code>reward</code> 是<strong>输入（已知的环境反馈）</strong>；</li>
+<li><code>V(s)</code> 是<strong>输出（通过迭代学到的值）</strong>；</li>
+<li><code>Bellman equation</code> 是<strong>连接两者的递推关系</strong>。</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="3️⃣-leetcode-64-对应类比代价形式">3️⃣ LeetCode 64 对应类比（代价形式）<a href="#3️⃣-leetcode-64-对应类比代价形式" class="hash-link" aria-label="Direct link to 3️⃣ LeetCode 64 对应类比（代价形式）" title="Direct link to 3️⃣ LeetCode 64 对应类比（代价形式）">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>项</th><th>RL 概念</th><th>代码中对应</th><th>说明</th></tr></thead><tbody><tr><td><code>grid[i][j]</code></td><td>即时代价（cost）= -reward</td><td>环境给定的 cost</td><td>每一步“消耗”</td></tr><tr><td><code>V[i][j]</code></td><td>Value Function</td><td>从 (i,j) 到终点的最小总代价</td><td>通过 Bellman 计算出来</td></tr><tr><td><code>min(V[i+1][j], V[i][j+1])</code></td><td>下一状态的最优值</td><td>动作带来的最优未来</td><td>对应 <code>max_a E[V(s&#x27;)]</code></td></tr></tbody></table>
+<p>所以：</p>
+<ul>
+<li><strong>Reward function 是环境本身的定义</strong>；</li>
+<li><strong>Value function 是通过 Bellman 方程求出来的结果</strong>；</li>
+<li>两者不是一回事，但紧密相连。</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="4️⃣-举个直观类比-️">4️⃣ 举个直观类比 🚶‍♀️<a href="#4️⃣-举个直观类比-️" class="hash-link" aria-label="Direct link to 4️⃣ 举个直观类比 🚶‍♀️" title="Direct link to 4️⃣ 举个直观类比 🚶‍♀️">​</a></h2>
+<p>想象你在走迷宫：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>项</th><th>类比</th></tr></thead><tbody><tr><td>Reward function</td><td>每走一步就要花费多少体力（即时损失）</td></tr><tr><td>Value function</td><td>从当前位置走到出口的最少总体力消耗</td></tr><tr><td>Bellman 方程</td><td>“当前格子的最优体力 = 当前损耗 + 邻居的最优体力”</td></tr></tbody></table>
+<p>因此，</p>
+<blockquote>
+<p>Bellman 方程中的 <strong>V 是“未来总奖励的估计值”</strong>，<br>
+<strong>不是 reward function 本身</strong>。</p>
+</blockquote>
+<hr>
+<p>✅ <strong>总结</strong></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>概念</th><th>是否输入</th><th>是否学习目标</th><th>是否由 Bellman 方程计算</th></tr></thead><tbody><tr><td>Reward function</td><td>✅ 环境给定</td><td>❌</td><td>❌</td></tr><tr><td>Value function</td><td>❌</td><td>✅</td><td>✅</td></tr><tr><td>Bellman 方程</td><td>❌</td><td>❌</td><td>✅（连接二者）</td></tr></tbody></table>
+<p>换句话说：</p>
+<blockquote>
+<p>🔹 <code>reward</code> 是题目给的 “grid[i][j]”<br>
+🔹 <code>V</code> 是通过 Bellman 更新“学到”的值<br>
+🔹 Bellman 方程是它们的<strong>桥梁</strong></p>
+</blockquote>
+<hr>
+<h1>🎯 LeetCode 64 本质上是在优化 policy，但通过 value function 来实现</h1>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="1️⃣-rl-的目标找到最优策略-π">1️⃣ RL 的目标：找到最优策略 π*<a href="#1️⃣-rl-的目标找到最优策略-π" class="hash-link" aria-label="Direct link to 1️⃣ RL 的目标：找到最优策略 π*" title="Direct link to 1️⃣ RL 的目标：找到最优策略 π*">​</a></h2>
+<p>强化学习中，我们最终关心的是：</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msup><mi>π</mi><mo>∗</mo></msup><mo>=</mo><mi>arg</mi><mo>⁡</mo><munder><mrow><mi>max</mi><mo>⁡</mo></mrow><mi>π</mi></munder><mi mathvariant="double-struck">E</mi><mo fence="false" stretchy="true" minsize="1.2em" maxsize="1.2em">[</mo><munder><mo>∑</mo><mi>t</mi></munder><msup><mi>γ</mi><mi>t</mi></msup><mi>r</mi><mo stretchy="false">(</mo><msub><mi>s</mi><mi>t</mi></msub><mo separator="true">,</mo><msub><mi>a</mi><mi>t</mi></msub><mo stretchy="false">)</mo><mo fence="false" stretchy="true" minsize="1.2em" maxsize="1.2em">]</mo></mrow><annotation encoding="application/x-tex">\pi^* = \arg\max_{\pi} \mathbb{E}\big[\sum_t \gamma^t r(s_t, a_t)\big]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7387em"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em">π</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7387em"><span style="top:-3.113em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∗</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em"></span></span><span class="base"><span class="strut" style="height:2.3em;vertical-align:-1.25em"></span><span class="mop">ar<span style="margin-right:0.01389em">g</span></span><span class="mspace" style="margin-right:0.1667em"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.4306em"><span style="top:-2.4em;margin-left:0em"><span class="pstrut" style="height:3em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em">π</span></span></span></span><span style="top:-3em"><span class="pstrut" style="height:3em"></span><span><span class="mop">max</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.7em"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em"></span><span class="mord mathbb">E</span><span class="mord"><span class="delimsizing size1">[</span></span><span class="mspace" style="margin-right:0.1667em"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.05em"><span style="top:-1.9em;margin-left:0em"><span class="pstrut" style="height:3.05em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span><span style="top:-3.05em"><span class="pstrut" style="height:3.05em"></span><span><span class="mop op-symbol large-op">∑</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.25em"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05556em">γ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8436em"><span style="top:-3.113em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span></span></span></span></span><span class="mord mathnormal" style="margin-right:0.02778em">r</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em"></span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mord"><span class="delimsizing size1">]</span></span></span></span></span></span>
+<p>或在代价形式下：</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msup><mi>π</mi><mo>∗</mo></msup><mo>=</mo><mi>arg</mi><mo>⁡</mo><munder><mrow><mi>min</mi><mo>⁡</mo></mrow><mi>π</mi></munder><mi mathvariant="double-struck">E</mi><mo fence="false" stretchy="true" minsize="1.2em" maxsize="1.2em">[</mo><munder><mo>∑</mo><mi>t</mi></munder><mi>c</mi><mo stretchy="false">(</mo><msub><mi>s</mi><mi>t</mi></msub><mo separator="true">,</mo><msub><mi>a</mi><mi>t</mi></msub><mo stretchy="false">)</mo><mo fence="false" stretchy="true" minsize="1.2em" maxsize="1.2em">]</mo></mrow><annotation encoding="application/x-tex">\pi^* = \arg\min_{\pi} \mathbb{E}\big[\sum_t c(s_t, a_t)\big]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7387em"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em">π</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7387em"><span style="top:-3.113em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∗</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em"></span></span><span class="base"><span class="strut" style="height:2.3em;vertical-align:-1.25em"></span><span class="mop">ar<span style="margin-right:0.01389em">g</span></span><span class="mspace" style="margin-right:0.1667em"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.6679em"><span style="top:-2.4em;margin-left:0em"><span class="pstrut" style="height:3em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em">π</span></span></span></span><span style="top:-3em"><span class="pstrut" style="height:3em"></span><span><span class="mop">min</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.7em"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em"></span><span class="mord mathbb">E</span><span class="mord"><span class="delimsizing size1">[</span></span><span class="mspace" style="margin-right:0.1667em"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.05em"><span style="top:-1.9em;margin-left:0em"><span class="pstrut" style="height:3.05em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span><span style="top:-3.05em"><span class="pstrut" style="height:3.05em"></span><span><span class="mop op-symbol large-op">∑</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.25em"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em"></span><span class="mord mathnormal">c</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em"></span><span class="mord"><span class="mord mathnormal">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mord"><span class="delimsizing size1">]</span></span></span></span></span></span>
+<p>也就是说：</p>
+<blockquote>
+<p>✅ <strong>真正的目标是优化 policy（策略）</strong><br>
+让 agent 从任意状态都能采取使得未来总代价最小的动作。</p>
+</blockquote>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="2️⃣-但是-policy-的优化很难--所以我们用-v-来间接求策略">2️⃣ 但是 policy 的优化很难 —— 所以我们用 V 来“间接求策略”<a href="#2️⃣-但是-policy-的优化很难--所以我们用-v-来间接求策略" class="hash-link" aria-label="Direct link to 2️⃣ 但是 policy 的优化很难 —— 所以我们用 V 来“间接求策略”" title="Direct link to 2️⃣ 但是 policy 的优化很难 —— 所以我们用 V 来“间接求策略”">​</a></h2>
+<p>直接优化 π 太难（策略空间太大）。<br>
+Bellman 方程提供了一个更高效的途径：</p>
+<blockquote>
+<p>“先求出每个状态的最优值函数 (V^*)，再通过它导出最优策略 π*。”</p>
+</blockquote>
+<p>公式化地：</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mo fence="true">{</mo><mtable rowspacing="0.36em" columnalign="left left" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><msup><mi>V</mi><mo>∗</mo></msup><mo stretchy="false">(</mo><mi>s</mi><mo stretchy="false">)</mo><mo>=</mo><msub><mrow><mi>min</mi><mo>⁡</mo></mrow><mi>a</mi></msub><mo fence="false" stretchy="true" minsize="1.8em" maxsize="1.8em">[</mo><mi>c</mi><mo stretchy="false">(</mo><mi>s</mi><mo separator="true">,</mo><mi>a</mi><mo stretchy="false">)</mo><mo>+</mo><mi>γ</mi><msup><mi>V</mi><mo>∗</mo></msup><mo stretchy="false">(</mo><msup><mi>s</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo stretchy="false">)</mo><mo fence="false" stretchy="true" minsize="1.8em" maxsize="1.8em">]</mo></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><msup><mi>π</mi><mo>∗</mo></msup><mo stretchy="false">(</mo><mi>s</mi><mo stretchy="false">)</mo><mo>=</mo><mi>arg</mi><mo>⁡</mo><msub><mrow><mi>min</mi><mo>⁡</mo></mrow><mi>a</mi></msub><mo fence="false" stretchy="true" minsize="1.8em" maxsize="1.8em">[</mo><mi>c</mi><mo stretchy="false">(</mo><mi>s</mi><mo separator="true">,</mo><mi>a</mi><mo stretchy="false">)</mo><mo>+</mo><mi>γ</mi><msup><mi>V</mi><mo>∗</mo></msup><mo stretchy="false">(</mo><msup><mi>s</mi><mo mathvariant="normal" lspace="0em" rspace="0em">′</mo></msup><mo stretchy="false">)</mo><mo fence="false" stretchy="true" minsize="1.8em" maxsize="1.8em">]</mo></mrow></mstyle></mtd></mtr></mtable></mrow><annotation encoding="application/x-tex">\begin{cases}
+V^*(s) = \min_a \Big[ c(s,a) + \gamma V^*(s&#x27;) \Big] \\
+\pi^*(s) = \arg\min_a \Big[ c(s,a) + \gamma V^*(s&#x27;) \Big]
+\end{cases}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:3.6em;vertical-align:-1.55em"></span><span class="minner"><span class="mopen"><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.05em"><span style="top:-2.5em"><span class="pstrut" style="height:3.15em"></span><span class="delimsizinginner delim-size4"><span>⎩</span></span></span><span style="top:-2.492em"><span class="pstrut" style="height:3.15em"></span><span style="height:0.016em;width:0.8889em"><svg xmlns="http://www.w3.org/2000/svg" width="0.8889em" height="0.016em" style="width:0.8889em" viewBox="0 0 888.89 16" preserveAspectRatio="xMinYMin"><path d="M384 0 H504 V16 H384z M384 0 H504 V16 H384z"></path></svg></span></span><span style="top:-3.15em"><span class="pstrut" style="height:3.15em"></span><span class="delimsizinginner delim-size4"><span>⎨</span></span></span><span style="top:-4.292em"><span class="pstrut" style="height:3.15em"></span><span style="height:0.016em;width:0.8889em"><svg xmlns="http://www.w3.org/2000/svg" width="0.8889em" height="0.016em" style="width:0.8889em" viewBox="0 0 888.89 16" preserveAspectRatio="xMinYMin"><path d="M384 0 H504 V16 H384z M384 0 H504 V16 H384z"></path></svg></span></span><span style="top:-4.3em"><span class="pstrut" style="height:3.15em"></span><span class="delimsizinginner delim-size4"><span>⎧</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.55em"><span></span></span></span></span></span></span><span class="mord"><span class="mtable"><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.05em"><span style="top:-4.05em"><span class="pstrut" style="height:3.15em"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em">V</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6887em"><span style="top:-3.063em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∗</span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">s</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em"></span><span class="mop"><span class="mop">min</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em"><span style="top:-2.55em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">a</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em"></span><span class="mord"><span class="delimsizing size2">[</span></span><span class="mord mathnormal">c</span><span class="mopen">(</span><span class="mord mathnormal">s</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em"></span><span class="mord mathnormal">a</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em"></span><span class="mord mathnormal" style="margin-right:0.05556em">γ</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em">V</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6887em"><span style="top:-3.063em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∗</span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7519em"><span style="top:-3.063em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mclose">)</span><span class="mord"><span class="delimsizing size2">]</span></span></span></span><span style="top:-2.25em"><span class="pstrut" style="height:3.15em"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em">π</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6887em"><span style="top:-3.063em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∗</span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">s</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em"></span><span class="mop">ar<span style="margin-right:0.01389em">g</span></span><span class="mspace" style="margin-right:0.1667em"></span><span class="mop"><span class="mop">min</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em"><span style="top:-2.55em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">a</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em"></span><span class="mord"><span class="delimsizing size2">[</span></span><span class="mord mathnormal">c</span><span class="mopen">(</span><span class="mord mathnormal">s</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em"></span><span class="mord mathnormal">a</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em"></span><span class="mord mathnormal" style="margin-right:0.05556em">γ</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.22222em">V</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6887em"><span style="top:-3.063em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∗</span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">s</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7519em"><span style="top:-3.063em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mclose">)</span><span class="mord"><span class="delimsizing size2">]</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.55em"><span></span></span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span>
+<p>所以我们常说：</p>
+<blockquote>
+<p>“值函数是策略的影子”<br>
+“通过求解最优值函数 V*，间接得到最优策略 π*。”</p>
+</blockquote>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="3️⃣-在-leetcode-64-中的对应关系">3️⃣ 在 LeetCode 64 中的对应关系<a href="#3️⃣-在-leetcode-64-中的对应关系" class="hash-link" aria-label="Direct link to 3️⃣ 在 LeetCode 64 中的对应关系" title="Direct link to 3️⃣ 在 LeetCode 64 中的对应关系">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>RL 概念</th><th>本题对应</th><th>说明</th></tr></thead><tbody><tr><td>状态 s</td><td>坐标 (i,j)</td><td>Agent 所在格子</td></tr><tr><td>动作 a</td><td>Right / Down</td><td>向右或向下移动</td></tr><tr><td>奖励 r(s,a)</td><td>-grid[i][j]</td><td>负代价</td></tr><tr><td>Value function V(s)</td><td>最小总代价</td><td>“从这里到终点的最优路径长度”</td></tr><tr><td>策略 π(s)</td><td>每步选哪个方向</td><td>“从这里往哪走更划算”</td></tr></tbody></table>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="4️⃣-动态规划的作用离线求解-v值函数优化">4️⃣ 动态规划的作用：离线求解 V*（值函数优化）<a href="#4️⃣-动态规划的作用离线求解-v值函数优化" class="hash-link" aria-label="Direct link to 4️⃣ 动态规划的作用：离线求解 V*（值函数优化）" title="Direct link to 4️⃣ 动态规划的作用：离线求解 V*（值函数优化）">​</a></h2>
+<p>动态规划求解：</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>V</mi><mo stretchy="false">(</mo><mi>i</mi><mo separator="true">,</mo><mi>j</mi><mo stretchy="false">)</mo><mo>=</mo><mi>c</mi><mo stretchy="false">(</mo><mi>i</mi><mo separator="true">,</mo><mi>j</mi><mo stretchy="false">)</mo><mo>+</mo><mi>min</mi><mo>⁡</mo><mo stretchy="false">(</mo><mi>V</mi><mo stretchy="false">(</mo><mi>i</mi><mo>+</mo><mn>1</mn><mo separator="true">,</mo><mi>j</mi><mo stretchy="false">)</mo><mo separator="true">,</mo><mi>V</mi><mo stretchy="false">(</mo><mi>i</mi><mo separator="true">,</mo><mi>j</mi><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">V(i,j) = c(i,j) + \min(V(i+1,j), V(i,j+1))</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em"></span><span class="mord mathnormal" style="margin-right:0.22222em">V</span><span class="mopen">(</span><span class="mord mathnormal">i</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em"></span><span class="mord mathnormal" style="margin-right:0.05724em">j</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em"></span><span class="mord mathnormal">c</span><span class="mopen">(</span><span class="mord mathnormal">i</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em"></span><span class="mord mathnormal" style="margin-right:0.05724em">j</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em"></span><span class="mop">min</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.22222em">V</span><span class="mopen">(</span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2222em"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em"></span><span class="mord mathnormal" style="margin-right:0.05724em">j</span><span class="mclose">)</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em"></span><span class="mord mathnormal" style="margin-right:0.22222em">V</span><span class="mopen">(</span><span class="mord mathnormal">i</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em"></span><span class="mord mathnormal" style="margin-right:0.05724em">j</span><span class="mspace" style="margin-right:0.2222em"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em"></span><span class="mord">1</span><span class="mclose">))</span></span></span></span></span>
+<p>这就是一个<strong>值函数的 Bellman 最优性方程</strong>。<br>
+你求出的 <code>V</code> 就是<strong>最优值函数 (V^*)</strong>。</p>
+<p>然后——策略自然就能从它导出：</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msup><mi>π</mi><mo>∗</mo></msup><mo stretchy="false">(</mo><mi>i</mi><mo separator="true">,</mo><mi>j</mi><mo stretchy="false">)</mo><mo>=</mo><mi>arg</mi><mo>⁡</mo><munder><mrow><mi>min</mi><mo>⁡</mo></mrow><mrow><mi>a</mi><mo>∈</mo><mo stretchy="false">{</mo><mi>R</mi><mo separator="true">,</mo><mi>D</mi><mo stretchy="false">}</mo></mrow></munder><mi>V</mi><mo stretchy="false">(</mo><mtext>next</mtext><mo stretchy="false">(</mo><mi>i</mi><mo separator="true">,</mo><mi>j</mi><mo separator="true">,</mo><mi>a</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\pi^*(i,j) = \arg\min_{a\in\{R,D\}} V(\text{next}(i,j,a))</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em">π</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7387em"><span style="top:-3.113em;margin-right:0.05em"><span class="pstrut" style="height:2.7em"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∗</span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">i</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em"></span><span class="mord mathnormal" style="margin-right:0.05724em">j</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em"></span></span><span class="base"><span class="strut" style="height:1.716em;vertical-align:-0.966em"></span><span class="mop">ar<span style="margin-right:0.01389em">g</span></span><span class="mspace" style="margin-right:0.1667em"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.6679em"><span style="top:-2.309em;margin-left:0em"><span class="pstrut" style="height:3em"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">a</span><span class="mrel mtight">∈</span><span class="mopen mtight">{</span><span class="mord mathnormal mtight" style="margin-right:0.00773em">R</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight" style="margin-right:0.02778em">D</span><span class="mclose mtight">}</span></span></span></span><span style="top:-3em"><span class="pstrut" style="height:3em"></span><span><span class="mop">min</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.966em"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em"></span><span class="mord mathnormal" style="margin-right:0.22222em">V</span><span class="mopen">(</span><span class="mord text"><span class="mord">next</span></span><span class="mopen">(</span><span class="mord mathnormal">i</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em"></span><span class="mord mathnormal" style="margin-right:0.05724em">j</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em"></span><span class="mord mathnormal">a</span><span class="mclose">))</span></span></span></span></span>
+<p>在 LeetCode 64 里：</p>
+<ul>
+<li>你先算出每个格的最小代价（相当于训练好的 Value Function）；</li>
+<li>然后你沿着“未来代价最小的方向”走（相当于执行最优策略 π*）。</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="5️⃣-所以结论是">5️⃣ 所以结论是：<a href="#5️⃣-所以结论是" class="hash-link" aria-label="Direct link to 5️⃣ 所以结论是：" title="Direct link to 5️⃣ 所以结论是：">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>问题</th><th>答案</th></tr></thead><tbody><tr><td>“我们在优化 value function 吗？”</td><td>✅ 是的，通过 Bellman 方程我们在更新 V</td></tr><tr><td>“我们在优化 policy 吗？”</td><td>✅ 间接在优化，因为最优策略 π* = argmin over V*</td></tr><tr><td>“LeetCode 64 是 RL 吗？”</td><td>✅ 确定性、离线、小规模 RL 问题（相当于 DP = Value Iteration）</td></tr></tbody></table>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="6️⃣-类比-rlhf--现代强化学习">6️⃣ 类比 RLHF / 现代强化学习<a href="#6️⃣-类比-rlhf--现代强化学习" class="hash-link" aria-label="Direct link to 6️⃣ 类比 RLHF / 现代强化学习" title="Direct link to 6️⃣ 类比 RLHF / 现代强化学习">​</a></h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>概念</th><th>LeetCode 64</th><th>RLHF</th></tr></thead><tbody><tr><td>状态</td><td>网格坐标</td><td>模型当前生成的文本上下文</td></tr><tr><td>动作</td><td>向右 / 向下</td><td>生成下一个 token</td></tr><tr><td>即时奖励</td><td>-grid[i][j]</td><td>人类或奖励模型的打分</td></tr><tr><td>Value Function</td><td>剩余路径总代价</td><td>“从当前句子继续写下去的期望分数”</td></tr><tr><td>策略 π</td><td>选择下一个格子</td><td>生成下一个词的概率分布</td></tr><tr><td>目标</td><td>最小总代价</td><td>最大化总人类偏好分</td></tr></tbody></table>
+<p>所以——在 RLHF 中我们同样是<strong>优化策略 π（语言模型的输出分布）</strong>，<br>
+但往往也是**通过学习近似的 Value Function（reward model 或 V-head）**来实现。</p>
+<hr>
+<p>✅ <strong>总结一句话：</strong></p>
+<blockquote>
+<p>LeetCode 64 虽然表面是在算最小路径和，<br>
+但本质是通过 Bellman 方程优化值函数，从而间接得到最优策略。<br>
+<strong>DP 是离线 Value Iteration，而最优路径是最终策略 π*</strong>。</p>
+</blockquote>
+<div class="language-python codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-python codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token triple-quoted-string string" style="color:#e3116c">&quot;&quot;&quot;</span><br></span><span class="token-line" style="color:#393A34"><span class="token triple-quoted-string string" style="display:inline-block;color:#e3116c"></span><br></span><span class="token-line" style="color:#393A34"><span class="token triple-quoted-string string" style="color:#e3116c">s = i, j</span><br></span><span class="token-line" style="color:#393A34"><span class="token triple-quoted-string string" style="color:#e3116c">a = right or down</span><br></span><span class="token-line" style="color:#393A34"><span class="token triple-quoted-string string" style="color:#e3116c">p =  choice. 1 once choice is decided then do prob, this problem is not a policy evaluation problem, so </span><br></span><span class="token-line" style="color:#393A34"><span class="token triple-quoted-string string" style="color:#e3116c">r = -grid[i][j]</span><br></span><span class="token-line" style="color:#393A34"><span class="token triple-quoted-string string" style="color:#e3116c">gamma = 1</span><br></span><span class="token-line" style="color:#393A34"><span class="token triple-quoted-string string" style="display:inline-block;color:#e3116c"></span><br></span><span class="token-line" style="color:#393A34"><span class="token triple-quoted-string string" style="color:#e3116c">&quot;&quot;&quot;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">class</span><span class="token plain"> </span><span class="token class-name">Solution</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token keyword" style="color:#00009f">def</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">minPathSum</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">self</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> grid</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> List</span><span class="token punctuation" style="color:#393A34">[</span><span class="token plain">List</span><span class="token punctuation" style="color:#393A34">[</span><span class="token builtin">int</span><span class="token punctuation" style="color:#393A34">]</span><span class="token punctuation" style="color:#393A34">]</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">-</span><span class="token operator" style="color:#393A34">&gt;</span><span class="token plain"> </span><span class="token builtin">int</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        m</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> n </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token builtin">len</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">grid</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token builtin">len</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">grid</span><span class="token punctuation" style="color:#393A34">[</span><span class="token number" style="color:#36acaa">0</span><span class="token punctuation" style="color:#393A34">]</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token keyword" style="color:#00009f">def</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">in_bound</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">a</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> b</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">            </span><span class="token keyword" style="color:#00009f">if</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">0</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">&lt;=</span><span class="token plain"> a </span><span class="token operator" style="color:#393A34">&lt;=</span><span class="token plain"> m </span><span class="token operator" style="color:#393A34">-</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">and</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">0</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">&lt;=</span><span class="token plain"> b </span><span class="token operator" style="color:#393A34">&lt;=</span><span class="token plain"> n </span><span class="token operator" style="color:#393A34">-</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">                </span><span class="token keyword" style="color:#00009f">return</span><span class="token plain"> </span><span class="token boolean" style="color:#36acaa">True</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">            </span><span class="token keyword" style="color:#00009f">else</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">                </span><span class="token keyword" style="color:#00009f">return</span><span class="token plain"> </span><span class="token boolean" style="color:#36acaa">False</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token decorator annotation punctuation" style="color:#393A34">@functools</span><span class="token decorator annotation punctuation" style="color:#393A34">.</span><span class="token decorator annotation punctuation" style="color:#393A34">lru_cache</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">maxsize</span><span class="token operator" style="color:#393A34">=</span><span class="token boolean" style="color:#36acaa">None</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token keyword" style="color:#00009f">def</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">calc_cost</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">i</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> j</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">            </span><span class="token keyword" style="color:#00009f">if</span><span class="token plain"> i </span><span class="token operator" style="color:#393A34">==</span><span class="token plain"> m </span><span class="token operator" style="color:#393A34">-</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">and</span><span class="token plain"> j </span><span class="token operator" style="color:#393A34">==</span><span class="token plain"> n </span><span class="token operator" style="color:#393A34">-</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">                </span><span class="token keyword" style="color:#00009f">return</span><span class="token plain"> grid</span><span class="token punctuation" style="color:#393A34">[</span><span class="token plain">i</span><span class="token punctuation" style="color:#393A34">]</span><span class="token punctuation" style="color:#393A34">[</span><span class="token plain">j</span><span class="token punctuation" style="color:#393A34">]</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">            </span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">            min_cost </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token builtin">float</span><span class="token punctuation" style="color:#393A34">(</span><span class="token string" style="color:#e3116c">&#x27;inf&#x27;</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">            </span><span class="token keyword" style="color:#00009f">for</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">x</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> y</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">in</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">[</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">i </span><span class="token operator" style="color:#393A34">+</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> j</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">i</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> j</span><span class="token operator" style="color:#393A34">+</span><span class="token number" style="color:#36acaa">1</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">]</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">                </span><span class="token keyword" style="color:#00009f">if</span><span class="token plain"> in_bound</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">x</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> y</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">                    cost </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> calc_cost</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">x</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> y</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">                    min_cost </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token builtin">min</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">min_cost</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> cost</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">            </span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">            min_cost </span><span class="token operator" style="color:#393A34">+=</span><span class="token plain"> grid</span><span class="token punctuation" style="color:#393A34">[</span><span class="token plain">i</span><span class="token punctuation" style="color:#393A34">]</span><span class="token punctuation" style="color:#393A34">[</span><span class="token plain">j</span><span class="token punctuation" style="color:#393A34">]</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">            </span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">            </span><span class="token keyword" style="color:#00009f">return</span><span class="token plain"> min_cost</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        cur_cost </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> calc_cost</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">0</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">0</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token keyword" style="color:#00009f">return</span><span class="token plain"> cur_cost</span><br></span></code></pre></div></div></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col"><a href="https://github.com/emmableu/notes/edit/main/docs/03. Leetcode/64. Minimum Path Sum.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/notes/docs/p/836c7fc4-b488-4bae-b71a-44117bd52c84"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">987.987 - Vertical Order Traversal of a Binary Tree (Hard)</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/notes/docs/p/184c30b9-4b44-431a-b27f-62cb1e76866a"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">APIs</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#-1-问题建模为-mdp" class="table-of-contents__link toc-highlight">🧩 1. 问题建模为 MDP</a></li><li><a href="#-2-bellman-最优性方程代价形式" class="table-of-contents__link toc-highlight">🧮 2. Bellman 最优性方程（代价形式）</a></li><li><a href="#-3-最优策略-π" class="table-of-contents__link toc-highlight">🧭 3. 最优策略 π*</a></li><li><a href="#1️⃣-原始代价网格每个格子的-cost" class="table-of-contents__link toc-highlight">1️⃣ 原始代价网格（每个格子的 cost）</a></li><li><a href="#2️⃣-计算最小路径代价-vij" class="table-of-contents__link toc-highlight">2️⃣ 计算最小路径代价 V(i,j)</a><ul><li><a href="#step-by-step-反向更新" class="table-of-contents__link toc-highlight">Step-by-step 反向更新：</a></li></ul></li><li><a href="#3️⃣-最终-v-表值函数表" class="table-of-contents__link toc-highlight">3️⃣ 最终 V 表（值函数表）</a></li><li><a href="#4️⃣-最优路径沿最小值方向" class="table-of-contents__link toc-highlight">4️⃣ 最优路径（沿最小值方向）</a></li><li><a href="#-rl-解释" class="table-of-contents__link toc-highlight">🧭 RL 解释</a></li><li><a href="#1️⃣-三者的定义对比" class="table-of-contents__link toc-highlight">1️⃣ 三者的定义对比</a></li><li><a href="#2️⃣-关系图逻辑层次" class="table-of-contents__link toc-highlight">2️⃣ 关系图（逻辑层次）</a></li><li><a href="#3️⃣-leetcode-64-对应类比代价形式" class="table-of-contents__link toc-highlight">3️⃣ LeetCode 64 对应类比（代价形式）</a></li><li><a href="#4️⃣-举个直观类比-️" class="table-of-contents__link toc-highlight">4️⃣ 举个直观类比 🚶‍♀️</a></li><li><a href="#1️⃣-rl-的目标找到最优策略-π" class="table-of-contents__link toc-highlight">1️⃣ RL 的目标：找到最优策略 π*</a></li><li><a href="#2️⃣-但是-policy-的优化很难--所以我们用-v-来间接求策略" class="table-of-contents__link toc-highlight">2️⃣ 但是 policy 的优化很难 —— 所以我们用 V 来“间接求策略”</a></li><li><a href="#3️⃣-在-leetcode-64-中的对应关系" class="table-of-contents__link toc-highlight">3️⃣ 在 LeetCode 64 中的对应关系</a></li><li><a href="#4️⃣-动态规划的作用离线求解-v值函数优化" class="table-of-contents__link toc-highlight">4️⃣ 动态规划的作用：离线求解 V*（值函数优化）</a></li><li><a href="#5️⃣-所以结论是" class="table-of-contents__link toc-highlight">5️⃣ 所以结论是：</a></li><li><a href="#6️⃣-类比-rlhf--现代强化学习" class="table-of-contents__link toc-highlight">6️⃣ 类比 RLHF / 现代强化学习</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Docs</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/notes/docs/intro">Tutorial</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Community</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://stackoverflow.com/questions/tagged/docusaurus" target="_blank" rel="noopener noreferrer" class="footer__link-item">Stack Overflow<svg width="13.5" height="13.5" aria-hidden="true" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://discordapp.com/invite/docusaurus" target="_blank" rel="noopener noreferrer" class="footer__link-item">Discord<svg width="13.5" height="13.5" aria-hidden="true" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://x.com/docusaurus" target="_blank" rel="noopener noreferrer" class="footer__link-item">X<svg width="13.5" height="13.5" aria-hidden="true" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/notes/blog">Blog</a></li><li class="footer__item"><a href="https://github.com/emmableu/notes" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-hidden="true" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2025 My Project, Inc. Built with Docusaurus.</div></div></div></footer></div>
+</body>
+</html>
