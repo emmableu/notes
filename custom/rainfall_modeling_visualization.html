@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>降雨量建模可视化</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.26.0/plotly.min.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .title {
+            text-align: center;
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+        .section {
+            margin: 30px 0;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+        .section-exp {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+        }
+        .section-gamma {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        }
+        .section-comparison {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+        }
+        .section h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+        .plot-container {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .formula {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 1.1em;
+            border-left: 4px solid #3498db;
+        }
+        .example {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 4px solid #e74c3c;
+        }
+        .controls {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .control-group label {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        .control-group input, .control-group select {
+            padding: 8px 12px;
+            border: 2px solid #bdc3c7;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .control-group input:focus, .control-group select:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+        .result-box {
+            background: rgba(46, 204, 113, 0.1);
+            border: 2px solid #2ecc71;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+        .highlight {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">降雨量建模可视化</h1>
+        <p class="subtitle">指数分布与伽马分布在气象学中的应用</p>
+
+        <!-- 指数分布部分 -->
+        <div class="section section-exp">
+            <h2>1. 指数分布：每小时降雨量建模</h2>
+            
+            <div class="formula">
+                <strong>假设：</strong>平均每小时降雨量 = 2 mm<br>
+                <strong>参数：</strong>λ = 1/2 = 0.5（因为期望 E[X] = 1/λ = 2）<br>
+                <strong>PDF：</strong>f(x) = (1/2) × e^(-x/2), x ≥ 0<br>
+                <strong>CDF：</strong>F(x) = 1 - e^(-x/2), x ≥ 0
+            </div>
+
+            <div class="controls">
+                <div class="control-group">
+                    <label>λ 参数:</label>
+                    <input type="number" id="lambdaExp" value="0.5" step="0.1" min="0.1" max="2">
+                </div>
+                <div class="control-group">
+                    <label>阈值 (mm):</label>
+                    <input type="number" id="thresholdExp" value="5" step="0.5" min="0" max="20">
+                </div>
+            </div>
+
+            <div class="plot-container">
+                <div id="expPlot"></div>
+            </div>
+
+            <div class="example">
+                <strong>计算示例：</strong><br>
+                1小时降雨超过 <span id="expThresholdText">5</span> mm的概率：<br>
+                P(X > <span id="expThresholdText2">5</span>) = e^(-<span id="expThresholdText3">5</span>/2) = e^(-<span id="expCalc">2.5</span>) ≈ <span id="expResult" class="highlight">8.2%</span>
+            </div>
+        </div>
+
+        <!-- 伽马分布部分 -->
+        <div class="section section-gamma">
+            <h2>2. 伽马分布：全天累计降雨量建模</h2>
+            
+            <div class="formula">
+                <strong>原理：</strong>一天24小时，24个独立指数分布事件的和<br>
+                <strong>参数：</strong>形状参数 k = 24，尺度参数 θ = 2（或率参数 λ = 0.5）<br>
+                <strong>期望：</strong>E[Y] = kθ = 24 × 2 = 48 mm<br>
+                <strong>方差：</strong>Var(Y) = kθ² = 24 × 4 = 96<br>
+                <strong>PDF：</strong>f(y) = (λ^k / Γ(k)) × y^(k-1) × e^(-λy)<br>
+                <strong>CDF：</strong>F(y) = γ(k, λy) / Γ(k)
+            </div>
+
+            <div class="controls">
+                <div class="control-group">
+                    <label>形状参数 k:</label>
+                    <input type="number" id="shapeGamma" value="24" step="1" min="1" max="50">
+                </div>
+                <div class="control-group">
+                    <label>尺度参数 θ:</label>
+                    <input type="number" id="scaleGamma" value="2" step="0.1" min="0.1" max="5">
+                </div>
+                <div class="control-group">
+                    <label>阈值 (mm):</label>
+                    <input type="number" id="thresholdGamma" value="30" step="5" min="0" max="100">
+                </div>
+            </div>
+
+            <div class="plot-container">
+                <div id="gammaPlot"></div>
+            </div>
+
+            <div class="result-box">
+                <strong>统计结果：</strong><br>
+                期望降雨量：<span id="gammaExpected" class="highlight">48.0</span> mm<br>
+                标准差：<span id="gammaStd" class="highlight">9.8</span> mm<br>
+                超过 <span id="gammaThresholdText">30</span> mm的概率：<span id="gammaResult" class="highlight">96.7%</span>
+            </div>
+        </div>
+
+        <!-- 对比分析 -->
+        <div class="section section-comparison">
+            <h2>3. 分布对比与应用场景</h2>
+            
+            <div class="plot-container">
+                <div id="comparisonPlot"></div>
+            </div>
+
+            <div class="example">
+                <strong>关键洞察：</strong><br>
+                • <strong>指数分布</strong>：适合建模单个事件的时间间隔或强度（如每小时降雨量）<br>
+                • <strong>伽马分布</strong>：适合建模多个独立事件的累积效应（如全天降雨量）<br>
+                • 伽马分布的形状参数越大，分布越接近正态分布（中心极限定理）<br>
+                • 在气象学中，这种建模方法可以：<br>
+                &nbsp;&nbsp;- 预测极端降雨事件的概率<br>
+                &nbsp;&nbsp;- 评估洪水风险<br>
+                &nbsp;&nbsp;- 设计排水系统容量
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 数学函数
+        function gamma(z) {
+            // Lanczos近似计算伽马函数
+            const g = 7;
+            const C = [0.99999999999980993,
+                      676.5203681218851,
+                      -1259.1392167224028,
+                      771.32342877765313,
+                      -176.61502916214059,
+                      12.507343278686905,
+                      -0.13857109526572012,
+                      9.9843695780195716e-6,
+                      1.5056327351493116e-7];
+            
+            if (z < 0.5) {
+                return Math.PI / (Math.sin(Math.PI * z) * gamma(1 - z));
+            }
+            
+            z -= 1;
+            let x = C[0];
+            for (let i = 1; i < g + 2; i++) {
+                x += C[i] / (z + i);
+            }
+            
+            const t = z + g + 0.5;
+            return Math.sqrt(2 * Math.PI) * Math.pow(t, z + 0.5) * Math.exp(-t) * x;
+        }
+
+        function incompleteGamma(s, x) {
+            // 不完全伽马函数的近似计算
+            if (x === 0) return 0;
+            if (x < 0 || s <= 0) return NaN;
+            
+            // 使用级数展开
+            let sum = 1;
+            let term = 1;
+            for (let n = 1; n < 100; n++) {
+                term *= x / (s + n - 1);
+                sum += term;
+                if (Math.abs(term) < 1e-12) break;
+            }
+            
+            return Math.pow(x, s) * Math.exp(-x) * sum;
+        }
+
+        // 指数分布 PDF
+        function expPDF(x, lambda) {
+            return x >= 0 ? lambda * Math.exp(-lambda * x) : 0;
+        }
+
+        // 指数分布 CDF
+        function expCDF(x, lambda) {
+            return x >= 0 ? 1 - Math.exp(-lambda * x) : 0;
+        }
+
+        // 伽马分布 PDF
+        function gammaPDF(x, k, theta) {
+            if (x <= 0) return 0;
+            const lambda = 1 / theta;
+            return (Math.pow(lambda, k) / gamma(k)) * Math.pow(x, k - 1) * Math.exp(-lambda * x);
+        }
+
+        // 伽马分布 CDF
+        function gammaCDF(x, k, theta) {
+            if (x <= 0) return 0;
+            const lambda = 1 / theta;
+            return incompleteGamma(k, lambda * x) / gamma(k);
+        }
+
+        // 正态分布近似
+        function normalCDF(x, mu, sigma) {
+            return 0.5 * (1 + erf((x - mu) / (sigma * Math.sqrt(2))));
+        }
+
+        function erf(x) {
+            // 误差函数近似
+            const a1 =  0.254829592;
+            const a2 = -0.284496736;
+            const a3 =  1.421413741;
+            const a4 = -1.453152027;
+            const a5 =  1.061405429;
+            const p  =  0.3275911;
+
+            const sign = x >= 0 ? 1 : -1;
+            x = Math.abs(x);
+
+            const t = 1.0 / (1.0 + p * x);
+            const y = 1.0 - (((((a5 * t + a4) * t) + a3) * t + a2) * t + a1) * t * Math.exp(-x * x);
+
+            return sign * y;
+        }
+
+        function updateExpPlot() {
+            const lambda = parseFloat(document.getElementById('lambdaExp').value);
+            const threshold = parseFloat(document.getElementById('thresholdExp').value);
+            
+            const x = [];
+            const pdfY = [];
+            const cdfY = [];
+            
+            for (let i = 0; i <= 20; i += 0.1) {
+                x.push(i);
+                pdfY.push(expPDF(i, lambda));
+                cdfY.push(expCDF(i, lambda));
+            }
+
+            const prob = Math.exp(-lambda * threshold);
+            
+            // 更新文本
+            document.getElementById('expThresholdText').textContent = threshold;
+            document.getElementById('expThresholdText2').textContent = threshold;
+            document.getElementById('expThresholdText3').textContent = threshold;
+            document.getElementById('expCalc').textContent = (lambda * threshold).toFixed(2);
+            document.getElementById('expResult').textContent = (prob * 100).toFixed(1) + '%';
+
+            const traces = [
+                {
+                    x: x,
+                    y: pdfY,
+                    type: 'scatter',
+                    mode: 'lines',
+                    name: 'PDF',
+                    line: {color: '#e74c3c', width: 3}
+                },
+                {
+                    x: x,
+                    y: cdfY,
+                    type: 'scatter',
+                    mode: 'lines',
+                    name: 'CDF',
+                    line: {color: '#3498db', width: 3},
+                    yaxis: 'y2'
+                },
+                {
+                    x: [threshold, threshold],
+                    y: [0, expPDF(threshold, lambda)],
+                    type: 'scatter',
+                    mode: 'lines',
+                    name: `阈值 ${threshold}mm`,
+                    line: {color: '#9b59b6', width: 2, dash: 'dash'}
+                }
+            ];
+
+            const layout = {
+                title: '指数分布：每小时降雨量 (PDF & CDF)',
+                xaxis: {title: '降雨量 (mm)'},
+                yaxis: {title: 'PDF', side: 'left', color: '#e74c3c'},
+                yaxis2: {title: 'CDF', side: 'right', overlaying: 'y', color: '#3498db'},
+                showlegend: true,
+                height: 400
+            };
+
+            Plotly.newPlot('expPlot', traces, layout);
+        }
+
+        function updateGammaPlot() {
+            const k = parseFloat(document.getElementById('shapeGamma').value);
+            const theta = parseFloat(document.getElementById('scaleGamma').value);
+            const threshold = parseFloat(document.getElementById('thresholdGamma').value);
+            
+            const x = [];
+            const pdfY = [];
+            const cdfY = [];
+            
+            const maxX = k * theta + 4 * Math.sqrt(k * theta * theta);
+            for (let i = 0; i <= maxX; i += maxX/200) {
+                x.push(i);
+                pdfY.push(gammaPDF(i, k, theta));
+                cdfY.push(gammaCDF(i, k, theta));
+            }
+
+            const expected = k * theta;
+            const variance = k * theta * theta;
+            const std = Math.sqrt(variance);
+            
+            // 正态近似计算概率
+            const probNormal = 1 - normalCDF(threshold, expected, std);
+            
+            // 更新统计信息
+            document.getElementById('gammaExpected').textContent = expected.toFixed(1);
+            document.getElementById('gammaStd').textContent = std.toFixed(1);
+            document.getElementById('gammaThresholdText').textContent = threshold;
+            document.getElementById('gammaResult').textContent = (probNormal * 100).toFixed(1) + '%';
+
+            const traces = [
+                {
+                    x: x,
+                    y: pdfY,
+                    type: 'scatter',
+                    mode: 'lines',
+                    name: 'PDF',
+                    line: {color: '#2ecc71', width: 3}
+                },
+                {
+                    x: x,
+                    y: cdfY,
+                    type: 'scatter',
+                    mode: 'lines',
+                    name: 'CDF',
+                    line: {color: '#f39c12', width: 3},
+                    yaxis: 'y2'
+                },
+                {
+                    x: [threshold, threshold],
+                    y: [0, Math.max(...pdfY)],
+                    type: 'scatter',
+                    mode: 'lines',
+                    name: `阈值 ${threshold}mm`,
+                    line: {color: '#9b59b6', width: 2, dash: 'dash'}
+                },
+                {
+                    x: [expected, expected],
+                    y: [0, Math.max(...pdfY)],
+                    type: 'scatter',
+                    mode: 'lines',
+                    name: `期望 ${expected.toFixed(1)}mm`,
+                    line: {color: '#34495e', width: 2, dash: 'dot'}
+                }
+            ];
+
+            const layout = {
+                title: '伽马分布：全天累计降雨量 (PDF & CDF)',
+                xaxis: {title: '降雨量 (mm)'},
+                yaxis: {title: 'PDF', side: 'left', color: '#2ecc71'},
+                yaxis2: {title: 'CDF', side: 'right', overlaying: 'y', color: '#f39c12'},
+                showlegend: true,
+                height: 400
+            };
+
+            Plotly.newPlot('gammaPlot', traces, layout);
+        }
+
+        function updateComparisonPlot() {
+            const lambda = 0.5;
+            const k = 24;
+            const theta = 2;
+            
+            const x1 = [];
+            const expY = [];
+            for (let i = 0; i <= 15; i += 0.1) {
+                x1.push(i);
+                expY.push(expPDF(i, lambda));
+            }
+            
+            const x2 = [];
+            const gammaY = [];
+            for (let i = 0; i <= 100; i += 0.5) {
+                x2.push(i);
+                gammaY.push(gammaPDF(i, k, theta));
+            }
+
+            // 正态近似
+            const mu = k * theta;
+            const sigma = Math.sqrt(k * theta * theta);
+            const normalY = [];
+            for (let i = 0; i <= 100; i += 0.5) {
+                normalY.push((1 / (sigma * Math.sqrt(2 * Math.PI))) * Math.exp(-0.5 * Math.pow((i - mu) / sigma, 2)));
+            }
+
+            const traces = [
+                {
+                    x: x1,
+                    y: expY,
+                    type: 'scatter',
+                    mode: 'lines',
+                    name: '指数分布 (每小时)',
+                    line: {color: '#e74c3c', width: 3}
+                },
+                {
+                    x: x2,
+                    y: gammaY,
+                    type: 'scatter',
+                    mode: 'lines',
+                    name: '伽马分布 (全天)',
+                    line: {color: '#2ecc71', width: 3},
+                    yaxis: 'y2'
+                },
+                {
+                    x: x2,
+                    y: normalY,
+                    type: 'scatter',
+                    mode: 'lines',
+                    name: '正态近似',
+                    line: {color: '#3498db', width: 2, dash: 'dash'},
+                    yaxis: 'y2'
+                }
+            ];
+
+            const layout = {
+                title: '分布比较：指数分布 vs 伽马分布 vs 正态近似',
+                xaxis: {title: '降雨量 (mm)'},
+                yaxis: {title: '指数分布 PDF', side: 'left', color: '#e74c3c'},
+                yaxis2: {title: '伽马分布 PDF', side: 'right', overlaying: 'y', color: '#2ecc71'},
+                showlegend: true,
+                height: 400
+            };
+
+            Plotly.newPlot('comparisonPlot', traces, layout);
+        }
+
+        // 事件监听器
+        document.getElementById('lambdaExp').addEventListener('input', updateExpPlot);
+        document.getElementById('thresholdExp').addEventListener('input', updateExpPlot);
+        document.getElementById('shapeGamma').addEventListener('input', updateGammaPlot);
+        document.getElementById('scaleGamma').addEventListener('input', updateGammaPlot);
+        document.getElementById('thresholdGamma').addEventListener('input', updateGammaPlot);
+
+        // 初始化图表
+        window.onload = function() {
+            updateExpPlot();
+            updateGammaPlot();
+            updateComparisonPlot();
+        };
+    </script>
+</body>
+</html>

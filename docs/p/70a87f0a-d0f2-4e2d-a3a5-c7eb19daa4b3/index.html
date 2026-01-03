@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-ML General/评价模型 Model Review" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.8.1">
+<title data-rh="true">评价模型 Model Review | My Site</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://emmableu.github.io/notes/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://emmableu.github.io/notes/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://emmableu.github.io/notes/docs/p/70a87f0a-d0f2-4e2d-a3a5-c7eb19daa4b3"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="评价模型 Model Review | My Site"><meta data-rh="true" name="description" content="- data 的assumption 多不多 (比如feature相互独立，残差正态分布之类的)"><meta data-rh="true" property="og:description" content="- data 的assumption 多不多 (比如feature相互独立，残差正态分布之类的)"><link data-rh="true" rel="icon" href="/notes/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://emmableu.github.io/notes/docs/p/70a87f0a-d0f2-4e2d-a3a5-c7eb19daa4b3"><link data-rh="true" rel="alternate" href="https://emmableu.github.io/notes/docs/p/70a87f0a-d0f2-4e2d-a3a5-c7eb19daa4b3" hreflang="en"><link data-rh="true" rel="alternate" href="https://emmableu.github.io/notes/docs/p/70a87f0a-d0f2-4e2d-a3a5-c7eb19daa4b3" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"05. ML General","item":"https://emmableu.github.io/notes/docs/ml-general"},{"@type":"ListItem","position":2,"name":"评价模型 Model Review","item":"https://emmableu.github.io/notes/docs/p/70a87f0a-d0f2-4e2d-a3a5-c7eb19daa4b3"}]}</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" crossorigin="anonymous"><link rel="stylesheet" href="/notes/assets/css/styles.607fdee8.css">
+<script src="/notes/assets/js/runtime~main.c02a6fe4.js" defer="defer"></script>
+<script src="/notes/assets/js/main.02311e79.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t="light";var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",e||t),document.documentElement.setAttribute("data-theme-choice",e||t)}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><link rel="preload" as="image" href="/notes/img/logo.svg"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/notes/"><div class="navbar__logo"><img src="/notes/img/logo.svg" alt="My Site Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/notes/img/logo.svg" alt="My Site Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">My Site</b></a><a class="navbar__item navbar__link" href="/notes/docs/ml100">01. ML Theory 100</a><a class="navbar__item navbar__link" href="/notes/docs/dl100">02. DL Theory 100</a><a class="navbar__item navbar__link" href="/notes/docs/leetcode">03. Leetcode</a><a class="navbar__item navbar__link" href="/notes/docs/zero2hero">04. Zero To Hero</a><a class="navbar__item navbar__link" href="/notes/docs/ml-general">05. ML General</a><a class="navbar__item navbar__link" href="/notes/docs/reinforcement-learning">Reinforcement Learning</a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><div class="navbar__search searchBarContainer_NW3z" dir="ltr"><input placeholder="Search" aria-label="Search" class="navbar__search-input searchInput_YFbd" value=""><div class="loadingRing_RJI3 searchBarLoadingRing_YnHq"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" href="/notes/docs/ml100">01. ML Theory 100</a><button aria-label="Expand sidebar category &#x27;01. ML Theory 100&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--active" href="/notes/docs/ml-general">05. ML General</a><button aria-label="Collapse sidebar category &#x27;05. ML General&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/p/cc9e9b72-f558-45fb-b323-8c982cd21785">ML资源</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/p/6a1a76f4-1db9-459d-a3ff-6d9fb9bd3c8e">Likelihood Basics</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/p/33322e19-551a-47dd-ba82-e1a9d5d30479">Bias and Variance</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/p/40c27ac6-55a8-4fa7-94a2-9e0ea4b0976d">Classification Metric</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/p/780d6a08-9052-48b8-be65-8e0aa46e3ffb">Feature Selection</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/p/74afc8cf-1b32-4848-b8ca-8a61fa8f137b">Regularization</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/p/ab96da11-1590-44aa-801a-2848affaa604">Distributions</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/p/e66fc711-ed04-4037-9657-70f91790966b">Mutual Information</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/p/85996f78-63d2-4da1-b968-385104020c3c">Linear Regression</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/p/b026b72a-d550-4301-8b1d-c443c79d9e0c">Logistic Regression</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/p/78d7a94f-b5a8-4b20-a94f-643f772a6ee2">Decision Tree</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/p/e7292d95-c582-4cb3-85ef-1adc73b3a172">Ensemble Learning</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/p/2784b330-5a5e-449f-9a0e-27da46d5c017">Naive Bayes and Generative Model</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/p/d7874b72-4d46-49c8-9996-4b65598d8ed8">Linear Discrimitive Analysis (LDA)</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/p/e4b13962-3bfd-4179-9f05-8389360f76b6">Support Vector Machine (SVM)</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/p/bc2360e2-3cde-44dd-ad53-b5cddfd713e7">Hierarchical Clustering</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/p/c8f4884e-488f-4566-8b4d-690d0e062362">EM Algorithm</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/p/bdee33c5-59c5-4656-ae24-de6a44a339c6">KNN - K Nearest Neighbor</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/p/83bf409d-c62d-436f-8814-d1bcd2c739ff">SoftMax and Cross-Entropy Loss Function</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/p/75f6131c-e9cb-4073-b06a-407ca559b982">Principle Component Analysis - PCA</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/p/3950ea5b-4dcb-4513-804d-55d0162005c8">Learning to Rank</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/p/75d0bf4d-fcc2-4e72-b273-4e862d8898f8">GMM - Gaussian Mixed Models</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/p/1f533186-531c-44b3-96e0-eaa311ac7ff8">Gradient Boost 细节</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/p/a5f44b92-03c1-475e-a773-76c53542b1ad">T-SNE or tSNE or tsne</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/p/5e97f5b9-0ff7-4097-9053-526db6d75222">Convexity, local, global minima</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/p/9568038f-e88e-4df3-a806-5532f48cef35">Neural Network Intro</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/p/6a021dfe-ba24-4fd3-8e3d-548e660e5a08">Gradient Descent (Best Explanation)</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/p/af31081f-3337-4f01-9762-7eb2d9c9001d">Backpropagation</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/p/39005b9b-0dc7-477a-b12b-ab99967780db">Multiple Inputs and Outputs</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/p/b3253a65-5a0a-4717-8a41-a7b6dd377834">Loss Functions</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/p/6a1c56e8-94cf-4eff-9f46-a60b6a34f55e">Batch Normalization</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/p/1c3d3e83-cba5-490e-adac-bbffd4d7c2c9">Dropout</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/p/06ca38e7-caea-4560-a877-a72fa1e06183">PyTorch - Convolutional Neural Network (CNN)</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/p/fca7bec5-0756-4298-ac4c-46b13422b565">Recurrent Neural Network - RNN</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/p/cdf7bcb9-c32f-4124-a4c9-f65f76c1a69d">LSTM</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/p/fbab20b7-b47f-4dcd-a022-b9926965e147">BERT</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/p/016d741d-2e5f-4c42-89e2-3b5732ccaae8">GAN</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/p/6b0d6c51-2d88-4110-ba81-9b78d4a2ce9c">ResNet 残差网络</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/p/2e942169-193e-4a5a-838f-61ff2df5f9b4">Encoder-Decoder 编码器-解码器</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/p/a8b31f8a-3b38-4a19-a18b-5625ba34d1b6">百面机器学习 - 答案 Bai Mian Baimian Solution</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/p/e087fb01-09b6-4fee-8ae0-8a70e379d71b">Definition Glossary</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/notes/docs/p/70a87f0a-d0f2-4e2d-a3a5-c7eb19daa4b3">评价模型 Model Review</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/p/56af319b-39c9-41e1-959a-0e470b51ffc0">Model Compare 比较模型好坏</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/p/97e0f4a6-4e81-49c1-8216-28e411710e65">DBSCAN</a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" href="/notes/docs/dl100">02. DL Theory 100</a><button aria-label="Expand sidebar category &#x27;02. DL Theory 100&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" href="/notes/docs/leetcode">03. Leetcode</a><button aria-label="Expand sidebar category &#x27;03. Leetcode&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" href="/notes/docs/zero2hero">04. Zero to Hero</a><button aria-label="Expand sidebar category &#x27;04. Zero to Hero&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" href="/notes/docs/reinforcement-learning">Reinforcement Learning</a><button aria-label="Expand sidebar category &#x27;Reinforcement Learning&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/notes/docs/docs">Docs</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/notes/docs/docs/intro">Welcome / Placeholder</a></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/notes/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/notes/docs/ml-general"><span>05. ML General</span></a></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">评价模型 Model Review</span></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>评价模型 Model Review</h1></header><ul>
+<li>data 的assumption 多不多 (比如feature相互独立，残差正态分布之类的)</li>
+<li>data 是否需要先进行scale</li>
+<li>higher dimension 高维特征 表现能力 （比如feature比sample还多）
+<ul>
+<li>feature &gt; sample 不能求解的方法： linear regression, logistic regression （但是加了 L1/L2 regularization 就可以求解）</li>
+<li>是否倾向于得到稀疏解 （是否可以通过求解这个regression的结果去掉一些没用的feature）
+<ul>
+<li>倾向于得到稀疏解的方法: L1 regularization, ReLU activation function， svm with hinge loss</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>是否sensitive to outlier:
+<ul>
+<li>good model: SVM</li>
+</ul>
+</li>
+<li>更倾向于overfit (low bias, high variance),  还是underfit
+<ul>
+<li>overfit: Decision Tree, Neural Network</li>
+</ul>
+</li>
+<li>训练速度</li>
+<li>hyper parameter tuning的难度/麻烦程度</li>
+<li>对于imbalanced dataset的处理能力</li>
+<li>模型本身是不是很容易理解（比如decision tree，logistic regression 就很容易理解）</li>
+<li>能不能得到interpretable的feature importance</li>
+<li>minimum 是否 = global minimum  (是否是convex function)</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="linear-regression-评价">Linear Regression 评价<a href="#linear-regression-评价" class="hash-link" aria-label="Direct link to Linear Regression 评价" title="Direct link to Linear Regression 评价">​</a></h2>
+<ul>
+<li>data assumption 多：
+<ul>
+<li>residuals
+<ul>
+<li>iid</li>
+<li>normal distribution with mean=0 (如果不进行beta置信区间的估计，就是mean 0, constant variance)</li>
+<li>independent of X</li>
+</ul>
+</li>
+<li>X / features:
+<ul>
+<li>independent with each other</li>
+<li>linearity: assuming relationship y = wx + b
+关于residual的见下图
+<img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/emmableu/image/master/202210032015214.png" alt="" class="img_ev3q"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>data does not need scaling:对于线性模型 y = wx + b 而言，x的任意线性变换(平移，放缩)都会反应在w，b上，所以不会影响模型的拟合能力。</li>
+<li>does not work well with high dimension (many features)
+<ul>
+<li>feature &gt; sample 不能求解，</li>
+<li>大部分beta都不会完全是0， 所以不可以通过求解这个regression的结果去掉一些没用的feature</li>
+<li>prone to overfit if there are many features / dimensions, causing high variance.</li>
+</ul>
+</li>
+<li>sensitive to outliers comparing to models like SVM (因为 during loss function, treat each sample equally，including the outliers)</li>
+<li>如果assumption完全满足的话，根据gaussian-markov theorem, it does pretty good in terms of balancing under- and over- fit.
+<ul>
+<li>但是，如果assumption 不满足的话， 更倾向于underfit, 因为model 相对decision tree， neural network 更加简单</li>
+</ul>
+</li>
+<li>训练速度快，有 analytical solution, 不需要 iteratively do gradient descent</li>
+<li>hyper parameter tuning 容易，没有什么hyperparameter</li>
+<li>（因为是continuous target variable，不需要讨论imbalance问题）</li>
+<li>model is very interpretable</li>
+<li>feature importance is very interpretable - can just look at the p value of the beta.</li>
+<li>MSE is a convex function, so gradient descent can always reach global minima</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="logistic-regression-评价">Logistic Regression 评价<a href="#logistic-regression-评价" class="hash-link" aria-label="Direct link to Logistic Regression 评价" title="Direct link to Logistic Regression 评价">​</a></h2>
+<ul>
+<li>data 的assumption 多不多 (比如feature相互独立，残差正态分布之类的)
+<ul>
+<li>比linear regression少很多，所有关于residual的都不需要</li>
+<li>只需要：
+<ul>
+<li>X / features:
+<ul>
+<li>independent with each other</li>
+<li>linearity: assumes linearity of independent variables and log odds.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>data 是否需要先进行scale
+<ul>
+<li>要，因为要用gradient descent 求解</li>
+</ul>
+</li>
+<li>higher dimension 高维特征 表现能力 （比如feature比sample还多
+<ul>
+<li>不好</li>
+<li>大部分beta都不会完全是0， 所以不可以通过求解这个regression的结果去掉一些没用的feature</li>
+<li>prone to overfit if there are many features / dimensions, causing high variance.</li>
+</ul>
+</li>
+<li>是否sensitive to outlier:
+<ul>
+<li>不如SVM</li>
+</ul>
+</li>
+<li>更倾向于overfit (low bias, high variance),  还是underfit
+<ul>
+<li>more underfit comparing to neural network</li>
+<li>more overfit comparing to naive bayes.</li>
+</ul>
+</li>
+<li>训练速度
+<ul>
+<li>relatively low comparing to linear regression or naive bayes</li>
+</ul>
+</li>
+<li>hyper parameter tuning的难度/麻烦程度
+<ul>
+<li>好像没有 hyper parameter， 可以加regularization</li>
+</ul>
+</li>
+<li>模型本身是不是很容易理解（比如decision tree，logistic regression 就很容易理解）
+<ul>
+<li>是, 可以用odds ratio The odds ratio represents the odds that an outcome will occur given the presence of a specific predictor,</li>
+</ul>
+</li>
+<li>能不能得到interpretable的feature importance
+<ul>
+<li>能</li>
+</ul>
+</li>
+<li>minimum 是否 = global minimum  (是否是convex function)
+<ul>
+<li>是，loss function is convex</li>
+</ul>
+</li>
+<li>（跳过）对于imbalanced dataset的处理能力
+<ul>
+<li>there may not be sufficient patterns belonging to the minority class to adequately represent its distribution.</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="lasso--ridge-l1--l2-regularization-regression-评价">Lasso / Ridge (L1 / L2 Regularization) Regression 评价<a href="#lasso--ridge-l1--l2-regularization-regression-评价" class="hash-link" aria-label="Direct link to Lasso / Ridge (L1 / L2 Regularization) Regression 评价" title="Direct link to Lasso / Ridge (L1 / L2 Regularization) Regression 评价">​</a></h2>
+<ul>
+<li>
+<p>data assumption 比 linear regression 少: 不需要残差正态分布，因为得到的beta不是unbiased的，不符合t分布</p>
+<ul>
+<li>需要的assumption：
+<ul>
+<li>residual:
+<ul>
+<li>iid</li>
+<li>0 mean, constant variance</li>
+<li>independent of X</li>
+</ul>
+</li>
+<li>X / feature:
+<ul>
+<li>don&#x27;t need to be completely independent with each other</li>
+<li>linearity: assuming relationship y = wx + b</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>data need scaling</p>
+<ul>
+<li><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/emmableu/image/master/feature-scaling-2.png" alt="" class="img_ev3q"></li>
+</ul>
+</li>
+<li>
+<p>works better with high dimension:</p>
+<ul>
+<li>L1 allows sparcity -&gt; some beta will be fitted to be 0, so, Lasso Regularization can exclude useless variables from the model and, in general, tends to perform well when we need to remove a lot of useless variables from a model.</li>
+</ul>
+</li>
+<li>
+<p>sensitive to outliers comparing to models like SVM</p>
+</li>
+<li>
+<p>comparing to LR tends to underfit if too big lambda</p>
+</li>
+<li>
+<p>hyper parameter tuning 容易, 只有lambda</p>
+</li>
+<li>
+<p>model is very interpretable</p>
+</li>
+<li>
+<p>minimum 是否 = global minimum  (是否是convex function):</p>
+<ul>
+<li>L2 Ridge regression: loss function is convex,  gradient descent can always reach global minima</li>
+<li>L1 Lasso: sometimes not convex, so gradient descent don&#x27;t always reach global minima</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="naive-baiyes-评价">Naive Baiyes 评价<a href="#naive-baiyes-评价" class="hash-link" aria-label="Direct link to Naive Baiyes 评价" title="Direct link to Naive Baiyes 评价">​</a></h2>
+<ul>
+<li>data 的assumption 多不多：
+<ul>
+<li>有一个： features need to be independent with each other</li>
+</ul>
+</li>
+<li>data 是否需要先进行scale
+<ul>
+<li>no</li>
+</ul>
+</li>
+<li>higher dimension 高维特征 表现能力 （比如feature比sample还多）
+<ul>
+<li>If your data has 𝑘 dimensions, then a fully general ML algorithm which attempts to learn all possible correlations between these features has to deal with 2𝑘 possible feature interactions, and therefore needs on the order of 2𝑘 many data points to be performant.</li>
+<li>However because Naive Bayes assumes independence between features, it only needs on the order of 𝑘 many data points, exponentially fewer.</li>
+</ul>
+</li>
+<li>是否sensitive to outlier:
+<ul>
+<li>sensitive to outliers comparing to SVM</li>
+</ul>
+</li>
+<li>更倾向于overfit (low bias, high variance),  还是underfit
+<ul>
+<li>underfit, since the interactions are not modeled, some of the information in the data is ignored. This makes it an inherently high bias model; it has a high approximation error but as a result it also does not overfit.</li>
+</ul>
+</li>
+<li>训练速度
+<ul>
+<li>fast</li>
+</ul>
+</li>
+<li>hyper parameter tuning的难度/麻烦程度
+<ul>
+<li>easy, only one hyperparameter - pseudocount</li>
+</ul>
+</li>
+<li>对于imbalanced dataset的处理能力
+<ul>
+<li>not good</li>
+<li><img decoding="async" loading="lazy" src="https://raw.githubusercontent.com/emmableu/image/master/202210050154011.png" alt="" class="img_ev3q"></li>
+<li>Even though the likelihood probabilities are similar to some extent, but the posterior probability is badly affected by prior probabilities. Here in the above example the class +ve prior probability will be 9 times higher than the class -ve, this difference in naive bayes creates a bias for class +ve.</li>
+<li>One simple solution is to ignore the prior probabilities. (Or) You can do undersampling or oversampling.</li>
+</ul>
+</li>
+<li>(跳过)模型本身是不是很容易理解（比如decision tree，logistic regression 就很容易理解）跳过</li>
+<li>(跳过)能不能得到interpretable的feature importance 跳过</li>
+<li>(跳过)minimum 是否 = global minimum  (是否是convex function) 跳过</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="decision-tree-评价">Decision Tree 评价<a href="#decision-tree-评价" class="hash-link" aria-label="Direct link to Decision Tree 评价" title="Direct link to Decision Tree 评价">​</a></h2>
+<ul>
+<li>data 的assumption 多不多 (比如feature相互独立，残差正态分布之类的)
+<ul>
+<li>好像没有</li>
+</ul>
+</li>
+<li>data 是否需要先进行scale
+<ul>
+<li>no need</li>
+</ul>
+</li>
+<li>higher dimension 高维特征 表现能力
+<ul>
+<li>tends to become very overfit,  the number of branches grows exponentially with the number of features</li>
+</ul>
+</li>
+<li>是否sensitive to outlier:
+<ul>
+<li>not sensitive to outliers since the partitioning happens based on the proportion of samples within the split ranges and not on absolute values.</li>
+<li>especially when we use early stopping</li>
+</ul>
+</li>
+<li>更倾向于overfit (low bias, high variance),  还是underfit
+<ul>
+<li>overfit,very specific rules</li>
+</ul>
+</li>
+<li>训练速度
+<ul>
+<li>not as fast comparing to logistic regression / naive bayes, but still fast enough comparing to neural network</li>
+<li>test time is fast as it&#x27;s just linearly traversing the test rules.</li>
+</ul>
+</li>
+<li>hyper parameter tuning的难度/麻烦程度
+<ul>
+<li>好像没有hyper parameter，除非定义early stopping</li>
+</ul>
+</li>
+<li>对于imbalanced dataset的处理能力
+<ul>
+<li>不太好</li>
+<li>Decision trees implementations normally use Gini impurity for finding splits. For each rule/condition, when calculating the gini impurity it is a weighted average on. it weights higher on the more prevaling condition (e.g., loves troll when predicting loves popcorn). But more prevaling sample has a higher say on the more prevaling condition.</li>
+</ul>
+</li>
+<li>模型本身是不是很容易理解（比如decision tree，logistic regression 就很容易理解）
+<ul>
+<li>yes. has interpretable rules</li>
+</ul>
+</li>
+<li>(跳过) 能不能得到interpretable的feature importance</li>
+<li>(跳过) minimum 是否 = global minimum  (是否是convex function) 跳过</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="svm-评价">SVM 评价<a href="#svm-评价" class="hash-link" aria-label="Direct link to SVM 评价" title="Direct link to SVM 评价">​</a></h2>
+<ul>
+<li>data 的assumption 多不多 (比如feature相互独立，残差正态分布之类的)
+<ul>
+<li>比较宽松，只需要Data is linearly separable. Even if the linear boundary is in an augmented feature space. for example, after the kernel trick</li>
+</ul>
+</li>
+<li>data 是否需要先进行scale
+<ul>
+<li>要　</li>
+<li>SVM tries to maximize the distance between the separating plane and the support vectors.</li>
+<li>If one feature (i.e. one dimension in this space) has very large values, it will dominate the other features when calculating the distance.</li>
+<li>If you rescale all features (e.g. to [0, 1]), they all have the same influence on the distance metric.</li>
+</ul>
+</li>
+<li>higher dimension 高维特征 表现能力 （比如feature比sample还多）
+<ul>
+<li>还行，因为它会通过fit这个model来放缩 c =&gt; regularization parameter, the degree to which our model will accept misclassifications in our dataset， so that it generalise well over training data.</li>
+<li>是否倾向于得到稀疏解 （是否可以通过求解这个model的结果去掉一些没用的feature）
+<ul>
+<li>用hinge loss 作为loss function， 因为hinge loss是 = max(0, 1-z), 所以&gt;1时是0，所以会有 0 解</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>是否sensitive to outlier:
+<ul>
+<li>不sensitive to outlier，很robust，还是因为它会通过fit这个model来放缩 c，见上
+<ul>
+<li>而且只关心soft margin 周围的点</li>
+</ul>
+</li>
+<li>good model: SVM</li>
+</ul>
+</li>
+<li>更倾向于overfit (low bias, high variance),  还是underfit
+<ul>
+<li>比起lr 和 nn 和 decision tree 这些更容易 underfit, 因为有soft margin 和 regularization parameter　</li>
+</ul>
+</li>
+<li>训练速度
+<ul>
+<li>不是很快，因为还是要用gradient descent</li>
+</ul>
+</li>
+<li>hyper parameter tuning的难度/麻烦程度
+<ul>
+<li>麻烦，比如确定哪个kernel</li>
+</ul>
+</li>
+<li>模型本身是不是很容易理解（比如decision tree，logistic regression 就很容易理解）
+<ul>
+<li>比较难， 有feature weights， but they don&#x27;t correspond 1-1 to feature importance such as in logistic regression</li>
+</ul>
+</li>
+<li>minimum 是否 = global minimum  (是否是convex function)
+<ul>
+<li>是convex</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="knn-评价">KNN 评价<a href="#knn-评价" class="hash-link" aria-label="Direct link to KNN 评价" title="Direct link to KNN 评价">​</a></h2>
+<ul>
+<li>
+<p>data 的assumption 多不多</p>
+<ul>
+<li>assuming similar points situated closely with each other.</li>
+</ul>
+</li>
+<li>
+<p>data 是否需要先进行scale</p>
+<ul>
+<li>要，因为要计算距离</li>
+</ul>
+</li>
+<li>
+<p>higher dimension 高维特征 表现能力 （比如feature比sample还多）</p>
+<ul>
+<li>不太行，因为高维的时候：
+<ul>
+<li>Our assumption of similar points being situated closely breaks： high dimension creates exponentially higher space, points tend to never be close together.</li>
+<li>  It becomes computationally more expensive to compute distance and find the nearest neighbors in high-dimensional space</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>是否sensitive to outlier:</p>
+<ul>
+<li>If ‘K’ value is low, the model is susceptible to outliers. =&gt; Let take K=1, suppose there is 1 outlier near to our test point and then the model predicts the label corresponding to the outlier.</li>
+<li>If ‘K’ value is high, the model is robust to outliers.
+  </li>
+</ul>
+</li>
+<li>
+<p>更倾向于overfit (low bias, high variance),  还是underfit</p>
+<ul>
+<li>k 小， 高维数据： overfit</li>
+<li>k 大，低维数据： underfit</li>
+</ul>
+</li>
+<li>
+<p>训练速度</p>
+<ul>
+<li>慢  for each testing sample, it requires calculating distance with each training sample</li>
+</ul>
+</li>
+<li>
+<p>hyper parameter tuning的难度/麻烦程度</p>
+<ul>
+<li>k 很难决定，要用hyperparameter tuning</li>
+</ul>
+</li>
+<li>
+<p>对于imbalanced dataset的处理能力</p>
+<ul>
+<li>theoretically, unbalanced classes are not a problem at all for the k-nearest neighbor algorithm.
+<ul>
+<li>Because the algorithm is not influenced in any way by the size of the class, it will not favor any on the basis of size.</li>
+</ul>
+</li>
+<li>but:  there may not be sufficient patterns belonging to the minority class to adequately represent its distribution.</li>
+</ul>
+</li>
+<li>
+<p>模型本身是不是很容易理解（比如decision tree，logistic regression 就很容易理解）</p>
+<ul>
+<li>not interpretable</li>
+</ul>
+</li>
+</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col"><a href="https://github.com/emmableu/notes/edit/main/docs/05. ML General/1111.评价模型 Model Review.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/notes/docs/p/e087fb01-09b6-4fee-8ae0-8a70e379d71b"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Definition Glossary</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/notes/docs/p/56af319b-39c9-41e1-959a-0e470b51ffc0"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Model Compare 比较模型好坏</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#linear-regression-评价" class="table-of-contents__link toc-highlight">Linear Regression 评价</a></li><li><a href="#logistic-regression-评价" class="table-of-contents__link toc-highlight">Logistic Regression 评价</a></li><li><a href="#lasso--ridge-l1--l2-regularization-regression-评价" class="table-of-contents__link toc-highlight">Lasso / Ridge (L1 / L2 Regularization) Regression 评价</a></li><li><a href="#naive-baiyes-评价" class="table-of-contents__link toc-highlight">Naive Baiyes 评价</a></li><li><a href="#decision-tree-评价" class="table-of-contents__link toc-highlight">Decision Tree 评价</a></li><li><a href="#svm-评价" class="table-of-contents__link toc-highlight">SVM 评价</a></li><li><a href="#knn-评价" class="table-of-contents__link toc-highlight">KNN 评价</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Docs</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/notes/docs/intro">Tutorial</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Community</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://stackoverflow.com/questions/tagged/docusaurus" target="_blank" rel="noopener noreferrer" class="footer__link-item">Stack Overflow<svg width="13.5" height="13.5" aria-hidden="true" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://discordapp.com/invite/docusaurus" target="_blank" rel="noopener noreferrer" class="footer__link-item">Discord<svg width="13.5" height="13.5" aria-hidden="true" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://x.com/docusaurus" target="_blank" rel="noopener noreferrer" class="footer__link-item">X<svg width="13.5" height="13.5" aria-hidden="true" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/notes/blog">Blog</a></li><li class="footer__item"><a href="https://github.com/emmableu/notes" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-hidden="true" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 My Project, Inc. Built with Docusaurus.</div></div></div></footer></div>
+</body>
+</html>

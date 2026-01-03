@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>似然性与概率的区别 - Likelihood vs Probability</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 1.2em;
+            margin-bottom: 40px;
+        }
+        
+        .section {
+            margin: 40px 0;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            border-left: 5px solid #3498db;
+        }
+        
+        .concept-title {
+            font-size: 1.8em;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .keyword {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+        
+        .chart-container {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        .distribution-chart {
+            width: 100%;
+            height: 300px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            margin: 20px 0;
+            background: linear-gradient(to bottom, #f8f9fa, #ffffff);
+        }
+        
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .control-group label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #2c3e50;
+        }
+        
+        input[type="range"] {
+            width: 200px;
+            margin: 10px 0;
+        }
+        
+        .value-display {
+            font-size: 1.1em;
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        
+        .explanation {
+            background: #ecf0f1;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            line-height: 1.6;
+        }
+        
+        .highlight {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #ffc107;
+            margin: 15px 0;
+        }
+        
+        .data-point {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            background: #e74c3c;
+            border-radius: 50%;
+            margin: 0 2px;
+        }
+        
+        .button {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            margin: 10px;
+            transition: transform 0.2s;
+        }
+        
+        .button:hover {
+            transform: translateY(-2px);
+        }
+        
+        .button:disabled {
+            background: #bdc3c7;
+            transform: none;
+            cursor: not-allowed;
+        }
+        
+        .step-button {
+            background: linear-gradient(45deg, #27ae60, #2ecc71);
+            margin: 5px;
+            padding: 10px 20px;
+            font-size: 0.9em;
+        }
+        
+        .formula {
+            background: #2c3e50;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .mle-step {
+            margin: 30px 0;
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 12px;
+            border: 2px solid #e8f4f8;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        
+        .mle-step h3 {
+            color: #2c3e50;
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #3498db;
+        }
+        
+        .optimization-controls {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .optimization-info {
+            background: #f8f9fa;
+            border: 2px solid #dee2e6;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+        
+        .gradient-info {
+            background: #e8f5e8;
+            border-left: 4px solid #27ae60;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        .likelihood-marker {
+            position: absolute;
+            width: 3px;
+            height: 20px;
+            background: #e74c3c;
+            transform: translateX(-1.5px);
+        }
+        
+        .method-selector {
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .method-selector select {
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: 2px solid #3498db;
+            font-size: 1em;
+            background: white;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            .controls, .optimization-controls {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>似然性与概率的区别</h1>
+        <p class="subtitle">Likelihood vs Probability - 医学诊断中的应用示例</p>
+        
+        <!-- Introduction -->
+        <div class="section">
+            <h2 class="concept-title">
+                <span class="keyword">概念介绍 Concepts</span>
+            </h2>
+            <div class="explanation">
+                <p><strong>概率 (Probability)</strong> 是在已知参数的情况下，预测某个事件发生的可能性。</p>
+                <p><strong>似然性 (Likelihood)</strong> 是在已经观察到某个事件的情况下，推测哪些参数最可能导致这个结果。</p>
+                <br>
+                <p><strong>医学诊断例子：</strong></p>
+                <p>🏥 假设我们在研究一种新的血压测量仪器的准确性。我们知道这个仪器的测量结果服从正态分布。</p>
+            </div>
+        </div>
+
+        <!-- Probability Section -->
+        <div class="section">
+            <h2 class="concept-title">
+                <span class="keyword">概率 Probability</span>
+            </h2>
+            <div class="explanation">
+                <p><strong>情景：</strong>如果我们知道血压仪器的平均误差是0mmHg，标准差是2.5mmHg，那么测量某个特定患者时得到不同误差值的<span class="keyword">概率</span>是多少？</p>
+            </div>
+            
+            <div class="chart-container">
+                <canvas id="probabilityChart" class="distribution-chart"></canvas>
+                <p><strong>红色区域</strong>表示测量误差在-2到+2 mmHg之间的概率</p>
+            </div>
+            
+            <div class="highlight">
+                <strong>概率思维：</strong>已知参数（均值=0，标准差=2.5），计算观察到特定测量误差的可能性。
+            </div>
+        </div>
+
+        <!-- Likelihood Section -->
+        <div class="section">
+            <h2 class="concept-title">
+                <span class="keyword">似然性 Likelihood</span>
+            </h2>
+            <div class="explanation">
+                <p><strong>情景：</strong>现在我们实际测量了一个患者，得到了误差值为+3mmHg。基于这个观察结果，我们想要推测这个仪器的真实参数（平均误差）是多少。</p>
+            </div>
+            
+            <div class="chart-container">
+                <canvas id="likelihoodChart" class="distribution-chart"></canvas>
+                <div class="controls">
+                    <div class="control-group">
+                        <label>调整平均误差参数 (Mean Parameter)</label>
+                        <input type="range" id="meanSlider" min="-2" max="6" step="0.1" value="3">
+                        <div class="value-display">均值 = <span id="meanValue">3.0</span> mmHg</div>
+                    </div>
+                </div>
+                <p><strong>红点</strong>表示观察到的测量误差 (+3mmHg)</p>
+                <p><strong>似然性值：</strong><span id="likelihoodValue">0.16</span></p>
+            </div>
+            
+            <div class="highlight">
+                <strong>似然性思维：</strong>已知观察结果（误差=+3mmHg），评估不同参数值的可能性。哪个平均误差参数最能解释我们观察到的数据？
+            </div>
+        </div>
+
+        <!-- Maximum Likelihood Process -->
+        <div class="section">
+            <h2 class="concept-title">
+                <span class="keyword">最大似然估计过程 Maximum Likelihood Process</span>
+            </h2>
+            <div class="explanation">
+                <p><strong>情景：</strong>我们测量了多个患者的血压，现在需要确定最佳的分布参数来解释这些数据。</p>
+            </div>
+            
+            <!-- Step 1: Data Collection -->
+            <div class="mle-step">
+                <h3>步骤1：数据收集 (Data Collection)</h3>
+                <div class="explanation">
+                    <p>我们收集了10个血压测量的误差数据点：</p>
+                    <p><strong>测量误差数据：</strong>1.2, 2.8, 3.1, 2.5, 3.7, 2.9, 3.2, 2.1, 3.8, 2.6 (mmHg)</p>
+                </div>
+                <div class="chart-container">
+                    <canvas id="step1Chart" class="distribution-chart"></canvas>
+                    <div style="text-align: center; margin: 15px 0;">
+                        <div class="data-point"></div>
+                        <div class="data-point"></div>
+                        <div class="data-point"></div>
+                        <div class="data-point"></div>
+                        <div class="data-point"></div>
+                        <div class="data-point"></div>
+                        <div class="data-point"></div>
+                        <div class="data-point"></div>
+                        <div class="data-point"></div>
+                        <div class="data-point"></div>
+                        <br><small>测量误差数据点 (从低到高)</small>
+                    </div>
+                </div>
+                <div class="highlight">
+                    <strong>"正态分布假设" 意味着：</strong>
+                    <br>1) 我们期望大部分测量结果（误差）接近平均值
+                    <br>2) 我们期望测量结果相对对称地分布在平均值周围
+                    <br><em>现在我们需要找到最佳的均值参数μ来解释这些数据</em>
+                </div>
+            </div>
+
+            <!-- Step 2: Poor Fit -->
+            <div class="mle-step">
+                <h3>步骤2：拟合度差的情况 (Poor Fit)</h3>
+                <div class="explanation">
+                    <p>如果我们假设均值μ = 0，会发生什么？</p>
+                </div>
+                <div class="chart-container">
+                    <canvas id="step2Chart" class="distribution-chart"></canvas>
+                    <div class="highlight" style="background: #ffebee;">
+                        <strong>联合似然性计算：</strong>
+                        <br>L(μ=0) = P(X₁=1.2|μ=0) × P(X₂=2.8|μ=0) × ... × P(X₁₀=2.6|μ=0)
+                        <br>每个观测值的概率都相对较小，因为数据点远离假设的均值
+                        <br><strong>结果：联合似然性很低</strong>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3: Better Fit -->
+            <div class="mle-step">
+                <h3>步骤3：更好的拟合 (Better Fit)</h3>
+                <div class="explanation">
+                    <p>如果我们调整均值μ = 2.79（接近数据的样本均值），会怎样？</p>
+                </div>
+                <div class="chart-container">
+                    <canvas id="step3Chart" class="distribution-chart"></canvas>
+                    <div class="highlight" style="background: #e8f5e8;">
+                        <strong>联合似然性计算：</strong>
+                        <br>L(μ=2.79) = P(X₁=1.2|μ=2.79) × P(X₂=2.8|μ=2.79) × ... × P(X₁₀=2.6|μ=2.79)
+                        <br>现在每个观测值的概率都增大了，因为数据点更接近假设的均值
+                        <br><strong>结果：联合似然性明显提高</strong>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 4: Detailed Optimization Process -->
+            <div class="mle-step">
+                <h3>步骤4：详细优化过程 (Detailed Optimization Process)</h3>
+                <div class="explanation">
+                    <p>现在我们需要系统性地找到能够<strong>最大化似然性</strong>的μ值。有多种优化方法可以选择：</p>
+                </div>
+
+                <div class="method-selector">
+                    <label><strong>选择优化方法：</strong></label>
+                    <select id="optimizationMethod">
+                        <option value="analytical">解析解法 (Analytical Solution)</option>
+                        <option value="gradient">梯度下降法 (Gradient Descent)</option>
+                        <option value="newton">牛顿法 (Newton's Method)</option>
+                        <option value="grid">网格搜索 (Grid Search)</option>
+                    </select>
+                </div>
+
+                <div class="chart-container">
+                    <canvas id="likelihoodFunction" class="distribution-chart"></canvas>
+                    
+                    <div class="optimization-controls">
+                        <button class="button step-button" onclick="resetOptimization()" id="resetBtn">🔄 重置</button>
+                        <button class="button step-button" onclick="stepOptimization()" id="stepBtn">▶️ 单步执行</button>
+                        <button class="button step-button" onclick="autoOptimization()" id="autoBtn">⏯️ 自动优化</button>
+                        <button class="button step-button" onclick="pauseOptimization()" id="pauseBtn" style="display: none;">⏸️ 暂停</button>
+                    </div>
+                </div>
+
+                <div class="optimization-info" id="optimizationInfo">
+                    <div id="currentStep">等待开始优化...</div>
+                    <div id="currentValues">当前参数值: μ = ?, 似然性 = ?</div>
+                    <div id="gradientInfo">梯度信息: ?</div>
+                    <div id="convergenceInfo">收敛状态: ?</div>
+                </div>
+
+                <!-- Method-specific explanations -->
+                <div id="methodExplanation">
+                    <div class="gradient-info" id="analyticalExplanation">
+                        <strong>📈 解析解法：</strong>对于正态分布，MLE有闭式解：μ̂ = (1/n)∑xᵢ
+                        <br>这是数学上的精确解，无需迭代优化。
+                    </div>
+                    
+                    <div class="gradient-info" id="gradientExplanation" style="display: none;">
+                        <strong>📈 梯度下降法：</strong>通过计算似然函数相对于μ的梯度来迭代更新参数
+                        <br>更新公式：μₙₑw = μₒₗd + α × ∇L(μ)
+                        <br>其中α是学习率，∇L(μ)是似然函数的梯度
+                    </div>
+                    
+                    <div class="gradient-info" id="newtonExplanation" style="display: none;">
+                        <strong>📈 牛顿法：</strong>使用二阶导数信息（Hessian矩阵）进行更快的收敛
+                        <br>更新公式：μₙₑw = μₒₗd - [∇²L(μ)]⁻¹ × ∇L(μ)
+                        <br>收敛速度通常比梯度下降更快，但计算成本更高
+                    </div>
+                    
+                    <div class="gradient-info" id="gridExplanation" style="display: none;">
+                        <strong>📈 网格搜索：</strong>在参数空间中系统性地评估多个候选值
+                        <br>简单但可能计算成本高，适合低维参数空间
+                        <br>保证找到全局最优解（在搜索范围内）
+                    </div>
+                </div>
+
+                <div class="formula">
+                    <div id="formulaDisplay">
+                        似然函数: L(μ) = ∏ᵢ₌₁ⁿ (1/√(2πσ²)) × exp(-(xᵢ-μ)²/(2σ²))
+                        <br><br>
+                        对数似然: ℓ(μ) = log L(μ) = -n/2×log(2πσ²) - Σ(xᵢ-μ)²/(2σ²)
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 5: Final Result -->
+            <div class="mle-step">
+                <h3>步骤5：最终结果 (Final Result)</h3>
+                <div class="chart-container">
+                    <canvas id="step5Chart" class="distribution-chart"></canvas>
+                    <div class="highlight">
+                        <strong>这个均值位置"最大化了似然性"</strong><br>
+                        因此，它是"均值的最大似然估计"
+                    </div>
+                    <div id="finalResult" class="highlight" style="background: #e3f2fd; margin-top: 20px;">
+                        <strong>🏥 医学诊断结论：</strong><br>
+                        最大似然估计表明，血压仪器的平均误差约为 <strong id="estimatedMean">+2.79</strong> mmHg，
+                        说明仪器存在系统性偏高，需要校准。
+                        <br><br>
+                        <strong>优化过程总结：</strong>
+                        <div id="optimizationSummary">等待优化完成...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mathematical Formula -->
+        <div class="section">
+            <h2 class="concept-title">
+                <span class="keyword">数学公式 Mathematical Formula</span>
+            </h2>
+            <div class="formula">
+                θ̂<sup>MLE</sup> = arg max L(θ | 观察数据)
+                <br><br>
+                实际应用中，我们通常使用对数似然：
+                <br>
+                θ̂<sup>MLE</sup> = arg max log L(θ | 观察数据)
+            </div>
+            <div class="explanation">
+                <p>在我们的血压仪器例子中，通过最大似然估计，我们找到了最能解释观察到的测量误差数据的参数值。</p>
+            </div>
+        </div>
+
+        <!-- Key Differences -->
+        <div class="section">
+            <h2 class="concept-title">
+                <span class="keyword">关键区别 Key Differences</span>
+            </h2>
+            <div class="explanation">
+                <table style="width:100%; border-collapse: collapse; margin-top: 20px;">
+                    <tr style="background-color: #3498db; color: white;">
+                        <th style="padding: 15px; border: 1px solid #ddd;">方面</th>
+                        <th style="padding: 15px; border: 1px solid #ddd;">概率 Probability</th>
+                        <th style="padding: 15px; border: 1px solid #ddd;">似然性 Likelihood</th>
+                    </tr>
+                    <tr>
+                        <td style="padding: 12px; border: 1px solid #ddd; font-weight: bold;">已知条件</td>
+                        <td style="padding: 12px; border: 1px solid #ddd;">参数已知（如仪器的真实精度）</td>
+                        <td style="padding: 12px; border: 1px solid #ddd;">观察数据已知（实际测量结果）</td>
+                    </tr>
+                    <tr style="background-color: #f8f9fa;">
+                        <td style="padding: 12px; border: 1px solid #ddd; font-weight: bold;">求解目标</td>
+                        <td style="padding: 12px; border: 1px solid #ddd;">预测未来可能的测量结果</td>
+                        <td style="padding: 12px; border: 1px solid #ddd;">推断最可能的仪器参数</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 12px; border: 1px solid #ddd; font-weight: bold;">医学应用</td>
+                        <td style="padding: 12px; border: 1px solid #ddd;">"这个仪器有多大可能测出±2mmHg的误差？"</td>
+                        <td style="padding: 12px; border: 1px solid #ddd;">"观察到+3mmHg误差，仪器的真实偏差最可能是多少？"</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample data for blood pressure measurement errors
+        const sampleData = [1.2, 2.8, 3.1, 2.5, 3.7, 2.9, 3.2, 2.1, 3.8, 2.6];
+        const trueMean = sampleData.reduce((a, b) => a + b, 0) / sampleData.length;
+        const std = 2.5; // Known standard deviation
+
+        // Optimization state
+        let optimizationState = {
+            currentMean: -1.0,
+            targetMean: trueMean,
+            stepCount: 0,
+            isRunning: false,
+            method: 'analytical',
+            history: [],
+            learningRate: 0.1
+        };
+
+        // Normal distribution function
+        function normalPDF(x, mean, std) {
+            return (1 / (std * Math.sqrt(2 * Math.PI))) * 
+                   Math.exp(-0.5 * Math.pow((x - mean) / std, 2));
+        }
+
+        // Log-likelihood function
+        function logLikelihood(mean, data, std) {
+            let logL = 0;
+            for (let x of data) {
+                logL += Math.log(normalPDF(x, mean, std));
+            }
+            return logL;
+        }
+
+        // Gradient of log-likelihood
+        function logLikelihoodGradient(mean, data, std) {
+            let gradient = 0;
+            for (let x of data) {
+                gradient += (x - mean) / (std * std);
+            }
+            return gradient;
+        }
+
+        // Second derivative (Hessian) of log-likelihood
+        function logLikelihoodHessian(data, std) {
+            return -data.length / (std * std);
+        }
+
+        // Draw normal distribution curve
+        function drawNormalCurve(canvas, mean, std, highlightRange = null) {
+            const ctx = canvas.getContext('2d');
+            const width = canvas.width;
+            const height = canvas.height;
+            
+            ctx.clearRect(0, 0, width, height);
+            
+            // Set up coordinate system
+            const xMin = mean - 4 * std;
+            const xMax = mean + 4 * std;
+            const xRange = xMax - xMin;
+            const yMax = normalPDF(mean, mean, std);
+            
+            // Draw axes
+            ctx.strokeStyle = '#ddd';
+            ctx.lineWidth = 1;
+            
+            // Y-axis
+            const xAxisPos = width * (0 - xMin) / xRange;
+            if (xAxisPos >= 0 && xAxisPos <= width) {
+                ctx.beginPath();
+                ctx.moveTo(xAxisPos, 0);
+                ctx.lineTo(xAxisPos, height - 50);
+                ctx.stroke();
+            }
+            
+            // X-axis
+            ctx.beginPath();
+            ctx.moveTo(0, height - 50);
+            ctx.lineTo(width, height - 50);
+            ctx.stroke();
+            
+            // Draw curve
+            ctx.strokeStyle = '#3498db';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            
+            for (let i = 0; i <= width; i++) {
+                const x = xMin + (i / width) * xRange;
+                const y = normalPDF(x, mean, std);
+                const screenY = height - 50 - (y / yMax) * (height - 100);
+                
+                if (i === 0) {
+                    ctx.moveTo(i, screenY);
+                } else {
+                    ctx.lineTo(i, screenY);
+                }
+            }
+            ctx.stroke();
+            
+            // Highlight range if specified
+            if (highlightRange) {
+                ctx.fillStyle = 'rgba(231, 76, 60, 0.3)';
+                ctx.beginPath();
+                const startX = Math.max(0, (highlightRange[0] - xMin) / xRange * width);
+                const endX = Math.min(width, (highlightRange[1] - xMin) / xRange * width);
+                
+                ctx.moveTo(startX, height - 50);
+                for (let i = startX; i <= endX; i++) {
+                    const x = xMin + (i / width) * xRange;
+                    const y = normalPDF(x, mean, std);
+                    const screenY = height - 50 - (y / yMax) * (height - 100);
+                    ctx.lineTo(i, screenY);
+                }
+                ctx.lineTo(endX, height - 50);
+                ctx.closePath();
+                ctx.fill();
+            }
+            
+            // Draw x-axis labels
+            ctx.fillStyle = '#333';
+            ctx.font = '12px Arial';
+            ctx.textAlign = 'center';
+            
+            for (let x = Math.ceil(xMin); x <= Math.floor(xMax); x++) {
+                const screenX = (x - xMin) / xRange * width;
+                ctx.fillText(x + ' mmHg', screenX, height - 30);
+            }
+        }
+
+        // Draw likelihood function
+        function drawLikelihoodFunction(canvas, currentMean, showHistory = false) {
+            const ctx = canvas.getContext('2d');
+            const width = canvas.width;
+            const height = canvas.height;
+            
+            ctx.clearRect(0, 0, width, height);
+            
+            // Set up coordinate system for likelihood function
+            const meanRange = 6;
+            const meanMin = trueMean - meanRange/2;
+            const meanMax = trueMean + meanRange/2;
+            const meanRangeSize = meanMax - meanMin;
+            
+            // Calculate likelihood values across the range
+            let maxLogL = -Infinity;
+            let minLogL = Infinity;
+            const likelihoodValues = [];
+            
+            for (let i = 0; i <= width; i++) {
+                const testMean = meanMin + (i / width) * meanRangeSize;
+                const logL = logLikelihood(testMean, sampleData, std);
+                likelihoodValues.push({mean: testMean, logL: logL});
+                maxLogL = Math.max(maxLogL, logL);
+                minLogL = Math.min(minLogL, logL);
+            }
+            
+            const logLRange = maxLogL - minLogL;
+            
+            // Draw axes
+            ctx.strokeStyle = '#ddd';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(0, height - 50);
+            ctx.lineTo(width, height - 50);
+            ctx.stroke();
+            
+            // Draw likelihood function curve
+            ctx.strokeStyle = '#95a5a6';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            
+            for (let i = 0; i < likelihoodValues.length; i++) {
+                const normalizedY = (likelihoodValues[i].logL - minLogL) / logLRange;
+                const screenY = height - 50 - (normalizedY * (height - 100));
+                
+                if (i === 0) {
+                    ctx.moveTo(i, screenY);
+                } else {
+                    ctx.lineTo(i, screenY);
+                }
+            }
+            ctx.stroke();
+            
+            // Draw optimization history if requested
+            if (showHistory && optimizationState.history.length > 0) {
+                ctx.strokeStyle = 'rgba(231, 76, 60, 0.5)';
+                ctx.lineWidth = 2;
+                ctx.setLineDash([3, 3]);
+                
+                for (let i = 0; i < optimizationState.history.length - 1; i++) {
+                    const point1 = optimizationState.history[i];
+                    const point2 = optimizationState.history[i + 1];
+                    
+                    const x1 = ((point1.mean - meanMin) / meanRangeSize) * width;
+                    const y1 = height - 50 - ((point1.logL - minLogL) / logLRange) * (height - 100);
+                    const x2 = ((point2.mean - meanMin) / meanRangeSize) * width;
+                    const y2 = height - 50 - ((point2.logL - minLogL) / logLRange) * (height - 100);
+                    
+                    ctx.beginPath();
+                    ctx.moveTo(x1, y1);
+                    ctx.lineTo(x2, y2);
+                    ctx.stroke();
+                }
+                ctx.setLineDash([]);
+            }
+            
+            // Draw current position
+            const currentX = ((currentMean - meanMin) / meanRangeSize) * width;
+            const currentLogL = logLikelihood(currentMean, sampleData, std);
+            const currentY = height - 50 - ((currentLogL - minLogL) / logLRange) * (height - 100);
+            
+            ctx.fillStyle = '#e74c3c';
+            ctx.beginPath();
+            ctx.arc(currentX, currentY, 8, 0, 2 * Math.PI);
+            ctx.fill();
+            
+            // Draw true optimum for reference
+            const trueX = ((trueMean - meanMin) / meanRangeSize) * width;
+            const trueLogL = logLikelihood(trueMean, sampleData, std);
+            const trueY = height - 50 - ((trueLogL - minLogL) / logLRange) * (height - 100);
+            
+            ctx.fillStyle = '#27ae60';
+            ctx.beginPath();
+            ctx.arc(trueX, trueY, 6, 0, 2 * Math.PI);
+            ctx.fill();
+            
+            // Draw labels
+            ctx.fillStyle = '#333';
+            ctx.font = '12px Arial';
+            ctx.textAlign = 'center';
+            
+            // X-axis labels
+            for (let mean = Math.ceil(meanMin); mean <= Math.floor(meanMax); mean++) {
+                const screenX = ((mean - meanMin) / meanRangeSize) * width;
+                ctx.fillText(mean.toFixed(1), screenX, height - 30);
+            }
+            
+            // Title and legend
+            ctx.font = '14px Arial';
+            ctx.fillText('对数似然函数 Log-Likelihood Function', width/2, 20);
+            
+            // Legend
+            ctx.font = '10px Arial';
+            ctx.fillStyle = '#e74c3c';
+            ctx.fillRect(10, 40, 15, 10);
+            ctx.fillStyle = '#333';
+            ctx.textAlign = 'left';
+            ctx.fillText('当前位置', 30, 49);
+            
+            ctx.fillStyle = '#27ae60';
+            ctx.fillRect(10, 55, 15, 10);
+            ctx.fillStyle = '#333';
+            ctx.fillText('真实最优解', 30, 64);
+        }
+
+        // Initialize charts
+        function initCharts() {
+            const canvases = ['probabilityChart', 'likelihoodChart', 'step1Chart', 'step2Chart', 'step3Chart', 'likelihoodFunction', 'step5Chart'];
+            
+            // Set canvas dimensions
+            canvases.forEach(canvasId => {
+                const canvas = document.getElementById(canvasId);
+                if (canvas) {
+                    canvas.width = canvas.offsetWidth;
+                    canvas.height = 300;
+                }
+            });
+            
+            // Draw probability chart
+            const probabilityCanvas = document.getElementById('probabilityChart');
+            drawNormalCurve(probabilityCanvas, 0, 2.5, [-2, 2]);
+            
+            // Draw initial likelihood chart
+            updateLikelihoodChart();
+            
+            // Draw MLE process charts
+            drawMLEProcessCharts();
+            
+            // Initialize optimization display
+            resetOptimization();
+        }
+
+        // Draw MLE process charts
+        function drawMLEProcessCharts() {
+            const step1Canvas = document.getElementById('step1Chart');
+            const step2Canvas = document.getElementById('step2Chart');
+            const step3Canvas = document.getElementById('step3Chart');
+            const step5Canvas = document.getElementById('step5Chart');
+            
+            if (step1Canvas) {
+                drawDataPointsOnly(step1Canvas);
+            }
+            
+            if (step2Canvas) {
+                drawNormalCurveWithData(step2Canvas, 0, std);
+            }
+            
+            if (step3Canvas) {
+                drawNormalCurveWithData(step3Canvas, trueMean, std);
+            }
+            
+            if (step5Canvas) {
+                drawNormalCurveWithData(step5Canvas, trueMean, std, true);
+                document.getElementById('estimatedMean').textContent = '+' + trueMean.toFixed(2);
+            }
+        }
+
+        // Draw only data points
+        function drawDataPointsOnly(canvas) {
+            const ctx = canvas.getContext('2d');
+            const width = canvas.width;
+            const height = canvas.height;
+            
+            ctx.clearRect(0, 0, width, height);
+            
+            // Draw x-axis
+            ctx.strokeStyle = '#ddd';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(0, height - 50);
+            ctx.lineTo(width, height - 50);
+            ctx.stroke();
+            
+            // Set up coordinate system based on data range
+            const dataMin = Math.min(...sampleData) - 1;
+            const dataMax = Math.max(...sampleData) + 1;
+            const dataRange = dataMax - dataMin;
+            
+            // Draw sample data points
+            ctx.fillStyle = '#e74c3c';
+            sampleData.forEach(dataPoint => {
+                const pointX = ((dataPoint - dataMin) / dataRange) * width;
+                const pointY = height - 50;
+                
+                ctx.beginPath();
+                ctx.arc(pointX, pointY - 10, 6, 0, 2 * Math.PI);
+                ctx.fill();
+            });
+            
+            // Draw x-axis labels
+            ctx.fillStyle = '#333';
+            ctx.font = '12px Arial';
+            ctx.textAlign = 'center';
+            
+            for (let x = Math.ceil(dataMin); x <= Math.floor(dataMax); x++) {
+                const screenX = ((x - dataMin) / dataRange) * width;
+                ctx.fillText(x + ' mmHg', screenX, height - 30);
+            }
+        }
+
+        // Draw normal curve with data points
+        function drawNormalCurveWithData(canvas, mean, std, highlight = false) {
+            drawNormalCurve(canvas, mean, std);
+            
+            const ctx = canvas.getContext('2d');
+            const width = canvas.width;
+            const height = canvas.height;
+            const xMin = mean - 4 * std;
+            const xMax = mean + 4 * std;
+            const xRange = xMax - xMin;
+            const yMax = normalPDF(mean, mean, std);
+            
+            // Draw sample data points
+            ctx.fillStyle = '#e74c3c';
+            sampleData.forEach(dataPoint => {
+                const pointX = (dataPoint - xMin) / xRange * width;
+                const pointY = normalPDF(dataPoint, mean, std);
+                const screenY = height - 50 - (pointY / yMax) * (height - 100);
+                
+                ctx.beginPath();
+                ctx.arc(pointX, height - 50, 6, 0, 2 * Math.PI);
+                ctx.fill();
+                
+                // Draw vertical line to curve if highlighting
+                if (highlight) {
+                    ctx.strokeStyle = 'rgba(231, 76, 60, 0.5)';
+                    ctx.lineWidth = 1;
+                    ctx.setLineDash([3, 3]);
+                    ctx.beginPath();
+                    ctx.moveTo(pointX, height - 50);
+                    ctx.lineTo(pointX, screenY);
+                    ctx.stroke();
+                    ctx.setLineDash([]);
+                }
+            });
+            
+            if (highlight) {
+                // Draw mean line
+                const meanX = (mean - xMin) / xRange * width;
+                ctx.strokeStyle = '#2c3e50';
+                ctx.lineWidth = 3;
+                ctx.setLineDash([5, 5]);
+                ctx.beginPath();
+                ctx.moveTo(meanX, 0);
+                ctx.lineTo(meanX, height - 50);
+                ctx.stroke();
+                ctx.setLineDash([]);
+            }
+        }
+
+        // Update likelihood chart based on slider
+        function updateLikelihoodChart() {
+            const canvas = document.getElementById('likelihoodChart');
+            const meanSlider = document.getElementById('meanSlider');
+            const meanValue = document.getElementById('meanValue');
+            const likelihoodValue = document.getElementById('likelihoodValue');
+            
+            const mean = parseFloat(meanSlider.value);
+            meanValue.textContent = mean.toFixed(1);
+            
+            drawNormalCurve(canvas, mean, std);
+            
+            // Draw observed data point
+            const observedValue = 3;
+            const width = canvas.width;
+            const height = canvas.height;
+            const xMin = mean - 4 * std;
+            const xMax = mean + 4 * std;
+            const xRange = xMax - xMin;
+            
+            const pointX = (observedValue - xMin) / xRange * width;
+            const pointY = normalPDF(observedValue, mean, std);
+            const yMax = normalPDF(mean, mean, std);
+            const screenY = height - 50 - (pointY / yMax) * (height - 100);
+            
+            const ctx = canvas.getContext('2d');
+            ctx.fillStyle = '#e74c3c';
+            ctx.beginPath();
+            ctx.arc(pointX, screenY, 8, 0, 2 * Math.PI);
+            ctx.fill();
+            
+            // Update likelihood value
+            const likelihood = normalPDF(observedValue, mean, std);
+            likelihoodValue.textContent = likelihood.toFixed(3);
+        }
+
+        // Reset optimization
+        function resetOptimization() {
+            optimizationState = {
+                currentMean: -1.0,
+                targetMean: trueMean,
+                stepCount: 0,
+                isRunning: false,
+                method: document.getElementById('optimizationMethod').value,
+                history: [],
+                learningRate: 0.1,
+                tolerance: 1e-6
+            };
+            
+            // Add initial point to history
+            optimizationState.history.push({
+                mean: optimizationState.currentMean,
+                logL: logLikelihood(optimizationState.currentMean, sampleData, std),
+                gradient: logLikelihoodGradient(optimizationState.currentMean, sampleData, std)
+            });
+            
+            updateOptimizationDisplay();
+            updateMethodExplanation();
+            
+            // Enable/disable buttons
+            document.getElementById('stepBtn').disabled = false;
+            document.getElementById('autoBtn').disabled = false;
+            document.getElementById('pauseBtn').style.display = 'none';
+            document.getElementById('autoBtn').style.display = 'inline-block';
+        }
+
+        // Step optimization
+        function stepOptimization() {
+            if (hasConverged()) {
+                updateOptimizationDisplay();
+                return;
+            }
+            
+            const method = optimizationState.method;
+            let newMean = optimizationState.currentMean;
+            
+            switch (method) {
+                case 'analytical':
+                    // Analytical solution: sample mean
+                    newMean = sampleData.reduce((a, b) => a + b, 0) / sampleData.length;
+                    break;
+                    
+                case 'gradient':
+                    // Gradient descent
+                    const gradient = logLikelihoodGradient(optimizationState.currentMean, sampleData, std);
+                    newMean = optimizationState.currentMean + optimizationState.learningRate * gradient;
+                    break;
+                    
+                case 'newton':
+                    // Newton's method
+                    const grad = logLikelihoodGradient(optimizationState.currentMean, sampleData, std);
+                    const hess = logLikelihoodHessian(sampleData, std);
+                    newMean = optimizationState.currentMean - grad / hess;
+                    break;
+                    
+                case 'grid':
+                    // Grid search - move towards better likelihood
+                    const currentLogL = logLikelihood(optimizationState.currentMean, sampleData, std);
+                    const step = 0.2;
+                    const candidates = [
+                        optimizationState.currentMean - step,
+                        optimizationState.currentMean + step
+                    ];
+                    
+                    let bestMean = optimizationState.currentMean;
+                    let bestLogL = currentLogL;
+                    
+                    for (let candidate of candidates) {
+                        const logL = logLikelihood(candidate, sampleData, std);
+                        if (logL > bestLogL) {
+                            bestLogL = logL;
+                            bestMean = candidate;
+                        }
+                    }
+                    newMean = bestMean;
+                    break;
+            }
+            
+            optimizationState.currentMean = newMean;
+            optimizationState.stepCount++;
+            
+            // Add to history
+            optimizationState.history.push({
+                mean: optimizationState.currentMean,
+                logL: logLikelihood(optimizationState.currentMean, sampleData, std),
+                gradient: logLikelihoodGradient(optimizationState.currentMean, sampleData, std)
+            });
+            
+            updateOptimizationDisplay();
+            
+            // Check convergence
+            if (hasConverged()) {
+                document.getElementById('stepBtn').disabled = true;
+                updateFinalSummary();
+            }
+        }
+
+        // Auto optimization
+        function autoOptimization() {
+            optimizationState.isRunning = true;
+            document.getElementById('autoBtn').style.display = 'none';
+            document.getElementById('pauseBtn').style.display = 'inline-block';
+            document.getElementById('stepBtn').disabled = true;
+            
+            function autoStep() {
+                if (!optimizationState.isRunning || hasConverged()) {
+                    pauseOptimization();
+                    return;
+                }
+                
+                stepOptimization();
+                setTimeout(autoStep, 500); // 500ms delay between steps
+            }
+            
+            autoStep();
+        }
+
+        // Pause optimization
+        function pauseOptimization() {
+            optimizationState.isRunning = false;
+            document.getElementById('pauseBtn').style.display = 'none';
+            document.getElementById('autoBtn').style.display = 'inline-block';
+            document.getElementById('stepBtn').disabled = hasConverged();
+        }
+
+        // Check convergence
+        function hasConverged() {
+            if (optimizationState.method === 'analytical') {
+                return optimizationState.stepCount >= 1;
+            }
+            
+            if (optimizationState.history.length < 2) return false;
+            
+            const current = optimizationState.history[optimizationState.history.length - 1];
+            const previous = optimizationState.history[optimizationState.history.length - 2];
+            
+            const meanChange = Math.abs(current.mean - previous.mean);
+            const gradientMagnitude = Math.abs(current.gradient);
+            
+            return meanChange < optimizationState.tolerance || gradientMagnitude < optimizationState.tolerance;
+        }
+
+        // Update optimization display
+        function updateOptimizationDisplay() {
+            const canvas = document.getElementById('likelihoodFunction');
+            drawLikelihoodFunction(canvas, optimizationState.currentMean, true);
+            
+            const currentPoint = optimizationState.history[optimizationState.history.length - 1];
+            
+            document.getElementById('currentStep').textContent = 
+                `步骤 ${optimizationState.stepCount}: ${getMethodName(optimizationState.method)}`;
+                
+            document.getElementById('currentValues').textContent = 
+                `当前参数值: μ = ${currentPoint.mean.toFixed(4)}, 对数似然性 = ${currentPoint.logL.toFixed(4)}`;
+                
+            document.getElementById('gradientInfo').textContent = 
+                `梯度: ∇ℓ(μ) = ${currentPoint.gradient.toFixed(4)}`;
+                
+            document.getElementById('convergenceInfo').textContent = 
+                hasConverged() ? '✅ 已收敛！' : '🔄 继续优化...';
+        }
+
+        // Get method name in Chinese
+        function getMethodName(method) {
+            const names = {
+                'analytical': '解析解法',
+                'gradient': '梯度下降法',
+                'newton': '牛顿法',
+                'grid': '网格搜索'
+            };
+            return names[method] || method;
+        }
+
+        // Update method explanation
+        function updateMethodExplanation() {
+            // Hide all explanations
+            ['analytical', 'gradient', 'newton', 'grid'].forEach(method => {
+                document.getElementById(method + 'Explanation').style.display = 'none';
+            });
+            
+            // Show current method explanation
+            const currentMethod = document.getElementById('optimizationMethod').value;
+            document.getElementById(currentMethod + 'Explanation').style.display = 'block';
+        }
+
+        // Update final summary
+        function updateFinalSummary() {
+            const finalMean = optimizationState.currentMean;
+            const steps = optimizationState.stepCount;
+            const method = getMethodName(optimizationState.method);
+            
+            document.getElementById('optimizationSummary').innerHTML = 
+                `使用<strong>${method}</strong>经过<strong>${steps}</strong>步优化，<br>` +
+                `最终估计值：μ̂ = ${finalMean.toFixed(4)} mmHg<br>` +
+                `真实样本均值：${trueMean.toFixed(4)} mmHg<br>` +
+                `估计误差：${Math.abs(finalMean - trueMean).toFixed(4)} mmHg`;
+        }
+
+        // Event listeners
+        document.getElementById('meanSlider').addEventListener('input', updateLikelihoodChart);
+        document.getElementById('optimizationMethod').addEventListener('change', function() {
+            resetOptimization();
+        });
+
+        // Initialize when page loads
+        window.addEventListener('load', initCharts);
+        window.addEventListener('resize', initCharts);
+    </script>
+</body>
+</html>

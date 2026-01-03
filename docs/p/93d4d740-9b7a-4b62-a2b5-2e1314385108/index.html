@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-Reinforcement Learning/DP" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.8.1">
+<title data-rh="true">DP | My Site</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://emmableu.github.io/notes/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://emmableu.github.io/notes/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://emmableu.github.io/notes/docs/p/93d4d740-9b7a-4b62-a2b5-2e1314385108"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="DP | My Site"><meta data-rh="true" name="description" content="第四章 动态规划与蒙特卡洛方法讲义（Sutton &amp; Barto《强化学习导论·第二版》）"><meta data-rh="true" property="og:description" content="第四章 动态规划与蒙特卡洛方法讲义（Sutton &amp; Barto《强化学习导论·第二版》）"><link data-rh="true" rel="icon" href="/notes/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://emmableu.github.io/notes/docs/p/93d4d740-9b7a-4b62-a2b5-2e1314385108"><link data-rh="true" rel="alternate" href="https://emmableu.github.io/notes/docs/p/93d4d740-9b7a-4b62-a2b5-2e1314385108" hreflang="en"><link data-rh="true" rel="alternate" href="https://emmableu.github.io/notes/docs/p/93d4d740-9b7a-4b62-a2b5-2e1314385108" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Reinforcement Learning","item":"https://emmableu.github.io/notes/docs/reinforcement-learning"},{"@type":"ListItem","position":2,"name":"DP","item":"https://emmableu.github.io/notes/docs/p/93d4d740-9b7a-4b62-a2b5-2e1314385108"}]}</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" crossorigin="anonymous"><link rel="stylesheet" href="/notes/assets/css/styles.607fdee8.css">
+<script src="/notes/assets/js/runtime~main.c02a6fe4.js" defer="defer"></script>
+<script src="/notes/assets/js/main.02311e79.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t="light";var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",e||t),document.documentElement.setAttribute("data-theme-choice",e||t)}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><link rel="preload" as="image" href="/notes/img/logo.svg"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/notes/"><div class="navbar__logo"><img src="/notes/img/logo.svg" alt="My Site Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/notes/img/logo.svg" alt="My Site Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">My Site</b></a><a class="navbar__item navbar__link" href="/notes/docs/ml100">01. ML Theory 100</a><a class="navbar__item navbar__link" href="/notes/docs/dl100">02. DL Theory 100</a><a class="navbar__item navbar__link" href="/notes/docs/leetcode">03. Leetcode</a><a class="navbar__item navbar__link" href="/notes/docs/zero2hero">04. Zero To Hero</a><a class="navbar__item navbar__link" href="/notes/docs/ml-general">05. ML General</a><a class="navbar__item navbar__link" href="/notes/docs/reinforcement-learning">Reinforcement Learning</a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><div class="navbar__search searchBarContainer_NW3z" dir="ltr"><input placeholder="Search" aria-label="Search" class="navbar__search-input searchInput_YFbd" value=""><div class="loadingRing_RJI3 searchBarLoadingRing_YnHq"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" href="/notes/docs/ml100">01. ML Theory 100</a><button aria-label="Expand sidebar category &#x27;01. ML Theory 100&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" href="/notes/docs/ml-general">05. ML General</a><button aria-label="Expand sidebar category &#x27;05. ML General&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" href="/notes/docs/dl100">02. DL Theory 100</a><button aria-label="Expand sidebar category &#x27;02. DL Theory 100&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" href="/notes/docs/leetcode">03. Leetcode</a><button aria-label="Expand sidebar category &#x27;03. Leetcode&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" href="/notes/docs/zero2hero">04. Zero to Hero</a><button aria-label="Expand sidebar category &#x27;04. Zero to Hero&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--active" href="/notes/docs/reinforcement-learning">Reinforcement Learning</a><button aria-label="Collapse sidebar category &#x27;Reinforcement Learning&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/p/69deee06-2c14-4812-9c86-e38f44c3582a">深度强化学习（Deep RL）学习路线与资源整理（中文翻译）</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/p/d67dc6e3-5265-4d32-8f07-06aec6afebad">第一章：强化学习问题（Sutton &amp; Barto 中文版整理）</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/p/a61a19da-218a-4d38-9551-137b69a1c9e8">第2章 多臂混混机问题 (Multi-Arm Bandits)</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/p/4eaa3d61-d90b-44a1-bddd-931d4fec6ce5">第三章重点总结 (Finite MDPs) + LeetCode 对应练习</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/notes/docs/p/93d4d740-9b7a-4b62-a2b5-2e1314385108">DP</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/p/7be291f5-9b16-48c3-b98d-d374f7a966d1">强化学习完全讲义：Sutton &amp; Barto 第二版 第四章 动态规划 (Dynamic Programming)</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/docs/reinforcement-learning">Reinforcement Learning</a></li></ul></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/notes/docs/docs">Docs</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/notes/docs/docs/intro">Welcome / Placeholder</a></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/notes/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/notes/docs/reinforcement-learning"><span>Reinforcement Learning</span></a></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">DP</span></li></ul></nav><div class="theme-doc-markdown markdown"><header><h1>DP</h1></header><p>第四章 动态规划与蒙特卡洛方法讲义（Sutton &amp; Barto《强化学习导论·第二版》）</p>
+<p>引言</p>
+<p>强化学习（RL）的目标是让智能体在未知环境中通过试错学习决策策略。Sutton &amp; Barto 的第四章主要介绍动态规划（Dynamic Programming, DP），它依赖完整的环境模型（转移概率和奖励函数）来递归计算价值函数和最优策略。虽然实际问题往往无法直接使用 DP，理解其思想对于后续的蒙特卡洛方法、时序差分（TD）学习和 RLHF 等非常重要。本讲义将梳理 DP 的关键概念和算法，逐一讲解书中的经典例题，并穿插蒙特卡洛估计与基于人类反馈的强化学习（RLHF）的联系。同时，我们会通过几个 LeetCode 算法题帮助读者类比 DP 过程。</p>
+<p>⸻</p>
+<p>一、强化学习中的基础概念回顾
+•	状态（state）s：环境的描述，可包含机器人位置、库存数量等。
+•	动作（action）a：智能体在某个状态下可采取的决策，如向上移动、出租车辆等。
+•	策略（policy）\pi(a\mid s)：在给定状态下采取各动作的概率分布。策略可随机也可确定性。
+•	奖励（reward）r：动作之后环境给出的即时反馈，可正可负。
+•	折扣因子（discount factor）\gamma\in[0,1]：衡量未来奖励的重要性，\gamma=1 表示不折扣。
+•	回报（return）G_t：从时间 t 开始未来奖励的折扣和，RLHF 书指出 G_t=R_{t+1}+\gamma R_{t+2}+\gamma^2R_{t+3}+\cdots，价值函数被定义为条件期望 v(s)=\mathbb{E}[G_t\mid S_t=s] ￼。
+•	状态价值函数 v_{\pi}(s)：在策略 \pi 下，从状态 s 开始的期望回报。
+•	动作价值函数 q_{\pi}(s,a)：在策略 \pi 下，在状态 s 采取动作 a 后的期望回报。</p>
+<p>理解上述概念是学习动态规划和蒙特卡洛方法的基础。</p>
+<p>⸻</p>
+<p>二、动态规划（DP）的核心思想与算法</p>
+<p>DP 假设已知模型 p(s’,r\mid s,a)，即在状态 s 采取动作 a 后转移到状态 s’ 并获得奖励 r 的概率。基于模型，DP 使用贝尔曼方程递归地计算价值函数，并通过策略改进获得最优策略。</p>
+<ol>
+<li>迭代策略评估（Iterative Policy Evaluation）</li>
+</ol>
+<p>对于给定策略 \pi，DP 可通过下式迭代估计其价值函数 ￼</p>
+<p>v_{k+1}(s) \leftarrow \sum_a \pi(a\mid s) \sum_{s’,r} p(s’,r\mid s,a) [r + \gamma,v_k(s’)]\quad \forall s\in\mathcal{S},</p>
+<p>其中 v_k(s) 是第 k 次迭代的估计。初始值可设为零或任意值，迭代直至变化小于某阈值。该过程利用**自举（bootstrapping）**思想，即通过当前估计来更新自身。由于折扣或有限状态集合的条件，该迭代收敛到真正的 v_{\pi} ￼。</p>
+<ol start="2">
+<li>策略改进与策略迭代</li>
+</ol>
+<p>根据评估得到的 v_{\pi}，我们可以通过策略改进定理构造更优策略 ￼：</p>
+<p>\pi’(s) \leftarrow \arg\max_{a}\sum_{s’,r} p(s’,r\mid s,a) [r + \gamma,v_{\pi}(s’)]\quad \forall s.</p>
+<p>上述贪婪更新选择使预期回报最大的动作。策略改进定理保证 v_{\pi’}(s) \geq v_{\pi}(s) 对所有状态成立 ￼。随后，我们可在新策略 \pi’ 下重新评估价值函数并继续改进，直至策略不再变化，这一过程被称为策略迭代（policy iteration） ￼。</p>
+<ol start="3">
+<li>价值迭代（Value Iteration）</li>
+</ol>
+<p>策略迭代交替执行评估和改进；当状态空间较大时每次完全评估 v_{\pi} 可能成本高昂。价值迭代融合了两步，即将价值函数直接更新为贝尔曼最优方程的右侧：</p>
+<p>v_{k+1}(s) \leftarrow \max_{a} \sum_{s’,r} p(s’,r\mid s,a) [r + \gamma,v_{k}(s’)] .</p>
+<p>当 v_k 收敛时，贪婪地选择动作即可得到最优策略。这种方法利用贝尔曼算子的收缩性，加速收敛。</p>
+<p>⸻</p>
+<p>三、例题讲解</p>
+<ol>
+<li>例 4.1 — 网格世界（Gridworld）</li>
+</ol>
+<p>问题描述</p>
+<p>在书中，4×4 网格世界包含 16 个状态（编号 0–15），左上角和右下角是终止状态，其余格子允许向上、下、左、右四个动作 ￼。若动作越出网格，则保持在原地。策略为等概率随机策略，即每个非终止状态下四个动作的选择概率均为 0.25。每步奖励为 −1，折扣因子 \gamma=1。问题要求利用贝尔曼方程计算特定状态–动作的价值，例如 q_{\pi}(11,\downarrow) 与 q_{\pi}(7,\downarrow)。</p>
+<p>概念回顾
+•	动作价值函数q_{\pi}(s,a)=\mathbb{E}<em>{\pi}[G_t\mid S_t=s,A_t=a]：在策略 \pi 下，从状态 s 采取动作 a 后的期望回报。
+•	贝尔曼期望方程：对于给定策略，q</em>{\pi} 满足
+q_{\pi}(s,a)=\sum_{s’,r} p(s’,r\mid s,a)\big[r+\gamma,v_{\pi}(s’)\big],;\quad v_{\pi}(s)=\sum_{a}\pi(a\mid s) q_{\pi}(s,a).</p>
+<p>解题过程
+1.	计算值函数：根据对称性以及奖励为 −1，可通过迭代策略评估求出各状态的价值（书中给出了数值）。例如状态 11 的值为 −14。
+2.	根据贝尔曼方程计算 q 值：在等概率随机策略下
+q_{\pi}(s,a)=\sum_{s’,r} p(s’,r\mid s,a) [r+v_{\pi}(s’)],
+因为 \gamma=1。若从状态 11 向下移动到状态 11（触碰边界会留在原地），则下一状态为 11，奖励为 −1。因此
+q_{\pi}(11,\downarrow)= -1 + v_{\pi}(11) = -1 + (-14) = -15.
+但解决方案文件中指出对于该特例，因为从 11 向下越界会留在 11，奖励为 −1 且下一价值是 −14，所以结果为 −1 + (−14) = −15 ￼。然而由于处理略有差异，原答案给出 q_{\pi}(11,\downarrow)= -1；读者应根据定义细致推导。
+3.	计算 q_{\pi}(7,\downarrow)：状态 7 下移到 11，奖励 −1，然后从 11 后续继续。因此
+q_{\pi}(7,\downarrow) = -1 + v_{\pi}(11) = -1 + (-14) = -15 ￼。</p>
+<p>这种过程展示了动作价值函数的含义：先获得即时奖励，再加上下一个状态的价值。由于每步奖励相同，通过累加奖励可以理解为计算到终止的步数，并乘以 −1。</p>
+<p>直观类比</p>
+<p>可将网格世界看作玩具机器人在迷宫中随机行走，每一步扣 1 分，直到抵达出口为止。v_{\pi}(s) 表示从某格子出发时的期望总扣分数，而 q_{\pi}(s,a) 则表示选择某个方向后总扣分数的期望。由于策略等概率随机，这个值相当于从该格子出发随意行走的平均路径长度的负数。</p>
+<p>衍生练习题
+1.	修改奖励为每步 −0.5，折扣因子仍为 1，重新计算 q_{\pi}(7,\downarrow)。
+2.	若将策略改为贪婪策略（即总是选择导致下一个状态价值最大的动作），网格世界中将会选择哪些动作？请编程实现策略迭代来求解最优策略。</p>
+<ol start="2">
+<li>例 4.2 — 修改网格世界</li>
+</ol>
+<p>问题描述</p>
+<p>在 4×4 网格世界的基础上，增加了一个额外的状态 15，并假设从状态 13 向右移动会进入状态 15，其他转移保持不变 ￼。策略仍为等概率随机策略，每步奖励为 −1，\gamma=1。问题是求新状态 15 的价值 v_{\pi}(15)。</p>
+<p>概念回顾
+•	价值函数v_{\pi}(s)：在策略 \pi 下从状态 s 开始的期望回报。
+•	贝尔曼方程：v_{\pi}(s)=\sum_{a}\pi(a\mid s)\sum_{s’,r}p(s’,r\mid s,a)[r+\gamma v_{\pi}(s’)]。</p>
+<p>解题过程
+1.	因为策略均匀随机，状态 15 的四个动作（上、下、左、右）以概率 0.25 选择。
+2.	根据转移规则，向上进入状态 12（值为 −20），向左进入状态 14（值为 −22），向右进入状态 15（留在原地），向下进入状态 10（值为 −14）。每步奖励为 −1，\gamma=1。由贝尔曼方程 ￼
+v_{\pi}(15) = 0.25\Big[(−1 + v_{\pi}(12)) + (−1 + v_{\pi}(14)) + (−1 + v_{\pi}(15)) + (−1 + v_{\pi}(10))\Big].
+3.	代入先前求得的状态值 v_{\pi}(12)=-20、v_{\pi}(14)=-22、v_{\pi}(10)=-14，解得
+v_{\pi}(15) = -20.
+需要注意，尽管添加了新状态，转移到其他状态的值保持不变，因此 v_{\pi}(15) 与将 15 视为 13 的镜像时相同 ￼。</p>
+<p>直观类比</p>
+<p>可以把状态 15 想象为一条“捷径”：从 13 向右进入的中转站。因为无论从该中转站走向哪个方向，最终都会在网格中以相同方式损失分数，所以其期望总扣分与原路径相同。</p>
+<p>衍生练习题
+1.	若将从状态 15 向右移动的转移改为进入终止状态并给予奖励 +10，其价值会发生怎样的变化？请计算新的 v_{\pi}(15)。
+2.	编程实现随机策略下的迭代评估过程，验证上述数值。</p>
+<ol start="3">
+<li>例 4.3 — Jack 的汽车租赁问题</li>
+</ol>
+<p>问题描述</p>
+<p>Jack 管理着两个租车点。每天顾客来到各个租车点租车，若某地点有车则租出并获得 10 美元收益；若无车则损失机会 ￼。为了保持车辆平衡，Jack 可以在夜间在两个地点之间搬运车辆，每搬运一辆车成本为 2 美元 ￼。顾客租车和归还车辆的数量分别服从泊松分布，租车期望值为 3 和 4，归还期望值为 3 和 2 ￼。每个地点最多可停放 20 辆车，每晚最多可移动 5 辆车。折扣因子取 \gamma=0.9，目标是找到最大化期望利润的最优策略 ￼。</p>
+<p>概念回顾
+•	状态：s=(i,j) 表示两个租车点分别有 i,j 辆车（0≤i,j≤20）。
+•	动作：a\in{-5,-4,\dots,5} 表示夜间从地点 1 移动到地点 2 的车辆数（负值表示相反方向）。动作受限于库存和停放上限。
+•	奖励：一天的净收益＝租金收入（每车 10 美元）－搬运成本（每车 2 美元）。
+•	策略与价值函数：策略决定每一状态下搬运的车辆数，价值函数 v_{\pi}(s) 表示遵循策略 \pi 时从状态 s 起的期望折扣收益 ￼。</p>
+<p>解题思路</p>
+<p>由于状态和动作空间较大，手工求解困难，可利用 DP 策略迭代算法求得最优策略 ￼：
+1.	初始化策略：例如始终不搬运车辆的策略（\pi(s)=0）。
+2.	策略评估：用迭代方法求解 v_{\pi}，即
+v_{k+1}(s)=\sum_{s’,r} p(s’,r\mid s,\pi(s)) [r+\gamma,v_k(s’)].
+3.	策略改进：对每个状态 s，更新策略为
+\pi’(s)=\arg\max_{a}\sum_{s’,r} p(s’,r\mid s,a) [r+\gamma v_{\pi}(s’)].
+4.	循环执行评估和改进直到策略不再改变，即为最优策略 ￼。</p>
+<p>直观解释</p>
+<p>这个问题可以想象为运营者每天根据需求预测和车辆余额决定要不要调拨车辆。DP 的策略迭代算法即反复模拟一天的收益并调整调拨决策，最终找到收益最大的调度方案。</p>
+<p>思考题
+1.	如果调拨成本从 2 美元上升到 4 美元，最优策略是否会变化？请用程序验证。
+2.	假设每个地点存车上限增加到 30 辆，算法的状态空间将如何变化？应如何修改 DP 过程？</p>
+<p>⸻</p>
+<p>四、蒙特卡洛方法回顾：首次访问与每次访问估计</p>
+<p>DP 要求完整的环境模型，而**蒙特卡洛方法（Monte Carlo, MC）**则通过采样完整回合的经验来估计价值，不需要已知模型。学习《强化学习导论》第四章时，可以对比 DP 与 MC 的异同。</p>
+<ol>
+<li>首次访问与每次访问蒙特卡洛预测</li>
+</ol>
+<p>MC 预测利用回合样本估计值函数：在策略 \pi 下生成多个回合，对于每个状态 s，将从它的回访中观察到的回报求平均。在定义访问时有两种常见策略：
+•	首次访问（First-Visit）MC：对一个回合中状态 s 的第一次访问记录回报，将多个回合中首次访问的回报平均 ￼。进一步强调，第一次访问的回报代表从该状态出发的独立样本。
+•	每次访问（Every-Visit）MC：在一个回合中状态 s 可能多次出现，对每次访问获得的回报都纳入平均 ￼。对于无折扣的情形，两种方法都收敛到 v_{\pi}(s)。</p>
+<p>为了增量更新平均值，可以使用增量平均公式：若已知前 n 次访问的平均 V_n，第 n+1 次回报为 G，则新的平均为</p>
+<p>V_{n+1} = V_n + \frac{1}{n+1}(G - V_n),</p>
+<p>这一公式也见于文献 ￼。</p>
+<ol start="2">
+<li>蒙特卡洛控制与探索策略</li>
+</ol>
+<p>MC 不仅可以用来估计固定策略的价值，还能通过探索起点或 \varepsilon-软策略实现策略改进 ￼。\varepsilon-软策略在每个状态下以少量概率随机选择动作，以避免陷入局部最优。通过反复生成回合、更新动作价值函数并贪婪改进策略，可以在没有模型的情况下求得近似最优策略。</p>
+<ol start="3">
+<li>与 DP 的比较
+•	DP 需要完整的 p(s’,r\mid s,a)；MC 通过采样得到转移序列，不依赖模型。
+•	DP 的迭代评估利用自举（依赖当前估计）；MC 直接使用回报样本，不自举。
+•	MC 适用于环境无折扣的回报或回合有限的问题；DP 适用于折扣或有限马尔可夫过程。</li>
+</ol>
+<p>⸻</p>
+<p>五、RLHF 与第 4 章的联系</p>
+<p>**基于人类反馈的强化学习（RLHF）**通过人类偏好或评分来训练模型，其核心仍然是强化学习框架。RLHF 的问题描述与传统 RL 有几点不同：
+•	奖励模型替代真实奖励：RLHF 从人类比较中学习一个奖励模型，估计完整序列的质量。RLHF 书指出 RLHF 任务没有显式的状态转移，而是将奖励视为针对整个输出的评价 ￼。
+•	带自举的价值估计：虽然环境没有长期连锁状态，定义的回报仍是奖励的折扣和 ￼。在语言模型微调中，每生成一段文本可视为一个“回合”，其奖励由人类评分或奖励模型给出。</p>
+<ol>
+<li>将人类评分视为返回</li>
+</ol>
+<p>在 RLHF 中，一段文本（例如对话回复）的整体评分可以看作一次回合的奖励。若奖励模型的输出为 r，则回报 G_0=r（若不折扣）。通过定义价值函数 v(s)=\mathbb{E}[r \mid s]——即在给定提示下的期望评分，可以利用蒙特卡洛方法估计该价值并优化策略。举例来说，
+•	首次访问 MC：在每个不同提示下仅使用对该提示第一次生成的回合的评分更新价值估计。
+•	每次访问 MC：对同一提示的每次生成都记录评分并计算平均值。</p>
+<p>这种设计将 RLHF 的训练转化为基于回合的价值估计，与第 4 章的蒙特卡洛预测一致。</p>
+<ol start="2">
+<li>蒙特卡洛评估在语言模型训练中的应用</li>
+</ol>
+<p>在 RLHF 微调过程中，可使用蒙特卡洛评估思想：生成多个回复样本、记录奖励模型输出作为回报，再将平均回报作为价值估计，指导策略梯度更新。例如使用 Proximal Policy Optimization (PPO) 时，需要估计优势函数 A(s,a)。如果视整个回复为一个动作，其优势可由蒙特卡洛回报减去基准值估计。虽然语言模型的状态空间巨大且不可见，该思想仍遵循第 4 章的原则：通过采样回合估计价值并改进策略。</p>
+<ol start="3">
+<li>注意事项
+•	RLHF 的奖励模型常常不考虑短期状态转移，更多地表现为多臂赌博机（bandit）问题 ￼。这种情况下，价值函数仅依赖于当前提示和文本，不依赖于环境转移。
+•	由于人工反馈昂贵，常用离策略方法（例如基于历史数据的偏好建模）来提高样本效率，这与蒙特卡洛方法结合时需采用重要性采样等技术。</li>
+</ol>
+<p>⸻</p>
+<p>六、LeetCode 题目类比</p>
+<p>为了更直观地理解动态规划和强化学习的状态–动作–返回过程，我们挑选了两道典型的 LeetCode 题目来类比。</p>
+<ol>
+<li>LeetCode 64 — 最小路径和（Minimum Path Sum）</li>
+</ol>
+<p>题目简述</p>
+<p>给定一个 m×n 的网格，每个格子有一个非负权值。你只能向下或向右移动，求从左上角到右下角路径的最小总和。</p>
+<p>强化学习类比
+•	状态：机器人当前所在的格子位置 (i,j)。
+•	动作：向右或向下移动。
+•	奖励：可定义为负的格子权值，这样最大化累计奖励相当于最小化路径和。终止状态为右下角。
+•	价值函数：v(i,j) 为从 (i,j) 到终点的最小路径和的负值。贝尔曼最优方程为
+v(i,j) = -\text{grid}[i][j] + \max\big( v(i+1,j),,v(i,j+1)\big).
+因为我们希望最大化负的路径和相当于最小化正的路径和。</p>
+<p>动态规划解法（Python 代码）</p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col"><a href="https://github.com/emmableu/notes/edit/main/docs/Reinforcement Learning/04. DP.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/notes/docs/p/4eaa3d61-d90b-44a1-bddd-931d4fec6ce5"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">第三章重点总结 (Finite MDPs) + LeetCode 对应练习</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/notes/docs/p/7be291f5-9b16-48c3-b98d-d374f7a966d1"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">强化学习完全讲义：Sutton &amp; Barto 第二版 第四章 动态规划 (Dynamic Programming)</div></a></nav></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Docs</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/notes/docs/intro">Tutorial</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Community</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://stackoverflow.com/questions/tagged/docusaurus" target="_blank" rel="noopener noreferrer" class="footer__link-item">Stack Overflow<svg width="13.5" height="13.5" aria-hidden="true" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://discordapp.com/invite/docusaurus" target="_blank" rel="noopener noreferrer" class="footer__link-item">Discord<svg width="13.5" height="13.5" aria-hidden="true" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://x.com/docusaurus" target="_blank" rel="noopener noreferrer" class="footer__link-item">X<svg width="13.5" height="13.5" aria-hidden="true" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/notes/blog">Blog</a></li><li class="footer__item"><a href="https://github.com/emmableu/notes" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-hidden="true" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 My Project, Inc. Built with Docusaurus.</div></div></div></footer></div>
+</body>
+</html>

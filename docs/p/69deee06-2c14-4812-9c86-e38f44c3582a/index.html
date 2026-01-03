@@ -1,0 +1,527 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-Reinforcement Learning/Resources" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.8.1">
+<title data-rh="true">深度强化学习（Deep RL）学习路线与资源整理（中文翻译） | My Site</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://emmableu.github.io/notes/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://emmableu.github.io/notes/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://emmableu.github.io/notes/docs/p/69deee06-2c14-4812-9c86-e38f44c3582a"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="深度强化学习（Deep RL）学习路线与资源整理（中文翻译） | My Site"><meta data-rh="true" name="description" content="来源：Reddit r/reinforcementlearning 由 E-Cockroach 提供"><meta data-rh="true" property="og:description" content="来源：Reddit r/reinforcementlearning 由 E-Cockroach 提供"><link data-rh="true" rel="icon" href="/notes/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://emmableu.github.io/notes/docs/p/69deee06-2c14-4812-9c86-e38f44c3582a"><link data-rh="true" rel="alternate" href="https://emmableu.github.io/notes/docs/p/69deee06-2c14-4812-9c86-e38f44c3582a" hreflang="en"><link data-rh="true" rel="alternate" href="https://emmableu.github.io/notes/docs/p/69deee06-2c14-4812-9c86-e38f44c3582a" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Reinforcement Learning","item":"https://emmableu.github.io/notes/docs/reinforcement-learning"},{"@type":"ListItem","position":2,"name":"深度强化学习（Deep RL）学习路线与资源整理（中文翻译）","item":"https://emmableu.github.io/notes/docs/p/69deee06-2c14-4812-9c86-e38f44c3582a"}]}</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" crossorigin="anonymous"><link rel="stylesheet" href="/notes/assets/css/styles.607fdee8.css">
+<script src="/notes/assets/js/runtime~main.c02a6fe4.js" defer="defer"></script>
+<script src="/notes/assets/js/main.02311e79.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t="light";var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",e||t),document.documentElement.setAttribute("data-theme-choice",e||t)}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><link rel="preload" as="image" href="/notes/img/logo.svg"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/notes/"><div class="navbar__logo"><img src="/notes/img/logo.svg" alt="My Site Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/notes/img/logo.svg" alt="My Site Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">My Site</b></a><a class="navbar__item navbar__link" href="/notes/docs/ml100">01. ML Theory 100</a><a class="navbar__item navbar__link" href="/notes/docs/dl100">02. DL Theory 100</a><a class="navbar__item navbar__link" href="/notes/docs/leetcode">03. Leetcode</a><a class="navbar__item navbar__link" href="/notes/docs/zero2hero">04. Zero To Hero</a><a class="navbar__item navbar__link" href="/notes/docs/ml-general">05. ML General</a><a class="navbar__item navbar__link" href="/notes/docs/reinforcement-learning">Reinforcement Learning</a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><div class="navbar__search searchBarContainer_NW3z" dir="ltr"><input placeholder="Search" aria-label="Search" class="navbar__search-input searchInput_YFbd" value=""><div class="loadingRing_RJI3 searchBarLoadingRing_YnHq"><div></div><div></div><div></div><div></div></div></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" href="/notes/docs/ml100">01. ML Theory 100</a><button aria-label="Expand sidebar category &#x27;01. ML Theory 100&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" href="/notes/docs/ml-general">05. ML General</a><button aria-label="Expand sidebar category &#x27;05. ML General&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" href="/notes/docs/dl100">02. DL Theory 100</a><button aria-label="Expand sidebar category &#x27;02. DL Theory 100&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" href="/notes/docs/leetcode">03. Leetcode</a><button aria-label="Expand sidebar category &#x27;03. Leetcode&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist" href="/notes/docs/zero2hero">04. Zero to Hero</a><button aria-label="Expand sidebar category &#x27;04. Zero to Hero&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--active" href="/notes/docs/reinforcement-learning">Reinforcement Learning</a><button aria-label="Collapse sidebar category &#x27;Reinforcement Learning&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/notes/docs/p/69deee06-2c14-4812-9c86-e38f44c3582a">深度强化学习（Deep RL）学习路线与资源整理（中文翻译）</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/p/d67dc6e3-5265-4d32-8f07-06aec6afebad">第一章：强化学习问题（Sutton &amp; Barto 中文版整理）</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/p/a61a19da-218a-4d38-9551-137b69a1c9e8">第2章 多臂混混机问题 (Multi-Arm Bandits)</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/p/4eaa3d61-d90b-44a1-bddd-931d4fec6ce5">第三章重点总结 (Finite MDPs) + LeetCode 对应练习</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/p/93d4d740-9b7a-4b62-a2b5-2e1314385108">DP</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/p/7be291f5-9b16-48c3-b98d-d374f7a966d1">强化学习完全讲义：Sutton &amp; Barto 第二版 第四章 动态规划 (Dynamic Programming)</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/notes/docs/docs/reinforcement-learning">Reinforcement Learning</a></li></ul></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/notes/docs/docs">Docs</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/notes/docs/docs/intro">Welcome / Placeholder</a></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/notes/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/notes/docs/reinforcement-learning"><span>Reinforcement Learning</span></a></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">深度强化学习（Deep RL）学习路线与资源整理（中文翻译）</span></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>深度强化学习（Deep RL）学习路线与资源整理（中文翻译）</h1></header>
+<blockquote>
+<p>来源：<a href="https://www.reddit.com/r/reinforcementlearning/comments/zi7qae/best_reinforcement_learning_course/" target="_blank" rel="noopener noreferrer">Reddit r/reinforcementlearning</a> 由 E-Cockroach 提供</p>
+</blockquote>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-教学背景">🎓 教学背景<a href="#-教学背景" class="hash-link" aria-label="Direct link to 🎓 教学背景" title="Direct link to 🎓 教学背景">​</a></h2>
+<p>我连续三年担任我们学院的深度强化学习课程讲师（共8个学分），但我本身仍是一名学生，因此请谨慎参考。</p>
+<p>我们<strong>不考虑模型型强化学习（Model-based RL）</strong>，因为那是另一个主题/更复杂/有点蠢（玩笑）。</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-学习路线建议">📚 学习路线建议<a href="#-学习路线建议" class="hash-link" aria-label="Direct link to 📚 学习路线建议" title="Direct link to 📚 学习路线建议">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="-阶段一强化学习基础">✅ 阶段一：强化学习基础<a href="#-阶段一强化学习基础" class="hash-link" aria-label="Direct link to ✅ 阶段一：强化学习基础" title="Direct link to ✅ 阶段一：强化学习基础">​</a></h3>
+<ol>
+<li>理解基础概念，例如经典强化学习（Chapters 1~9 of Sutton &amp; Barto）</li>
+<li>完成至少一半的课后题目</li>
+<li>理解并实现以下核心算法：</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>算法</th><th>推荐操作</th><th>附注</th></tr></thead><tbody><tr><td>DQN</td><td>理解并实现</td><td></td></tr><tr><td>Rainbow DQN</td><td>实现 Double-Q + 分支 Q 网络</td><td>只需实现这两部分</td></tr><tr><td>REINFORCE</td><td>按照 <a href="https://lilianweng.github.io/lil-log/" target="_blank" rel="noopener noreferrer">Lil&#x27;log 博客</a> 实现</td><td>非论文版本</td></tr><tr><td>A2C</td><td>理解并实现</td><td></td></tr><tr><td>A3C</td><td>阅读论文（不需实现）</td><td></td></tr><tr><td>PPO</td><td>阅读 PPO 和 TRPO 论文 + 博客</td><td>不需实现</td></tr><tr><td>DDPG</td><td>理解并实现</td><td></td></tr><tr><td>TD3</td><td>理解并实现</td><td></td></tr><tr><td>SAC</td><td>理解并实现</td><td></td></tr></tbody></table>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="-阶段二进阶专题与论文推荐">✅ 阶段二：进阶专题与论文推荐<a href="#-阶段二进阶专题与论文推荐" class="hash-link" aria-label="Direct link to ✅ 阶段二：进阶专题与论文推荐" title="Direct link to ✅ 阶段二：进阶专题与论文推荐">​</a></h3>
+<blockquote>
+<p>*号代表建议实现的内容。</p>
+</blockquote>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>主题/论文</th><th>是否建议实现</th><th>附注</th></tr></thead><tbody><tr><td>HER (Hindsight Exp Replay)</td><td>✅</td><td></td></tr><tr><td>Inverse RL（2-3 篇基础论文）</td><td>❌</td><td></td></tr><tr><td>World Models Paper</td><td>✅</td><td></td></tr><tr><td>RIAL&amp;DIAL（Foerster 论文）</td><td>❌</td><td>多智能体 RL</td></tr><tr><td>MADDPG</td><td>✅</td><td>多智能体 RL</td></tr><tr><td>Intrinsic motivation（Pathak）</td><td>✅</td><td>入门级推荐</td></tr><tr><td>Offline RL（S. Levine 讲座）</td><td>❌</td><td>建议看讲座不看论文</td></tr><tr><td>Conservative Q-Learning (CQL)</td><td>❌</td><td></td></tr></tbody></table>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="-阶段三高级内容推荐代表领域或重要概念">✅ 阶段三：高级内容推荐（代表领域或重要概念）<a href="#-阶段三高级内容推荐代表领域或重要概念" class="hash-link" aria-label="Direct link to ✅ 阶段三：高级内容推荐（代表领域或重要概念）" title="Direct link to ✅ 阶段三：高级内容推荐（代表领域或重要概念）">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>内容</th><th>建议了解</th><th>附注</th></tr></thead><tbody><tr><td>Mirror Learning</td><td>✅</td><td></td></tr><tr><td>AlphaGo</td><td>✅</td><td>推荐了解 MCTS 与模型型 RL</td></tr><tr><td>RLHF（人类反馈强化学习）</td><td>✅</td><td></td></tr><tr><td>IMPALA</td><td>✅</td><td>分布式 RL 算法</td></tr></tbody></table>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-最重要建议">🧠 最重要建议<a href="#-最重要建议" class="hash-link" aria-label="Direct link to 🧠 最重要建议" title="Direct link to 🧠 最重要建议">​</a></h2>
+<blockquote>
+<p><strong>实现你学到的内容！</strong></p>
+</blockquote>
+<p>很多人读完论文就觉得自己懂了，但只有当你真正动手实现算法，才会意识到你还不是真的懂。<strong>实现是理解的唯一方式。</strong></p>
+<p>否则你就像看着足球大喊“我也能踢”的人一样，实际上根本不懂怎么踢。</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-实现示例库">🔧 实现示例库<a href="#-实现示例库" class="hash-link" aria-label="Direct link to 🔧 实现示例库" title="Direct link to 🔧 实现示例库">​</a></h2>
+<ul>
+<li>SBX（Stable-Baselines3 实现工具箱）
+<ul>
+<li>GitHub 链接：<a href="https://github.com/araffin/sbx" target="_blank" rel="noopener noreferrer">https://github.com/araffin/sbx</a></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-强烈推荐的学习资源">📺 强烈推荐的学习资源<a href="#-强烈推荐的学习资源" class="hash-link" aria-label="Direct link to 📺 强烈推荐的学习资源" title="Direct link to 📺 强烈推荐的学习资源">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="视频课程">视频课程<a href="#视频课程" class="hash-link" aria-label="Direct link to 视频课程" title="Direct link to 视频课程">​</a></h3>
+<ul>
+<li>David Silver 强化学习课程：<a href="https://www.youtube.com/watch?v=2pWv7GOvuf0&amp;list=PLqYmG7hTraZDM-OYHWgPebj2MfCFzFObQ" target="_blank" rel="noopener noreferrer">YouTube 视频列表</a></li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="教科书">教科书<a href="#教科书" class="hash-link" aria-label="Direct link to 教科书" title="Direct link to 教科书">​</a></h3>
+<ul>
+<li>Sutton &amp; Barto: <a href="https://web.stanford.edu/class/psych209/Readings/SuttonBartoIPRLBook2ndEd.pdf" target="_blank" rel="noopener noreferrer">Reinforcement Learning: An Introduction (第2版PDF)</a></li>
+<li>Phil Winder 的《Reinforcement Learning》书籍（O&#x27;Reilly）</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="suttonbarto-课后习题解答">Sutton&amp;Barto 课后习题解答：<a href="#suttonbarto-课后习题解答" class="hash-link" aria-label="Direct link to Sutton&amp;Barto 课后习题解答：" title="Direct link to Sutton&amp;Barto 课后习题解答：">​</a></h3>
+<ul>
+<li>GitHub 解答合集：<a href="https://github.com/LyWangPX/Reinforcement-Learning-2nd-Edition-by-Sutton-Exercise-Solutions" target="_blank" rel="noopener noreferrer">https://github.com/LyWangPX/Reinforcement-Learning-2nd-Edition-by-Sutton-Exercise-Solutions</a></li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-更多推荐课程和资源无特别顺序">📘 更多推荐课程和资源（无特别顺序）<a href="#-更多推荐课程和资源无特别顺序" class="hash-link" aria-label="Direct link to 📘 更多推荐课程和资源（无特别顺序）" title="Direct link to 📘 更多推荐课程和资源（无特别顺序）">​</a></h2>
+<blockquote>
+<p>推荐结合第1-3阶段内容一起学习，帮助理解。</p>
+</blockquote>
+<ul>
+<li><a href="https://www.microsoft.com/en-us/research/event/reinforcement-learning-day-2019/agenda/" target="_blank" rel="noopener noreferrer">Microsoft RL Day 2019</a></li>
+<li><a href="https://web.mit.edu/dimitrib/www/RLbook.html" target="_blank" rel="noopener noreferrer">Dimitri Bertsekas MIT RL Book</a></li>
+<li><a href="https://www.deepmind.com/learning-resources/reinforcement-learning-lecture-series-2021" target="_blank" rel="noopener noreferrer">DeepMind RL 2021 讲座系列</a></li>
+<li><a href="http://rail.eecs.berkeley.edu/deeprlcourse/" target="_blank" rel="noopener noreferrer">Berkeley DeepRL 课程主页</a></li>
+<li><a href="https://cs.uwaterloo.ca/~ppoupart/teaching/cs885-spring18/" target="_blank" rel="noopener noreferrer">UW CS885 RL 课程</a></li>
+<li><a href="https://www.andrew.cmu.edu/course/10-703/" target="_blank" rel="noopener noreferrer">CMU 10-703 课程</a></li>
+<li><a href="https://web.stanford.edu/class/cs234/index.html" target="_blank" rel="noopener noreferrer">Stanford CS234 课程</a></li>
+<li><a href="https://amfarahmand.github.io/IntroRL/" target="_blank" rel="noopener noreferrer">Amir-massoud Farahmand RL 教程</a></li>
+<li><a href="https://sites.google.com/view/deep-rl-bootcamp/lectures" target="_blank" rel="noopener noreferrer">Deep RL Bootcamp</a></li>
+<li><a href="http://dalimeeting.org/dali2017/data-efficient-reinforcement-learning.html" target="_blank" rel="noopener noreferrer">Data Efficient RL @ DALI 2017</a></li>
+<li><a href="https://www.ias.edu/math/ndrlc" target="_blank" rel="noopener noreferrer">IAS 数学研究所 NDRLC</a></li>
+<li><a href="https://cs330.stanford.edu" target="_blank" rel="noopener noreferrer">Stanford CS330</a></li>
+<li><a href="https://chandar-lab.github.io/INF8953DE/" target="_blank" rel="noopener noreferrer">Chandar Lab INF8953DE</a></li>
+<li><a href="https://www.youtube.com/playlist?list=PLp0hSY2uBeP8q2G3mfHGVGvQFEMX0QRWM" target="_blank" rel="noopener noreferrer">Deep RL 讲座播放列表</a></li>
+<li><a href="https://www.davidsilver.uk/teaching/" target="_blank" rel="noopener noreferrer">David Silver 教学主页</a></li>
+<li><a href="https://www.youtube.com/watch?v=EcxpbhDeuZw" target="_blank" rel="noopener noreferrer">David Silver AlphaGo 背后的视频</a></li>
+</ul>
+<hr>
+<blockquote>
+<p>📌 如果上面的内容不够用，可以继续搜索更多资源，但这些是我为学生精选的、具有代表性和高价值的强化学习学习资料。</p>
+</blockquote>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="rlhf-前需学习的-sutton--barto-章节指南">RLHF 前需学习的 Sutton &amp; Barto 章节指南<a href="#rlhf-前需学习的-sutton--barto-章节指南" class="hash-link" aria-label="Direct link to RLHF 前需学习的 Sutton &amp; Barto 章节指南" title="Direct link to RLHF 前需学习的 Sutton &amp; Barto 章节指南">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="一学习目标-before-rlhf">一、学习目标 (Before RLHF)<a href="#一学习目标-before-rlhf" class="hash-link" aria-label="Direct link to 一、学习目标 (Before RLHF)" title="Direct link to 一、学习目标 (Before RLHF)">​</a></h3>
+<p>您需要熟悉以下基础概念：</p>
+<ul>
+<li>马尔可夫过程 MDP</li>
+<li>状态值、动作值、Bellman 方程</li>
+<li>动态规划</li>
+<li>蒙特卡罗方法</li>
+<li>时间差分 TD 方法</li>
+<li>策略改进与策略梯度</li>
+<li>探索 vs 利用 (exploration vs exploitation)</li>
+</ul>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="二系统路线列表">二、系统路线列表<a href="#二系统路线列表" class="hash-link" aria-label="Direct link to 二、系统路线列表" title="Direct link to 二、系统路线列表">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>章节</th><th>标题</th><th>是否必学</th><th>备注</th></tr></thead><tbody><tr><td>第1章</td><td>强化学习概述</td><td>✅ 必学</td><td>设定应用场景、角色、环境</td></tr><tr><td>第2章</td><td>多臂老虎机 (Bandits)</td><td>✅ 必学</td><td>基础探索/利用机制</td></tr><tr><td>第3章</td><td>MRP (有奖马尔可夫过程)</td><td>✅ 必学</td><td>状态值 V(s)的定义</td></tr><tr><td>第4章</td><td>MDP (马尔可夫决策过程)</td><td>✅ 必学</td><td>动作值 Q(s,a)、策略概念</td></tr><tr><td>第5章</td><td>动态规划 (DP)</td><td>✅ 推荐</td><td>实现 Bellman 策略进化</td></tr><tr><td>第6章</td><td>蒙特卡罗方法 (MC)</td><td>✅ 必学</td><td>根据样本进行值准备</td></tr><tr><td>第7章</td><td>时间差分 (TD)</td><td>✅ 必学</td><td>TD(0)、SARSA、Q-learning 基础</td></tr><tr><td>第8章</td><td>策略梯度</td><td>✅ 必学</td><td>PPO 等方法基石</td></tr><tr><td>第9章</td><td>函数估计</td><td>✅ 强烈推荐</td><td>与深度学习接连</td></tr><tr><td>第13章</td><td>Policy Gradient with Approx</td><td>✅ 推荐</td><td>提供 RLHF PPO 基石</td></tr></tbody></table>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="三可暂时省略章节">三、可暂时省略章节<a href="#三可暂时省略章节" class="hash-link" aria-label="Direct link to 三、可暂时省略章节" title="Direct link to 三、可暂时省略章节">​</a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>章节</th><th>标题</th><th>备注</th></tr></thead><tbody><tr><td>第10章</td><td>离策略学习 Off-policy</td><td>RLHF 并不直接用</td></tr><tr><td>第11章</td><td>eligibility traces</td><td>高级课题，可后看</td></tr><tr><td>第12章</td><td>Planning (Dyna)</td><td>RLHF 并不使用</td></tr></tbody></table>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="四结论">四、结论<a href="#四结论" class="hash-link" aria-label="Direct link to 四、结论" title="Direct link to 四、结论">​</a></h3>
+<p>RLHF 为 PPO + 人类评价 + 奖励模型组成，你需要基础策略和值准备方法的全面理解。</p>
+<p>如果你想我按照这个路线进行 Leetcode 风格练习题和代码实现，我可以从第3章或第4章开始给你练习并输出 markdown + code solution</p>
+<p>what part of the sutton barto book do I need to read in order to figure out how to do this:</p>
+<p>I need to perform training sample selections for doing LLM training, e.g., like the regmix paper.
+however, instead of an offline approach, I want to do an online approach. the approach is explained below.</p>
+<p>i have several signals for each data sample, e.g., educational score, topic, layout, DCLM score, etc</p>
+<p>with each data loading loop (where I put data into training) I do e.g., 256 times of data loading and training, each time, I use a sampling policy, based on those educational score, topic, layout, DCLM score of each sample, my goal is to find the best sampling policy.</p>
+<p>before running gradient update.
+during this 256 times, I collect the loss data of different sampling strategies, and improve the sampling policy.</p>
+<p>and then, I do the gradient update all together</p>
+<p>and after that, I do the same thing again, improve upon the previous sampling policy</p>
+<p>i see this as a RL problem, because I can only find whichever sample policy is best for a better loss function, but I don&#x27;t have an optimization target</p>
+<p>but right now I don&#x27;t know what&#x27;s the right way of do this yet.</p>
+<p>give me suggestions on what sections of sutton and barto I need to read and understand, and also give me example papers that does similar stuff.</p>
+<p>你想用在线方式优化 LLM 训练样本选择策略，确实可以参考 <strong>强化学习（RL）</strong> 的相关理论，尤其是 <strong>带上下文的多臂老虎机（Contextual Bandits）</strong> 和 <strong>策略梯度方法</strong>。以下是详细建议👇</p>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-推荐阅读-sutton--barto"><strong>📚 推荐阅读 Sutton &amp; Barto</strong><a href="#-推荐阅读-sutton--barto" class="hash-link" aria-label="Direct link to -推荐阅读-sutton--barto" title="Direct link to -推荐阅读-sutton--barto">​</a></h2>
+<p>从理论到实践，以下章节非常相关：</p>
+<ol>
+<li>
+<p><strong>第2章 多臂老虎机（Bandits）</strong></p>
+<ul>
+<li>
+<p><strong>2.1–2.6</strong>：学习 ε-greedy、UCB 和乐观初始化，理解探索-利用权衡。</p>
+</li>
+<li>
+<p><strong>2.6 中的 UCB</strong> 是在线选择样本分布的一种可能策略。</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>第2章 · 2.7 梯度 Bandits（Gradients for Bandits）</strong></p>
+<ul>
+<li>理解如何用 <strong>策略梯度（policy gradient）</strong> 来学习抽样策略 \pi_\theta，逐步优化采样分布。</li>
+</ul>
+</li>
+<li>
+<p><strong>第13章 策略梯度方法（Policy Gradient Methods）</strong></p>
+<ul>
+<li>学习 REINFORCE 和基于 advantage 的方法，它们可直接用于优化采样函数。</li>
+</ul>
+</li>
+<li>
+<p><strong>第14章 Actor-Critic</strong></p>
+<ul>
+<li>若你想将采样策略和训练主体同时训练，可用 actor-critic 架构，分别更新模型和采样策略。</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-建议策略--将采样看作在线-bandit-或-policy-gradient"><strong>🧩 建议策略 —— 将采样看作在线 Bandit 或 Policy Gradient</strong><a href="#-建议策略--将采样看作在线-bandit-或-policy-gradient" class="hash-link" aria-label="Direct link to -建议策略--将采样看作在线-bandit-或-policy-gradient" title="Direct link to -建议策略--将采样看作在线-bandit-或-policy-gradient">​</a></h2>
+<p>你提到“多信号 → 策略选择 → 收集 loss → 更新策略”的流程，与 RL 完全对齐：</p>
+<ul>
+<li>
+<p><strong>状态</strong>：样本特征（教育得分、布局、话题等）</p>
+</li>
+<li>
+<p><strong>动作</strong>：从 batch 中选择某个样本</p>
+</li>
+<li>
+<p><strong>奖励</strong>：该样本造成的 loss 改善幅度</p>
+</li>
+<li>
+<p><strong>策略学习</strong>：优化 \pi(a|s;\theta)，使采样策略最大化 cumulative reward（minimize total loss）</p>
+</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="-两种实现方式"><strong>✨ 两种实现方式：</strong><a href="#-两种实现方式" class="hash-link" aria-label="Direct link to -两种实现方式" title="Direct link to -两种实现方式">​</a></h3>
+<ol>
+<li>
+<p><strong>Contextual Bandits</strong> (在线改进 UCB 或 Thompson Sampling)，适合无序特征 k 类样本</p>
+</li>
+<li>
+<p><strong>Policy Gradient</strong> (策略梯度)，在参数化或连续策略空间上训练采样器</p>
+</li>
+</ol>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-相似论文推荐"><strong>📑 相似论文推荐</strong><a href="#-相似论文推荐" class="hash-link" aria-label="Direct link to -相似论文推荐" title="Direct link to -相似论文推荐">​</a></h2>
+<ul>
+<li>
+<p><strong>Self‑Evolving Curriculum for LLM Reasoning</strong>（Chen 等, 2025）</p>
+<p>将每类样本看作臂，用 advantage 促进在线更新，采用非平稳 Bandit 方法 </p>
+</li>
+<li>
+<p><strong>DUMP: Distribution-Level Curriculum Learning for RL-based LLM Post-training</strong>（Wang 等, 2025）</p>
+<p>使用 UCB 按 batch 分布动态采样数据集 </p>
+</li>
+<li>
+<p><strong>Feel-Good Thompson Sampling for Contextual Bandits</strong>（Zhang, 2021）</p>
+<p>可参考其上下文 bandit 示例以实现多信号决策 </p>
+</li>
+<li>
+<p><strong>Curriculum RL via Constrained Optimal Transport</strong>（Klink 等, 2022）</p>
+<p>对 task 和样本分布建模，作为补充理论背景 </p>
+</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-实践落地建议"><strong>🛠 实践落地建议</strong><a href="#-实践落地建议" class="hash-link" aria-label="Direct link to -实践落地建议" title="Direct link to -实践落地建议">​</a></h2>
+<ol>
+<li>
+<p><strong>实现一个 Contextual Bandit</strong>：以 UCB 或 Thompson Sampling 为基础，对每个训练 batch 中的样本类别/样本打分，决定采样概率；</p>
+</li>
+<li>
+<p><strong>或设计一个策略网络</strong>：输入样本属性，输出采样概率，基于训练中 loss 的 advantage 用 REINFORCE 更新；</p>
+</li>
+<li>
+<p><strong>结合 Advantage</strong>：计算训练前后 loss 改善作为 reward，使用 policy gradient 或 TD 更新方法在线优化采样器；</p>
+</li>
+<li>
+<p><strong>添加 exploration</strong>：类似 RL 中的 ε-greedy、UCB、entropy Regularization；</p>
+</li>
+</ol>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="-下一步行动"><strong>🧭 下一步行动</strong><a href="#-下一步行动" class="hash-link" aria-label="Direct link to -下一步行动" title="Direct link to -下一步行动">​</a></h2>
+<ul>
+<li>
+<p>阅读 <strong>Sutton Barto 第2章 Bandits 和第13章策略梯度</strong>；</p>
+</li>
+<li>
+<p>根据上面两种方法，试写一个小 demo：假设样本分为 5 类，对每类采样概率并用 contextual bandit 更新；</p>
+</li>
+<li>
+<p>参考上述论文结构，把样本策略整合入 LLM training loop 中。</p>
+</li>
+</ul>
+<p>Important paper:</p>
+<p>Adam with Bandit Sampling for Deep Learning (Rui Liu)</p>
+<hr>
+<p>强化学习基础 (Sutton &amp; Barto 前 6 章)</p>
+<p>这是 RLHF 的根基。你已经看过 Ch1–4，接下来建议完整掌握到 Ch6：
+•	Ch2 Bandit → 探索-利用
+•	Ch3 MDP → 状态/动作/奖励定义
+•	Ch4 动态规划 → 策略迭代、价值迭代
+•	Ch5 Monte Carlo → 从采样中估计价值
+•	Ch6 Temporal Difference → TD(0)、SARSA、Q-learning（关键！）</p>
+<p>👉 对应练习：
+•	LeetCode：688, 837, 64, 174, 741
+•	自己写：5×5 gridworld、Blackjack、Cliff Walking</p>
+<hr>
+<ol start="3">
+<li>深度强化学习 (Deep RL)</li>
+</ol>
+<p>RLHF 的训练环节依赖 Deep RL，最常用的是 Policy Gradient 和 PPO。
+需要掌握：
+•	Policy Gradient (REINFORCE)
+•	Actor-Critic
+•	PPO (Proximal Policy Optimization) ← RLHF 最常用算法
+•	KL 正则化的策略优化</p>
+<p>👉 学习资料：
+•	SpinningUp (OpenAI 的 DRL 教程，含 PPO 实现)
+•	CleanRL 项目（代码简洁，容易读）</p>
+<p>👉 实战练习：
+•	在 Gym 里跑 CartPole-v1，用 Policy Gradient 和 PPO 训练。</p>
+<p>强化学习基础 (Sutton &amp; Barto 前 6 章)</p>
+<p>这是 RLHF 的根基。你已经看过 Ch1–4，接下来建议完整掌握到 Ch6：
+•	Ch2 Bandit → 探索-利用
+•	Ch3 MDP → 状态/动作/奖励定义
+•	Ch4 动态规划 → 策略迭代、价值迭代
+•	Ch5 Monte Carlo → 从采样中估计价值
+•	Ch6 Temporal Difference → TD(0)、SARSA、Q-learning（关键！）</p>
+<p>👉 对应练习：
+•	LeetCode：688, 837, 64, 174, 741
+•	自己写：5×5 gridworld、Blackjack、Cliff Walking</p>
+<hr>
+<ol start="3">
+<li>深度强化学习 (Deep RL)</li>
+</ol>
+<p>RLHF 的训练环节依赖 Deep RL，最常用的是 Policy Gradient 和 PPO。
+需要掌握：
+•	Policy Gradient (REINFORCE)
+•	Actor-Critic
+•	PPO (Proximal Policy Optimization) ← RLHF 最常用算法
+•	KL 正则化的策略优化</p>
+<p>👉 学习资料：
+•	SpinningUp (OpenAI 的 DRL 教程，含 PPO 实现)
+•	CleanRL 项目（代码简洁，容易读）</p>
+<p>👉 实战练习：
+•	在 Gym 里跑 CartPole-v1，用 Policy Gradient 和 PPO 训练。</p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col"><a href="https://github.com/emmableu/notes/edit/main/docs/Reinforcement Learning/00. Resources.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/notes/docs/reinforcement-learning"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Reinforcement Learning</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/notes/docs/p/d67dc6e3-5265-4d32-8f07-06aec6afebad"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">第一章：强化学习问题（Sutton &amp; Barto 中文版整理）</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#-教学背景" class="table-of-contents__link toc-highlight">🎓 教学背景</a></li><li><a href="#-学习路线建议" class="table-of-contents__link toc-highlight">📚 学习路线建议</a><ul><li><a href="#-阶段一强化学习基础" class="table-of-contents__link toc-highlight">✅ 阶段一：强化学习基础</a></li><li><a href="#-阶段二进阶专题与论文推荐" class="table-of-contents__link toc-highlight">✅ 阶段二：进阶专题与论文推荐</a></li><li><a href="#-阶段三高级内容推荐代表领域或重要概念" class="table-of-contents__link toc-highlight">✅ 阶段三：高级内容推荐（代表领域或重要概念）</a></li></ul></li><li><a href="#-最重要建议" class="table-of-contents__link toc-highlight">🧠 最重要建议</a></li><li><a href="#-实现示例库" class="table-of-contents__link toc-highlight">🔧 实现示例库</a></li><li><a href="#-强烈推荐的学习资源" class="table-of-contents__link toc-highlight">📺 强烈推荐的学习资源</a><ul><li><a href="#视频课程" class="table-of-contents__link toc-highlight">视频课程</a></li><li><a href="#教科书" class="table-of-contents__link toc-highlight">教科书</a></li><li><a href="#suttonbarto-课后习题解答" class="table-of-contents__link toc-highlight">Sutton&amp;Barto 课后习题解答：</a></li></ul></li><li><a href="#-更多推荐课程和资源无特别顺序" class="table-of-contents__link toc-highlight">📘 更多推荐课程和资源（无特别顺序）</a></li><li><a href="#rlhf-前需学习的-sutton--barto-章节指南" class="table-of-contents__link toc-highlight">RLHF 前需学习的 Sutton &amp; Barto 章节指南</a><ul><li><a href="#一学习目标-before-rlhf" class="table-of-contents__link toc-highlight">一、学习目标 (Before RLHF)</a></li><li><a href="#二系统路线列表" class="table-of-contents__link toc-highlight">二、系统路线列表</a></li><li><a href="#三可暂时省略章节" class="table-of-contents__link toc-highlight">三、可暂时省略章节</a></li><li><a href="#四结论" class="table-of-contents__link toc-highlight">四、结论</a></li></ul></li><li><a href="#-推荐阅读-sutton--barto" class="table-of-contents__link toc-highlight"><strong>📚 推荐阅读 Sutton &amp; Barto</strong></a></li><li><a href="#-建议策略--将采样看作在线-bandit-或-policy-gradient" class="table-of-contents__link toc-highlight"><strong>🧩 建议策略 —— 将采样看作在线 Bandit 或 Policy Gradient</strong></a><ul><li><a href="#-两种实现方式" class="table-of-contents__link toc-highlight"><strong>✨ 两种实现方式：</strong></a></li></ul></li><li><a href="#-相似论文推荐" class="table-of-contents__link toc-highlight"><strong>📑 相似论文推荐</strong></a></li><li><a href="#-实践落地建议" class="table-of-contents__link toc-highlight"><strong>🛠 实践落地建议</strong></a></li><li><a href="#-下一步行动" class="table-of-contents__link toc-highlight"><strong>🧭 下一步行动</strong></a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Docs</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/notes/docs/intro">Tutorial</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Community</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://stackoverflow.com/questions/tagged/docusaurus" target="_blank" rel="noopener noreferrer" class="footer__link-item">Stack Overflow<svg width="13.5" height="13.5" aria-hidden="true" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://discordapp.com/invite/docusaurus" target="_blank" rel="noopener noreferrer" class="footer__link-item">Discord<svg width="13.5" height="13.5" aria-hidden="true" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://x.com/docusaurus" target="_blank" rel="noopener noreferrer" class="footer__link-item">X<svg width="13.5" height="13.5" aria-hidden="true" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/notes/blog">Blog</a></li><li class="footer__item"><a href="https://github.com/emmableu/notes" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-hidden="true" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 My Project, Inc. Built with Docusaurus.</div></div></div></footer></div>
+</body>
+</html>
